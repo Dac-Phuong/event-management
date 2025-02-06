@@ -5,9 +5,9 @@
     <p class="font-size-base">Quản lý danh mục bài viết</p>
     <div class="card">
         <div class="card-header">
-            <div class="justify-between d-flex align-items-center w-full flex-wrap">
+            <div class="d-flex justify-content-between align-items-center w-100">
                 <h5 class="card-title mb-0">Danh sách danh mục</h5>
-                <button class="btn btn-label-secondary btn-primary rounded-2" tabindex="0" aria-controls="DataTables_Table_0"
+                <button class="btn btn-primary btn-label-secondary rounded-2" tabindex="0" aria-controls="DataTables_Table_0"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAdd"><span><i
                             class="ti ti-plus me-sm-1 ti-xs me-0"></i><span class="d-none d-sm-inline-block">Thêm mới</span>
                     </span>
@@ -41,18 +41,21 @@
     <script>
         var dt_basic_table = $('#Datatable');
         var dt_basic = null;
-
+        var role = [];
         if (dt_basic_table.length) {
             const initAction = () => {
                 $(document).on('click', '.btn-edit', function() {
                     const data = getRowData($(this).closest('tr'));
                     $("#edit-form").find("input, select, textarea").each(function() {
                         let name = $(this).attr('name');
-                        $(this).val(data[name]);
-                    });
+                        if ($(this).is(':checkbox')) {
+                            $(this).prop('checked', data[name] == 1);
+                        } else {
+                            $(this).val(data[name]);
+                        }
+                    })
                     $('#offcanvasEdit').offcanvas('show');
-                });
-
+                })
                 $(document).on('click', '.btn-delete', function() {
                     const data = getRowData($(this).closest('tr'));
                     Swal.fire({
@@ -89,32 +92,37 @@
                                     });
                                 }
                             });
+
                         }
                     });
-                });
-            };
-
+                })
+            }
             const getRowData = (row) => {
                 return dt_basic.row(row).data();
-            };
-
-            if ($.fn.DataTable.isDataTable(dt_basic_table)) {
-                dt_basic_table.DataTable().destroy();
             }
-
+            $.fn.dataTableExt.sErrMode = 'none';
             dt_basic = dt_basic_table.DataTable({
+                // Thời gian trì hoãn tìm kiếm (ms)
                 searchDelay: 500,
-                destroy: true, // Cho phép phá hủy DataTable trước khi tạo mới
+                // Bật chế độ xử lý từ máy chủ
                 serverSide: true,
+                // Loại bỏ hiệu ứng hiển thị trạng thái xử lý
                 processing: true,
+                // Lưu trạng thái tìm kiếm
                 stateSave: true,
+                select: {
+                    style: "multi",
+                    selector: 'td:first-child input[type="checkbox"]',
+                    className: "row-selected",
+                },
                 ajax: {
-                    url: '{{ route('news-category.datatable') }}',
+                    url: "{{ route('news-category.datatable') }}",
                     type: "POST",
                     data: function(data) {
                         data._token = "{{ csrf_token() }}";
                     },
                 },
+
                 columns: [{
                         data: 'id'
                     },
@@ -136,6 +144,7 @@
                 ],
                 columnDefs: [{
                         targets: 0,
+
                         render: function(data) {
                             return data;
                         },
@@ -143,29 +152,30 @@
                     {
                         targets: 1,
                         render: function(data, type, row) {
-                            return `<a href="javascript:void(0);" class="text-primary text-hover-primary">${data ?? ""}</a>`;
+                            return `<a href="javascript:void(0);"
+                                        class="text-primary text-hover-primary">${data ?? ""} </a>`;
                         },
                     },
                     {
                         targets: 2,
                         orderable: false,
-                        render: function(data) {
+                        render: function(data, type, row) {
                             return data;
                         },
                     },
                     {
                         targets: 3,
                         orderable: false,
-                        render: function(data) {
-                            return data == 1 ? '<span class="badge bg-success">Hiển thị</span>' :
-                                '<span class="badge bg-danger">Ẩn</span>';
+                        render: function(data, type, row) {
+                            return data == 1 ? '<span class="badge bg-label-success">Hiển thị</span>' :
+                                '<span class="badge bg-label-danger">Ẩn</span>';
                         },
                     },
                     {
                         targets: 4,
-                        orderable: true,
-                        render: function(data) {
-                            return formatDateTime(data);
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return formatDateTime(data);;
                         },
                     },
                     {
@@ -174,20 +184,14 @@
                         orderable: false,
                         render: function(data, type, row) {
                             return `
-                        <div class="dropdown">
-                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="ti ti-dots-vertical"></i>
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item btn-edit" href="javascript:void(0);">
-                                <i class="ti ti-pencil me-2"></i>Sửa
-                            </a>
-                            <a class="dropdown-item btn-delete" href="javascript:void(0);">
-                                <i class="ti ti-trash me-2"></i>Xóa
-                            </a>
-                          </div>
-                        </div>
-                    `;
+                                <div class="dropdown">
+                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
+                                  <div class="dropdown-menu">
+                                   <a class="dropdown-item btn-edit" href="javascript:void(0);"><i class="ti ti-pencil me-2"></i>Sửa</a>
+                                  <a class="dropdown-item btn-delete" href="javascript:void(0);"><i class="ti ti-trash me-2"></i>Xóa</a>
+                                  </div>
+                                </div>
+                            `;
                         },
                     },
                 ],
@@ -197,7 +201,6 @@
                 displayLength: 10,
                 lengthMenu: [10, 25, 50, 75, 100],
             });
-
             initAction();
         }
     </script>

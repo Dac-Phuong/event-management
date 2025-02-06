@@ -16,9 +16,11 @@ class News extends Model
         "is_show",
         "is_pin",
         "new_category_id",
+        "description",
         "thumbnail",
         "views",
-        'author_id'
+        'author_id',
+        'slug',
     ];
     public function author()
     {

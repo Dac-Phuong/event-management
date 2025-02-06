@@ -1,6 +1,6 @@
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
-            <a href="#" class="app-brand-link">
+            <a href="{{ url('/admin') }}" class="app-brand-link">
                 <span class="app-brand-logo demo">
                     <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
             </a>
         </div>
         <div class="menu-inner-shadow"></div>
-            {{-- <button class="btn btn-primary waves-effect waves-light mx-3">
+        {{-- <button class="btn btn-primary waves-effect waves-light mx-3">
                 <i class="ti ti-home me-1 ti-xs"></i>Trang chủ</button> --}}
 
         <ul class="menu-inner py-1">
@@ -42,7 +42,12 @@
                     <div>Cài đặt</div>
                 </a>
             </li>
-
+            <li class="menu-item {{ request()->routeIs('introduce') ? 'active' : '' }}">
+                <a href="{{ url('admin/introduce') }}" class="menu-link">
+                    <i class="menu-icon ti ti-device-analytics"></i>
+                    <div>Giới thiệu</div>
+                </a>
+            </li>
             <li
                 class="menu-item {{ request()->routeIs('news.*') || request()->routeIs('news-category.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -62,33 +67,35 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-item ">
+            <li
+                class="menu-item {{ request()->routeIs('service.*') || request()->routeIs('service-category.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon ti ti-server-cog"></i>
                     <div>Dịch vụ</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item ">
-                        <a href="#" class="menu-link">
-                            <div>PR & MARKETING</div>
+                    <li class="menu-item {{ request()->routeIs('service-category.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/service-category') }}" class="menu-link">
+                            <div>Danh mục</div>
                         </a>
                     </li>
-                    <li class="menu-item ">
-                        <a href="#" class="menu-link">
-                            <div>Event Management</div>
+                    <li class="menu-item {{ request()->routeIs('service.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/service') }}" class="menu-link">
+                            <div>Danh sách</div>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="menu-item ">
+            <li
+                class="menu-item {{ request()->routeIs('recruitment.*') || request()->routeIs('recruitment-list.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon ti ti-users-plus"></i>
                     <div>Tuyển dụng</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item ">
-                        <a href="#" class="menu-link">
-                            <div>Thông tin</div>
+                        <a href="{{url('admin/recruitment')}}" class="menu-link">
+                            <div>Đăng tin</div>
                         </a>
                     </li>
                     <li class="menu-item ">

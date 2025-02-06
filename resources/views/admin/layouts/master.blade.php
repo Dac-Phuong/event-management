@@ -6,9 +6,7 @@
 <head>
     <title>{{ $title ?? 'Admin page' }}</title>
     <meta charset="utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon/favicon.ico' }}" />
@@ -48,7 +46,6 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/dropzone/dropzone.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/flatpickr/flatpickr.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/tagify/tagify.css' }}" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
 
     <!-- Page CSS -->
@@ -61,7 +58,7 @@
     <script src="{{ '/assets/vendor/js/template-customizer.js' }}"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ '/assets/js/config.js' }}"></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -113,7 +110,6 @@
     <!-- endbuild -->
     <!-- Vendors JS -->
     <script src="{{ '/assets/vendor/libs/apex-charts/apexcharts.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/quill/katex.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/quill/quill.js' }}"></script>
@@ -130,10 +126,8 @@
     <script src="{{ '/assets/js/dashboards-analytics.js' }}"></script>
     <script src="{{ '/assets/js/tables-datatables-advanced.js' }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
-    <script src="{{ '/libs/lightbox/js/lightbox.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     @yield('script_page')
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
     <script>
         const formatDateTime = (dateTime) => {
             const date = new Date(dateTime);
@@ -146,23 +140,31 @@
             const minutes = date.getMinutes().toString().padStart(2, '0');
             return `${day} ${month} ${year} lúc ${hours}:${minutes}`;
         }
-    </script>
-    <script>
-        @if (Session::has('error'))
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-            };
-            toastr.error("{!! Session::get('error') !!}");
-        @endif
 
-        @if (Session::has('success'))
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-            };
-            toastr.success("{!! Session::get('success') !!}");
-        @endif
+        function toSlug(str) {
+            // Chuyển hết sang chữ thường
+            str = str.toLowerCase();
+            // xóa dấu
+            str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+            str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+            str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+            str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+            str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+            str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+            str = str.replace(/(đ)/g, 'd');
+            // Xóa ký tự đặc biệt
+            str = str.replace(/([^0-9a-z-\s])/g, '');
+            // Xóa khoảng trắng thay bằng ký tự -
+            str = str.replace(/(\s+)/g, '-');
+            // Xóa ký tự - liên tiếp
+            str = str.replace(/-+/g, '-');
+            // xóa phần dự - ở đầu
+            str = str.replace(/^-+/g, '');
+            // xóa phần dư - ở cuối
+            str = str.replace(/-+$/g, '');
+            // return
+            return str;
+        }
     </script>
     @stack('scripts')
 </body>

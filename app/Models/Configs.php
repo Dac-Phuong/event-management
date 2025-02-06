@@ -11,12 +11,11 @@ class Configs extends Model
     protected $fillable = [
         'key',
         'value',
-        'type',
     ];
 
     protected $collection = 'configs';
 
-    public static function update_config($key, $value, $type)
+    public static function update_config($key, $value)
     {
         $option = static::updateOrCreate(
             ['key' => $key],
@@ -27,7 +26,6 @@ class Configs extends Model
         }
         $option->key = $key;
         $option->value = $value;
-        $option->type = $type;
         $option->save();
     }
 

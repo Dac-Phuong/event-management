@@ -64,10 +64,6 @@ nav.layout-navbar::after {
   top: 0;
   left: 0;
 }
-nav.layout-navbar.navbar-active::after {
-  backdrop-filter: saturate(100%) blur(6px);
-  -webkit-backdrop-filter: saturate(100%) blur(6px);
-}
 
 .navbar.landing-navbar {
   box-shadow: none;

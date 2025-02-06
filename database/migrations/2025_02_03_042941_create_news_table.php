@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('title');
             $table->integer('views')->default(0);
             $table->text('content');
+            $table->longText('description')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->boolean('is_show')->default(true);
+            $table->string('slug')->nullable();
+            $table->integer('is_show')->default(0);
             $table->unsignedBigInteger('author_id');
             $table->boolean('is_pin')->default(false);
             $table->timestamps();

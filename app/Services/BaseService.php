@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use App\Helpers\AdminLogHelper;
+use App\Models\UserLog;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\UploadedFile;
@@ -30,7 +30,7 @@ abstract class BaseService
    */
   protected function handleException(\Throwable $th)
   {
-    Log::error("Error in " . $th->getFile() . " on line " . $th->getLine() . ": " . $th->getMessage());
+    Log::error(date('Y-m-d H:i:s') . ' -Error in ' . $th->getFile() . ' on line ' . $th->getLine() . ': ' . $th->getMessage());
     throw $th;
   }
 
@@ -54,8 +54,8 @@ abstract class BaseService
       }
 
       return $model;
-    } catch (\Exception $e) {
-      $this->handleException($e);
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
@@ -68,8 +68,8 @@ abstract class BaseService
         return false;
       }
       return $model->update($data);
-    } catch (\Exception $e) {
-      $this->handleException($e);
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
@@ -78,14 +78,12 @@ abstract class BaseService
   {
     try {
       $model = $this->getModel()->find($id);
-
       if (!$model) {
         throw new \Exception('Record not found');
       }
-
       return $model->delete();
-    } catch (\Exception $e) {
-      $this->handleException($e);
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
@@ -93,9 +91,11 @@ abstract class BaseService
   public function deleteByKey($key, $value)
   {
     try {
-      return $this->getModel()->where($key, $value)->delete();
-    } catch (\Exception $e) {
-      $this->handleException($e);
+      return $this->getModel()
+        ->where($key, $value)
+        ->delete();
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
@@ -103,9 +103,11 @@ abstract class BaseService
   public function findBy($key, $value)
   {
     try {
-      return $this->getModel()->where($key, $value)->first();
-    } catch (\Exception $e) {
-      $this->handleException($e);
+      return $this->getModel()
+        ->where($key, $value)
+        ->first();
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
@@ -114,44 +116,38 @@ abstract class BaseService
   {
     try {
       return $this->getModel()->get();
-    } catch (\Exception $e) {
-      $this->handleException($e);
+    } catch (\Throwable $th) {
+      $this->handleException($th);
       return false;
     }
   }
 
-    public function getByFilter(array $filter)
-    {
-        try {
-            $query = $this->getModel();
-            foreach ($filter as $key => $value) {
-                $query->where($key, $value);
-            }
-      return $query->get();
-    } catch (\Exception $e) {
-      $this->handleException($e);
-      return false;
-    }
-  }
-
-    public function uploadImage(UploadedFile $file)
-    {
-        try {
-            $filename = 'image-' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('/assets/files');
-            $file->move($destinationPath, $filename);
-            $path = '/assets/files/' . $filename;
-            return $path;
-        } catch (\Exception $e) {
-            $this->handleException($e);
-            return false;
-        }
-    }
-
-  function camelToKebab($input)
+  public function getByFilter(array $filter)
   {
-    $output = strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $input));
-    return $output;
+    try {
+      $query = $this->getModel();
+      foreach ($filter as $key => $value) {
+        $query->where($key, $value);
+      }
+      return $query->get();
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return false;
+    }
+  }
+
+  public function uploadImage(UploadedFile $file)
+  {
+    try {
+      $filename = 'image-' . uniqid() . '.' . $file->getClientOriginalExtension();
+      $destinationPath = public_path('/assets/files');
+      $file->move($destinationPath, $filename);
+      $path = '/assets/files/' . $filename;
+      return $path;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return false;
+    }
   }
 
   public function getClass()
@@ -159,4 +155,29 @@ abstract class BaseService
 
     return get_class($this->getModel());
   }
+  function getAllActive()
+  {
+    try {
+      $status = $this->model::STATUS_ACTIVE;
+      return $this->model::where('status', $status)->get();
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return [];
+    }
+  }
+  function formatImagesBeforeSave($images)
+  {
+    $images = collect(explode(',', $images))->map(function ($image) {
+      return str_replace(config('app.url'), '', $image);
+    })->implode(',');
+    return $images;
+  }
+  function formatImagesWhenGet($images)
+  {
+    $images = collect(explode(',', $images))->map(function ($image) {
+      return config('app.url') . $image;
+    });
+    return $images;
+  }
 }
+

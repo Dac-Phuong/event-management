@@ -5,22 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\News\StoreNewsRequest;
 use App\Http\Requests\Admin\News\UpdateNewsRequest;
+use App\Models\News;
 use App\Services\NewsCategoryService;
 use App\Services\NewsServices;
-use App\Services\SeoService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
   public function index()
   {
-    return view("admin.news.index");
-  }
-  public function create()
-  {
     $catgegories = $this->categoryService()->getAllActive();
-    return view("admin.news.create", compact("catgegories"));
+    return view("admin.news.index", compact("catgegories"));
   }
+  
   public function newsService()
   {
     return app(NewsServices::class);
@@ -45,12 +43,6 @@ class NewsController extends Controller
     }
     return jsonResponse(1);
   }
-  public function edit() {
-    $id = request()->id;
-    $news = $this->newsService()->findById($id);
-    $catgegories = $this->categoryService()->getAllActive();
-    return view("content.pages.news.edit", compact("news", "catgegories"));
-  }
   public function update(UpdateNewsRequest $request)
   {
     $data = $request->validated();
@@ -59,6 +51,29 @@ class NewsController extends Controller
       return jsonResponse(0);
     }
     return jsonResponse(1);
+  }
+  public function getContent(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'id' => 'required|integer|exists:news,id',
+    ]);
+    if ($validator->fails())
+      return jsonResponse(1);
+    try {
+      $id = $request->id;
+      $content = News::findOrFail($id);
+      return jsonResponse(0, $content->description);
+
+    } catch (\Exception $e) {
+      return jsonResponse(1);
+    }
+
+  }
+  public function content(Request $request)
+  {
+    $id = $request->id;
+    $content = $this->newsService()->content($id, $request->all());
+    return jsonResponse($content ? 0 : 1);
   }
   public function destroy(Request $request)
   {

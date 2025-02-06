@@ -17,12 +17,13 @@ class NewsServices extends BaseService
     $data['author_id'] = auth()->user()->id;
     try {
       DB::beginTransaction();
-      // $data['thumbnail'] = $this->formatImagesBeforeSave($data['thumbnail']);
-      $news = parent::create($data);
-      $data['model_id'] = $news->id;
-      $data['model_type'] = $this->getClass();
-      DB::rollBack();
-      return false;
+      if (isset($data['thumbnail']) && $data['thumbnail']) {
+        $path = parent::uploadImage($data['thumbnail']);
+        $data['thumbnail'] = $path;
+      }
+      parent::create($data);
+      DB::commit();
+      return true;
     } catch (\Exception $e) {
       DB::rollBack();
       Log::error($e->getMessage());
@@ -40,7 +41,7 @@ class NewsServices extends BaseService
     $orderBy = $data['order'][0]['dir'] ?? 'desc';
 
     // $data['order'][0]['dir'] ??
-    $query = News::query();
+    $query = $this->model::query();
 
     // Search
     $search = $data['search']['value'] ?? '';
@@ -60,8 +61,8 @@ class NewsServices extends BaseService
     }
     $query = $query->orderBy($orderByName, $orderBy);
     $recordsFiltered = $recordsTotal = $query->count();
-    $news = $query->with('category', 'author')->skip($skip)->take($pageLength)->get(['id', 'title', 'views', 'is_show', 'is_pin', 'created_at', 'new_category_id', 'author_id']);
-   
+    $news = $query->with('category', 'author')->skip($skip)->take($pageLength)->get(['id', 'title', 'views', 'is_show', 'is_pin', 'content', 'created_at', 'new_category_id', 'author_id']);
+
     return [
       "draw" => $data['draw'],
       "recordsTotal" => $recordsTotal,
@@ -71,38 +72,64 @@ class NewsServices extends BaseService
   }
   public function update(int $id, array $data)
   {
-
     try {
       DB::beginTransaction();
-      // $data['thumbnail'] = $this->formatImagesBeforeSave($data['thumbnail']);
+      $news = $this->model::find($id);
+      if (!$news) {
+        DB::rollBack();
+        return false;
+      }
+      if (isset($data['thumbnail']) && $data['thumbnail']) {
+        $path = parent::uploadImage($data['thumbnail']);
+        $data['thumbnail'] = $path;
+      }
+
       $result = parent::update($id, $data);
       if ($result == false) {
         DB::rollBack();
         return false;
       }
-      $news = News::find($id);
-      $data['model_id'] = $news->id;
-      $data['model_type'] = $this->getClass();
-    
-      DB::rollBack();
-      return false;
+      DB::commit();
+      return true;
     } catch (\Exception $e) {
       DB::rollBack();
       Log::error($e->getMessage());
       return false;
     }
   }
-  public function delete(int $id) {
+ 
+  public function content(int $id, array $data)
+  {
     try {
       DB::beginTransaction();
-      $news = News::find($id);
-      $result = parent::delete($id);
-      if ($result == false) {
+      $news = $this->model::find($id);
+      if (!$news) {
         DB::rollBack();
         return false;
       }
+     $news->description = $data['content'];
+      $news->save();
+
+      DB::commit();
+      return true;
+    } catch (\Exception $e) {
       DB::rollBack();
+      Log::error($e->getMessage());
       return false;
+    }
+  }
+  public function delete(int $id)
+  {
+    try {
+      DB::beginTransaction();
+      $news = $this->model::find($id);
+      if (!$news) {
+        DB::rollBack();
+        return false;
+      }
+      $news->delete();
+      DB::commit();
+      return true;
     } catch (\Exception $e) {
       DB::rollBack();
       Log::error($e->getMessage());

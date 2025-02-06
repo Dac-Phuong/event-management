@@ -20,7 +20,7 @@ class NewsCategoryService extends BaseService
     $orderBy = $data['order'][0]['dir'] ?? 'desc';
 
     // $data['order'][0]['dir'] ??
-    $query = NewsCategory::query();
+    $query = $this->model::query();
 
     // Search
     $search = $data['search']['value'] ?? '';

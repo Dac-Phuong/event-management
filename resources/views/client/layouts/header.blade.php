@@ -28,7 +28,7 @@
                                  fill="#7367F0"></path>
                          </svg>
                      </span>
-                     <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">Media</span>
+                     <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">AnhSon</span>
                  </a>
              </div>
              <!-- Menu logo wrapper: End -->
@@ -47,10 +47,19 @@
                      <li class="nav-item">
                          <a class="nav-link fw-medium" href="landing-page.html#landingFeatures">Giới thiệu</a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link fw-medium" href="landing-page.html#landingTeam">Dịch vụ</a>
+                     <li class="nav-item dropdown" id="hover-dropdown">
+                         <a href="javascript:void(0);"
+                             class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown dropdown fw-medium"
+                             aria-expanded="false" data-bs-toggle="dropdown" data-trigger="hover">
+                             <span data-i18n="Pages">Dịch vụ</span>
+                         </a>
+                         <ul class="dropdown-menu" style="width: 200px">
+                              <li><a class="dropdown-item waves-effect" href="#">PR-Marketing</a></li>
+                             <li><a class="dropdown-item waves-effect" href="#">Event Management</a></li>
+                             <li><a class="dropdown-item waves-effect" href="#">Decoration</a></li>
+                         </ul>
                      </li>
-                     <li class="nav-item dropdown border-none " id="hover-dropdown-demo">
+                     <li class="nav-item dropdown" id="hover-dropdown">
                          <a href="javascript:void(0);"
                              class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown dropdown fw-medium"
                              aria-expanded="false" data-bs-toggle="dropdown" data-trigger="hover">
@@ -58,15 +67,10 @@
                          </a>
                          <ul class="dropdown-menu" style="width: 200px">
                              <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Action</a></li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Another action</a>
-                             </li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Something else
-                                     here</a></li>
-                             <li>
-                                 <hr class="dropdown-divider">
-                             </li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Separated link</a>
-                             </li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Another action</a></li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Something else here</a></li>
+                             <li><hr class="dropdown-divider"></li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Separated link</a></li>
                          </ul>
                      </li>
                      <li class="nav-item">
@@ -78,7 +82,6 @@
              <!-- Menu wrapper: End -->
              <!-- Toolbar: Start -->
              <ul class="navbar-nav flex-row align-items-center ms-auto">
-
                  <!-- Style Switcher -->
                  <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-1">
                      <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"

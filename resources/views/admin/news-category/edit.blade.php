@@ -1,7 +1,7 @@
 <!-- Offcanvas to add new user -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEdit" aria-labelledby="offcanvasEditUserLabel">
     <div class="offcanvas-header">
-        <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Sửa chỉ tiêu</h5>
+        <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Sửa danh mục</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body h-100 mx-0 flex-grow-0 pt-0">
@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="slug">Slug</label>
-                <input type="text" class="form-control" id="edit_slug" placeholder="" name="slug"
+                <input type="text" class="form-control" readonly id="edit_slug" placeholder="" name="slug"
                     aria-label="" />
             </div>
 

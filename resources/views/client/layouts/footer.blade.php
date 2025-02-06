@@ -99,7 +99,7 @@
                         document.write(new Date().getFullYear());
                     </script>
                 </span>
-                <span class="footer-bottom-text text-white">Bản quyền thuộc về: Công Ty Cổ Phần Truyền thông và Giải trí Ngày Mới.</span>
+                <span class="footer-bottom-text text-white">Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh Sơn.</span>
             </div>
             <div>
                 <a href="https://github.com/pixinvent" class="me-3" target="_blank">

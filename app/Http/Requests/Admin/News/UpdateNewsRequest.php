@@ -18,10 +18,10 @@ class UpdateNewsRequest extends FormRequest
             "title" => "required",
             "content" => "required",
             "new_category_id" => "required|exists:news_categories,id",
-            "is_pin" => "required",
+            // "is_pin" => "required",
+            "slug" => "required",
             "thumbnail" => "nullable",
             "is_show" => "required",
-            ...$this->rulesSeo('edit'),
         ];
     }
 
@@ -32,11 +32,10 @@ class UpdateNewsRequest extends FormRequest
             "id.exists" => "ID bài viết không tồn tại",
             "title.required" => "Tiêu đề không được để trống",
             "content.required" => "Nội dung không được để trống",
-            "category_id.required" => "Danh mục không được để trống",
-            "category_id.exists" => "Danh mục không tồn tại",
-            "is_pin.required" => "Trạng thái ghim không được để trống",
+            "new_category_id.required" => "Danh mục không được để trống",
+            "new_category_id.exists" => "Danh mục không tồn tại",
+            // "is_pin.required" => "Trạng thái ghim không được để trống",
             "is_show.required" => "Trạng thái hiển thị không được để trống",
-            ...$this->messagesSeo(),
         ];
     }
 }
