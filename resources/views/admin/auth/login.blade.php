@@ -5,7 +5,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Đăng nhập quản trị</title>
 
@@ -28,15 +29,17 @@
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ '/assets/vendor/css/rtl/core.css' }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/rtl/theme-default.css' }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ '/assets/vendor/css/rtl/theme-default.css' }}"
+        class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ '/assets/css/demo.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/@form-validation/umd/styles/index.min.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/toastr/toastr.css' }}" />
 
-    <!-- Page CSS -->
     <!-- Page -->
     <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/page-auth.css' }}" />
-
+    <script src="{{ '/assets/vendor/js/helpers.js' }}"></script>
+    <script src="{{ '/assets/vendor/js/template-customizer.js' }}"></script>
+    <script src="{{ '/assets/js/config.js' }}"></script>
 </head>
 
 <body>
@@ -64,7 +67,7 @@
                 <div class="w-px-400 mx-auto">
                     <!-- Logo -->
                     <div class="app-brand mb-4">
-                        <a href="{{url('/')}}" class="app-brand-link gap-2">
+                        <a href="{{ url('/') }}" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                                 <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -153,6 +156,7 @@
     <script src="{{ '/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' }}"></script>
     <!-- Page JS -->
     <script src="{{ '/assets/js/pages-auth.js' }}"></script>
+    <script src="{{ '/assets/js/main.js' }}"></script>
     <script>
         @if (Session::has('error'))
             toastr.options = {
