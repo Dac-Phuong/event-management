@@ -18,10 +18,6 @@
             <input class="form-control" type="file" id="base_logo" name="base_logo" />
         </div>
         <div class="mb-3">
-            <label for="base_icon" class="form-label">Icon</label>
-            <input class="form-control" type="file" id="base_icon" name="base_icon" />
-        </div>
-        <div class="mb-3">
             <label for="base_banner" class="form-label">Banner</label>
             <input class="form-control" type="file" id="base_banner" name="base_banner" />
         </div>

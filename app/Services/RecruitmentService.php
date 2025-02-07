@@ -2,19 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\Service;
+use App\Models\Recruitment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class Services extends BaseService
+class RecruitmentService extends BaseService
 {
     function setModel()
     {
-        $this->model = new Service();
+        $this->model = new Recruitment();
     }
     function create(array $data)
     {
         try {
+            $data['author_id'] = auth()->user()->id;
             DB::beginTransaction();
             if (isset($data['thumbnail']) && $data['thumbnail']) {
                 $path = parent::uploadImage($data['thumbnail']);
@@ -59,7 +60,7 @@ class Services extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->with('category')->skip($skip)->take($pageLength)->get(['id', 'title', 'content', 'created_at', 'category_id']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'title', 'author_id',"description","expired_at", 'status', 'views', 'created_at', 'number', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -77,10 +78,10 @@ class Services extends BaseService
                 DB::rollBack();
                 return false;
             }
-            // if (isset($data['thumbnail']) && $data['thumbnail']) {
-            //     $path = parent::uploadImage($data['thumbnail']);
-            //     $data['thumbnail'] = $path;
-            // }
+            if (isset($data['thumbnail']) && $data['thumbnail']) {
+                $path = parent::uploadImage($data['thumbnail']);
+                $data['thumbnail'] = $path;
+            }
             $result = parent::update($id, $data);
             if ($result == false) {
                 DB::rollBack();
@@ -104,7 +105,7 @@ class Services extends BaseService
                 DB::rollBack();
                 return false;
             }
-            $model->description = $data['content'];
+            $model->content = $data['content'];
             $model->save();
 
             DB::commit();

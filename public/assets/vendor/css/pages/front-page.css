@@ -55,15 +55,6 @@ nav.layout-navbar {
   height: auto !important;
   z-index: 999 !important;
 }
-nav.layout-navbar::after {
-  content: "";
-  position: absolute;
-  display: block;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
 
 .navbar.landing-navbar {
   box-shadow: none;

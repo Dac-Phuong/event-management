@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Service\Store;
 use App\Http\Requests\Admin\Service\Update;
-use App\Models\News;
-use App\Models\Service;
 use App\Services\Services;
 use App\Services\ServiceCategories;
-use Illuminate\Support\Facades\Validator;
 class ServiceController extends Controller
 {
     public function index()
@@ -18,7 +15,7 @@ class ServiceController extends Controller
         $catgegories = $this->categoryService()->getAllActive();
         return view("admin.service.index", compact("catgegories"));
     }
-        public function service()
+    public function service()
     {
         return app(Services::class);
     }

@@ -22,7 +22,55 @@
   border-bottom-right-radius: 12px !important;
   border-bottom-left-radius: 12px !important;
 }
-.nav-link:focus-visible{
+
+.nav-link:focus-visible {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.main-content {
+  margin-top: 60px;
+}
+
+/* header */
+.btn-header:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.animate__fadeIn {
+  opacity: 1;
+}
+
+.animate__fadeIn.animate__faster {
+  animation-duration: 0.3s;
+}
+
+.btn-service {
+  animation-name: pulse;
+  animation-delay: 0s;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transition: 0.5s;
+}
+
+/* keyframes */
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
 }

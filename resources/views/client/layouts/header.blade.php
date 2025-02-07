@@ -1,16 +1,16 @@
- <nav class="layout-navbar shadow-none py-0 navbar-active">
-     <div class="container">
-         <div class="navbar navbar-expand-lg landing-navbar py-2 px-3 px-md-8">
+ <nav class="layout-navbar shadow-none py-0 navbar-active ">
+     <div class="">
+         <div class="navbar navbar-expand-lg  landing-navbar rounded-none py-2 px-3 m-0" style="border-radius: 0;">
              <!-- Menu logo wrapper: Start -->
              <div class="navbar-brand app-brand demo d-flex py-0 py-lg-2 me-4 me-xl-8">
                  <!-- Mobile menu toggle: Start-->
                  <button class="navbar-toggler border-0 px-0 me-4" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                     aria-label="Toggle navigation">
+                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                     aria-expanded="false" aria-label="Toggle navigation">
                      <i class="ti ti-menu-2 ti-lg align-middle text-heading fw-medium"></i>
                  </button>
                  <!-- Mobile menu toggle: End-->
-                 <a href="landing-page.html" class="app-brand-link">
+                 <a href="{{ url('/') }}" class="app-brand-link">
                      <span class="app-brand-logo demo">
                          <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
@@ -39,13 +39,14 @@
                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                      <i class="ti ti-x ti-lg"></i>
                  </button>
-                 <ul class="navbar-nav me-auto">
+                 <ul class="navbar-nav m-auto">
                      <li class="nav-item">
-                         <a class="nav-link fw-medium active" aria-current="page"
-                             href="landing-page.html#landingHero">Trang chủ</a>
+                         <a class="nav-link fw-medium {{ request()->is('/') ? 'active' : '' }}"
+                             href="{{ url('/') }}">Trang chủ</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link fw-medium" href="landing-page.html#landingFeatures">Giới thiệu</a>
+                         <a class="nav-link fw-medium {{ request()->is('introduce') ? 'active' : '' }}"
+                             href="{{ url('introduce') }}">Giới thiệu</a>
                      </li>
                      <li class="nav-item dropdown" id="hover-dropdown">
                          <a href="javascript:void(0);"
@@ -54,7 +55,7 @@
                              <span data-i18n="Pages">Dịch vụ</span>
                          </a>
                          <ul class="dropdown-menu" style="width: 200px">
-                              <li><a class="dropdown-item waves-effect" href="#">PR-Marketing</a></li>
+                             <li><a class="dropdown-item waves-effect" href="#">PR-Marketing</a></li>
                              <li><a class="dropdown-item waves-effect" href="#">Event Management</a></li>
                              <li><a class="dropdown-item waves-effect" href="#">Decoration</a></li>
                          </ul>
@@ -67,10 +68,15 @@
                          </a>
                          <ul class="dropdown-menu" style="width: 200px">
                              <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Action</a></li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Another action</a></li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Something else here</a></li>
-                             <li><hr class="dropdown-divider"></li>
-                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Separated link</a></li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Another action</a>
+                             </li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Something else
+                                     here</a></li>
+                             <li>
+                                 <hr class="dropdown-divider">
+                             </li>
+                             <li><a class="dropdown-item waves-effect" href="javascript:void(0);">Separated link</a>
+                             </li>
                          </ul>
                      </li>
                      <li class="nav-item">
@@ -78,40 +84,13 @@
                      </li>
                  </ul>
              </div>
-             <div class="landing-menu-overlay d-lg-none"></div>
              <!-- Menu wrapper: End -->
              <!-- Toolbar: Start -->
              <ul class="navbar-nav flex-row align-items-center ms-auto">
-                 <!-- Style Switcher -->
-                 <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-1">
-                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                         data-bs-toggle="dropdown">
-                         <i class="ti ti-lg ti-sun"></i>
-                     </a>
-                     <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
-                         <li>
-                             <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                                 <span class="align-middle"><i class="ti ti-sun me-3"></i>Light</span>
-                             </a>
-                         </li>
-                         <li>
-                             <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                                 <span class="align-middle"><i class="ti ti-moon-stars me-3"></i>Dark</span>
-                             </a>
-                         </li>
-                         <li>
-                             <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                                 <span class="align-middle"><i
-                                         class="ti ti-device-desktop-analytics me-3"></i>System</span>
-                             </a>
-                         </li>
-                     </ul>
-                 </li>
-                 <!-- / Style Switcher-->
                  <!-- navbar button: Start -->
                  <li>
-                     <a href="../vertical-menu-template/auth-login-cover.html"
-                         class="btn btn-primary waves-effect waves-light" target="_blank">
+                     <a href="#"
+                         class="btn btn-primary waves-effect waves-light btn-header animate__animated animate__fadeIn animate__faster" style="transition: all 0.3s ease-in-out; transform-origin: center center;">
                          <i class="ti ti-mail-share"></i>
                          <span class="d-none d-md-block" style="margin-left: 5px">Yêu cầu tư vấn</span>
                      </a>

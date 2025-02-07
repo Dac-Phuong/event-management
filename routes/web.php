@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\ServiceCategoryController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\UploadController;
+use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\client\IntroduceController as ClientIntroduceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 /*
@@ -25,8 +27,6 @@ use Illuminate\Support\Facades\Artisan;
 Route::fallback(function () {
     return view('errors.404');
 });
-
-// .......................................................................BEGIN............................................................................
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
@@ -34,10 +34,11 @@ Route::get('/clear-cache', function () {
     Artisan::call('route:clear');
     return "All caches are cleared";
 });
+// .......................................................................CLIENT............................................................................
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/introduce', [ClientIntroduceController::class, 'index'])->name('introduce');
 
-Route::get('/', function () {
-    return view('client.layouts.master');
-});
+// ........................................................................SERVER............................................................................
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::get('login', [AuthController::class, 'index'])->name('login');

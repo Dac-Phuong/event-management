@@ -48,7 +48,7 @@
                         const data = getRowData($(this).closest('tr'));
                         Swal.fire({
                             title: 'Bạn có muốn xóa không?',
-                            text: "Xóa danh mục sẽ đồng thới xóa các bài viết trong danh mục!",
+                            text: "Xóa bài viết sẽ không hiển thị nữa!",
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
