@@ -20,8 +20,7 @@ class SettingService extends BaseService
             'base_short_name' => Configs::get_config('base_short_name'),
             'base_description' => Configs::get_config('base_description'),
             'base_logo' => $this->get_image('base_logo'),
-            'base_icon' => $this->get_image('base_icon'),
-            'base_banner' => $this->get_image('base_banner'),
+            'base_banner' => json_decode(Configs::get_config('base_banner'), true),
             // contact
             'contact_name' => Configs::get_config('contact_name'),
             'contact_short_name' => Configs::get_config('contact_short_name'),
@@ -35,7 +34,7 @@ class SettingService extends BaseService
             'social_zalo' => Configs::get_config('social_zalo'),
             'social_tiktok' => Configs::get_config('social_tiktok'),
             'social_telegram' => Configs::get_config('social_telegram'),
-           
+
         ];
     }
     private function get_image($key)
@@ -51,17 +50,113 @@ class SettingService extends BaseService
         try {
             unset($data['_token']);
             foreach ($data as $key => $value) {
-              if ($value instanceof UploadedFile && $value->isValid()) {
-                $path = parent::uploadImage($value);
-                Configs::update_config($key, $path);
-              } else {
-                Configs::update_config($key, $value);
-              }
+                if ($value instanceof UploadedFile && $value->isValid()) {
+                    $path = parent::uploadImage($value);
+                    Configs::update_config($key, $path);
+                } else {
+                    Configs::update_config($key, $value);
+                }
             }
-          return true;
+            return true;
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             return false;
         }
+    }
+    public function create(array $data)
+    {
+        try {
+            unset($data['_token']);
+            if (isset($data['thumbnail']) && $data['thumbnail']) {
+                $path = parent::uploadImage($data['thumbnail']);
+                $data['thumbnail'] = $path;
+            }
+            $data['id'] = rand(1, 9999);
+            $config = Configs::where('key', 'base_banner')->first();
+
+            if (isset($config) && $config) {
+                $existingData = json_decode($config->value, true);
+                if (!is_array($existingData)) {
+                    $existingData = [];
+                }
+                $existingData[] = $data;
+                $config->update([
+                    'value' => json_encode($existingData)
+                ]);
+            } else {
+                Configs::create([
+                    'key' => 'base_banner',
+                    'value' => json_encode([$data])
+                ]);
+            }
+
+            return true;
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return false;
+        }
+    }
+    public function update(int $id, array $data)
+    {
+        try {
+            unset($data['_token']);
+            if (!empty($data['thumbnail']) && is_object($data['thumbnail'])) {
+                $path = parent::uploadImage($data['thumbnail']);
+                $data['thumbnail'] = $path;
+            } else {
+                unset($data['thumbnail']); 
+            }
+            $config = Configs::where('key', 'base_banner')->first();
+
+            if ($config && !empty($config->value)) {
+                $existingData = json_decode($config->value, true);
+                if (!is_array($existingData)) {
+                    $existingData = [];
+                }
+                $newData = array_map(function ($item) use ($id, $data) {
+                    if (isset($item['id']) && $item['id'] == $id) {
+                        return array_merge($item, $data);
+                    }
+                    return $item;
+                }, $existingData);
+
+                $config->update([
+                    'value' => json_encode($newData)
+                ]);
+            }
+
+            return true;
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return false;
+        }
+
+    }
+    public function delete(int $id)
+    {
+        try {
+            $config = Configs::where('key', 'base_banner')->first();
+
+            if ($config && !empty($config->value)) {
+                $existingData = json_decode($config->value, true);
+                if (!is_array($existingData)) {
+                    $existingData = [];
+                }
+
+                $newData = array_filter($existingData, function ($item) use ($id) {
+                    return isset($item['id']) && $item['id'] != $id;
+                });
+                if (empty($newData)) {
+                    $config->update(['value' => json_encode([])]);
+                } else {
+                    $config->update(['value' => json_encode(array_values($newData))]);
+                }
+            }
+            return true;
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return false;
+        }
+
     }
 }

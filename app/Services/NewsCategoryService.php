@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+
+use App\Models\News;
 use App\Models\NewsCategory;
 
 class NewsCategoryService extends BaseService
@@ -44,7 +46,7 @@ class NewsCategoryService extends BaseService
     $recordsFiltered = $recordsTotal = $query->count();
 
     $studentProfiles = $query->skip($skip)->take($pageLength)->get(['id', 'name', 'slug', 'created_at', 'status']);
-   
+
     return [
       "draw" => $data['draw'],
       "recordsTotal" => $recordsTotal,
@@ -52,5 +54,68 @@ class NewsCategoryService extends BaseService
       'data' => $studentProfiles,
     ];
   }
+  public function getBySlug($slug, $perPage = 5)
+  {
+    try {
+      $category = $this->getModel()->where('slug', $slug)->first();
+      if (!$category) {
+        return null;
+      }
+      $news = $category->news()
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+        ->orderBy('is_pin', 'desc')
+        ->latest()
+        ->paginate($perPage);
 
+      return [
+        'category' => $category,
+        'news' => $news
+      ];
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
+
+  public function getBySlugWithFeature($slug)
+  {
+    try {
+      $category = $this->getModel()->where('slug', $slug)->first();
+      if (!$category)
+        return null;
+      $feature = $category->news()
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+        ->where('is_pin', 1)
+        ->latest()
+        ->limit(5)
+        ->get();
+      return $feature;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
+  public function getBySlugDetail($slug, $newsSlug)
+  {
+    try {
+      $category = $this->getModel()->where('slug', $slug)->first();
+      if (!$category) {
+        return null;
+      }
+      $news = $category->news()
+        ->where('slug', $newsSlug)
+        ->orderBy('is_pin', 'desc')
+        ->latest()
+        ->firstOrFail();
+      $news->views += 1;
+      $news->save();
+      return [
+        'category' => $category,
+        'news' => $news
+      ];
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
 }

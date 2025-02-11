@@ -92,6 +92,7 @@
                         $('#editNews input[name="id"]').val(data.id);
                         $('#editNews input[name="title"]').val(data.title);
                         $('#editNews select[name="status"]').val(data.status);
+                        $('#editNews input[name="is_pin"]').prop('checked', data.is_pin == 1);
                         $('#editNews select[name="new_category_id"]').val(data.new_category_id);
                         $('#editNews textarea[name="content"]').html(data.content);
                         $('#modal-news-edit').modal('show');
@@ -107,7 +108,7 @@
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
-                                editor.setData(response.data)
+                                editor.setData(response.data || "")
                                 $('#modal-content').modal('show');
                             }
                         })

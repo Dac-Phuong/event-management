@@ -32,6 +32,7 @@ class Update extends FormRequest
             "number" => "required",
             "status" => "required",
             "description" => "required",
+            'url' => 'nullable|url',
         ];
     }
 
@@ -50,6 +51,7 @@ class Update extends FormRequest
             "description.required" => "Mô tả không được để trống",
             "thumbnail.image" => "Vui lòng chọn 1 ảnh",
             "thumbnail.max" => "Vui lòng chọn ảnh nhỏ hơn 2MB",
+            "url.url" => "Vui lòng nhập đúng định dạng url",
         ];
     }
 }

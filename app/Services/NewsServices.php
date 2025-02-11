@@ -21,6 +21,7 @@ class NewsServices extends BaseService
         $path = parent::uploadImage($data['thumbnail']);
         $data['thumbnail'] = $path;
       }
+      $data['is_pin'] = isset($data['is_pin']) ? true : false;
       parent::create($data);
       DB::commit();
       return true;
@@ -83,7 +84,7 @@ class NewsServices extends BaseService
         $path = parent::uploadImage($data['thumbnail']);
         $data['thumbnail'] = $path;
       }
-
+      $data['is_pin'] = isset($data['is_pin']) ? true : false;
       $result = parent::update($id, $data);
       if ($result == false) {
         DB::rollBack();

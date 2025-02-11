@@ -31,6 +31,7 @@ class Store extends FormRequest
             "number" => "required|numeric",
             "expired_at" => "required",
             "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'url' => 'nullable|url',
         ];
     }
 
@@ -48,6 +49,7 @@ class Store extends FormRequest
             "thumbnail.image" => "Vui lòng chọn 1 ảnh",
             "thumbnail.max" => "Vui lòng chọn ảnh nhỏ hơn 2MB",
             "description.required" => "Mô tả không được để trống",
+            "url.url" => "Vui lòng nhập đúng định dạng url",
         ];
     }
 }

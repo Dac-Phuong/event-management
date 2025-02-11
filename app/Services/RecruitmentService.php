@@ -60,7 +60,7 @@ class RecruitmentService extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->skip($skip)->take($pageLength)->get(['id', 'title', 'author_id',"description","expired_at", 'status', 'views', 'created_at', 'number', 'thumbnail']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'number', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -132,6 +132,28 @@ class RecruitmentService extends BaseService
             DB::rollBack();
             Log::error($e->getMessage());
             return false;
+        }
+    }
+    public function getBySlug(string $slug)
+    {
+        try {
+            $recruitment = $this->model::where('slug', $slug)->first();
+            $recruitment->views += 1;
+            $recruitment->save();
+            return $recruitment;
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+            return false;
+        }
+    }
+    public function getAllData()
+    {
+        try {
+            $recruitment = $this->model::select(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'slug', 'number', 'thumbnail'])->orderBy('created_at', 'desc')->paginate(5);
+            return $recruitment;
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+            return null;
         }
     }
 }

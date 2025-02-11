@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form class="edit-new-user pt-0" id="editNews">
                 <input type="hidden" name="id" value="">
-                <div class="modal-body">
+                <div class="modal-body pb-0">
                     <div class="mb-3">
                         <label for="name" class="form-label">Danh mục</label>
                         <select class="form-select" id="news-category" name="new_category_id">
@@ -33,9 +33,17 @@
                             <option value="0">Ẩn</option>
                         </select>
                     </div>
+                    <label class="switch">
+                        <input type="checkbox" class="switch-input" name="is_pin">
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on"></span>
+                            <span class="switch-off"></span>
+                        </span>
+                        <span class="switch-label">Ghim</span>
+                    </label>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" >Lưu</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                 </div>
             </form>

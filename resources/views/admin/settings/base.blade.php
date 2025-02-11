@@ -18,8 +18,16 @@
             <input class="form-control" type="file" id="base_logo" name="base_logo" />
         </div>
         <div class="mb-3">
-            <label for="base_banner" class="form-label">Banner</label>
-            <input class="form-control" type="file" id="base_banner" name="base_banner" />
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <label for="base_banner" class="form-label">Banner</label>
+                <button type="button" class="btn btn-icon btn-primary waves-effect waves-light" data-bs-toggle="modal"
+                    data-bs-target="#modal-add">
+                    <span class="ti ti-plus"></span>
+                </button>
+            </div>
+            <div class="p-3" style="border: 2px dashed #dbdade; border-radius: 10px;" id="base_banner">
+                <span class="placeholder" style="height: 100px"></span>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary me-sm-3 data-submit me-1">Cập nhật</button>
     </form>

@@ -135,6 +135,15 @@ abstract class BaseService
       return false;
     }
   }
+  public function getBySlug(string $slug)
+  {
+    try {
+      return $this->getModel()->where('slug', $slug)->first();
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return false;
+    }
+  }
 
   public function uploadImage(UploadedFile $file)
   {

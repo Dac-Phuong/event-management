@@ -98,11 +98,6 @@
                             <div>Đăng tin</div>
                         </a>
                     </li>
-                    <li class="menu-item ">
-                        <a href="#" class="menu-link">
-                            <div>Danh sách</div>
-                        </a>
-                    </li>
                 </ul>
             </li>
         </ul>

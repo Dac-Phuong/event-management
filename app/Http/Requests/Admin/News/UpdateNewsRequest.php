@@ -18,7 +18,7 @@ class UpdateNewsRequest extends FormRequest
             "title" => "required",
             "content" => "required",
             "new_category_id" => "required|exists:news_categories,id",
-            // "is_pin" => "required",
+            "is_pin" => "nullable",
             "slug" => "required",
             "thumbnail" => "nullable",
             "is_show" => "required",
@@ -34,7 +34,6 @@ class UpdateNewsRequest extends FormRequest
             "content.required" => "Nội dung không được để trống",
             "new_category_id.required" => "Danh mục không được để trống",
             "new_category_id.exists" => "Danh mục không tồn tại",
-            // "is_pin.required" => "Trạng thái ghim không được để trống",
             "is_show.required" => "Trạng thái hiển thị không được để trống",
         ];
     }

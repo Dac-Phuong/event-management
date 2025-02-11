@@ -10,8 +10,12 @@ use App\Http\Controllers\admin\ServiceCategoryController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\UploadController;
+use App\Http\Controllers\client\configController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\IntroduceController as ClientIntroduceController;
+use App\Http\Controllers\client\NewsController as ClientNewsController;
+use App\Http\Controllers\client\RecruitmentController as ClientRecruitmentController;
+use App\Http\Controllers\client\ServiceController as ClientServiceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 /*
@@ -37,6 +41,13 @@ Route::get('/clear-cache', function () {
 // .......................................................................CLIENT............................................................................
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/introduce', [ClientIntroduceController::class, 'index'])->name('introduce');
+Route::get('/get-config', [configController::class, 'getConfig'])->name('configs');
+Route::get('/service/{slug}', [ClientServiceController::class, 'index'])->name('service');
+Route::get('/news/{slug}', [ClientNewsController::class, 'index'])->name('news');
+Route::get('/news/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
+Route::get('/recruitment', [ClientRecruitmentController::class, 'index'])->name('recruitment');
+Route::get('/recruitment/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
+
 
 // ........................................................................SERVER............................................................................
 Route::group(['prefix' => 'admin'], function () {
@@ -51,6 +62,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
         Route::get('/get', [SettingController::class, 'getSetting'])->name('setting.get_setting');
         Route::post('/update', [SettingController::class, 'updateSetting'])->name('setting.update_setting');
+        Route::post('settings/banner/store', [SettingController::class, 'store'])->name('settings.banner.store');
+        Route::post('settings/banner/delete', [SettingController::class, 'destroy'])->name('settings.banner.delete');
+        Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
+
         // Introduce
         Route::get('introduce', [IntroduceController::class, 'index'])->name('introduce');
         //Upload

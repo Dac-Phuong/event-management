@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('main')
-     <h4 class="mb-0 pb-2">Settings</h4>
+    <h4 class="mb-0 pb-2">Settings</h4>
     <p class="font-size-base">Quản lý các thông tin cài đặt của trang </p>
     <div class="row">
         <div class="col-xl-12">
@@ -21,7 +21,7 @@
                             data-bs-target="#navs-top-social" aria-controls="navs-top-social" aria-selected="false"
                             tabindex="-1">Mạng xã hội</button>
                     </li>
-                  
+
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="navs-top-base" role="tabpanel">
@@ -35,12 +35,14 @@
                     </div>
                 </div>
             </div>
+            @include('admin.settings.modal.add')
+            @include('admin.settings.modal.edit')
         </div>
     </div>
 @endsection
 @push('scripts')
     <script>
-       function getSettings() {
+        function getSettings() {
             $.ajax({
                 url: "{{ route('setting.get_setting') }}",
                 type: "GET",
@@ -51,9 +53,26 @@
                         $("#base_name").val(data.base_name);
                         $("#base_short_name").val(data.base_short_name);
                         $("#base_description").val(data.base_description);
-                        // $("#base_logo").val(data.base_logo);
-                        // $("#base_icon").val(data.base_icon);
-                        // $("#base_banner").val(data.base_banner);
+                        let html = '';
+                        if (data.base_banner && data.base_banner.length > 0) {
+                            data.base_banner.forEach(function(item) {
+                                html += `<div class="position-relative mb-2 banner-item" style="display: inline-block; width: 100px; height: 100px" >
+                                <img width="100%" height="100%" class="me-2 thumbnail" style="object-fit: cover; border-radius: 10px" src="${item.thumbnail}" alt="Banner" />
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center banner-overlay">
+                                    <a href="javascript:void(0)" class="text-white me-2" onclick='editBanner(${JSON.stringify(item)})' data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                        <i class="ti ti-edit fs-5"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="text-white" onclick="deleteBanner(${item.id})" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                        <i class="ti ti-trash fs-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            `
+                            })
+                        }else{
+                            html += `<p class="d-flex align-items-center justify-content-center m-0" style="color: red; height: 100px;">Chưa có banner</p>`
+                        }
+                        $("#base_banner").html(html)
                         $("#contact_name").val(data.contact_name);
                         $("#contact_short_name").val(data.contact_short_name);
                         $("#contact_phone").val(data.contact_phone);
@@ -71,7 +90,55 @@
                     }
                 }
             })
+        };
+
+        function editBanner(data) {
+            if (typeof data === 'string') {
+                data = JSON.parse(data);
+            }
+            $('#editBanner input[name="id"]').val(data.id);
+            $('#editBanner input[name="title"]').val(data.title);
+            $('#editBanner textarea[name="description"]').val(data.description);
+            $('#modal-edit').modal('show');
         }
+
+        function deleteBanner(_id) {
+            Swal.fire({
+                title: 'Bạn có muốn xóa không?',
+                text: "Xóa banner nãy sẽ không hiển thị nữa!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xóa ngay!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajax({
+                        url: '{{ route('settings.banner.delete') }}',
+                        type: 'POST',
+                        data: {
+                            id: _id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đã xóa!',
+                                text: 'Đã xóa thành công.',
+                            });
+                            getSettings();
+                        }
+                    });
+
+                }
+            });
+        }
+
         $(document).ready(function() {
             getSettings();
         })
