@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Recruitment;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -137,7 +138,7 @@ class RecruitmentService extends BaseService
     public function getBySlug(string $slug)
     {
         try {
-            $recruitment = $this->model::where('slug', $slug)->first();
+            $recruitment = $this->model::where('slug', $slug)->with(['author:id,name,email'])->first();
             $recruitment->views += 1;
             $recruitment->save();
             return $recruitment;
@@ -149,7 +150,8 @@ class RecruitmentService extends BaseService
     public function getAllData()
     {
         try {
-            $recruitment = $this->model::select(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'slug', 'number', 'thumbnail'])->orderBy('created_at', 'desc')->paginate(5);
+            $recruitment = $this->model::with(['author:id,name,email'])->select(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'slug', 'number', 'thumbnail'])->orderBy('created_at', 'desc')->paginate(8);
+            $this->model::whereIn('id', $recruitment->pluck('id'))->where('expired_at', '<', Carbon::now())->update(['status' => 0]);
             return $recruitment;
         } catch (\Throwable $th) {
             $this->handleException($th);

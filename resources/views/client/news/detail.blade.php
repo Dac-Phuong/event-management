@@ -12,22 +12,30 @@
             <div class="row ">
                 <div class="col-md-9" data-aos="fade-right">
                     <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px">
-                        <img src="{{ $data['news']->thumbnail }}" width="100%" height="83%" style="border-radius:12px"
-                            alt="">
+                        <div class="position-relative" style="height: 83%">
+                            <img src="{{ $data['news']->thumbnail }}" width="100%" height="100%" style="border-radius:12px"
+                                alt="">
+                            <div class="position-absolute top-0 start-0 bg-primary text-white px-2 py-1"
+                                style="border-radius: 12px 0 12px 0">{{ $data['category']->name }}</div>
+
+                        </div>
                         <h4 class="card-title mt-3 mb-1">{{ $data['news']->title }}</h4>
-                        <div class="d-flex">
-                            <p class="card-text"><small class="text-muted"><i class="ti ti-calendar-stats me-2"></i>
-                                    {{ $data['news']->created_at }}</small></p>
-                            <p class="card-text" style="margin-left: 30px;"><small class="text-muted"><i class="ti ti-eye me-2"></i>
-                                    {{ $data['news']->views }} Lượt xem</small></p>
+                        <div class="d-flex flex-wrap">
+                            <p class="card-text me-3"><small class="text-muted">Người viết:
+                                    {{ $data['news']->author->name ?? 'Admin' }} </small></p>
+                            <p class="card-text d-flex align-items-center me-3" ><small class="text-muted"><i class="ti ti-clock-hour-9 me-1"></i>
+                                    {{ \Carbon\Carbon::parse($data['news']->created_at)->format('d/m/Y') }}</small></p>
+                            <p class="d-flex align-items-center"><small class="text-muted"><i
+                                        class="ti ti-eye me-1"></i>
+                                    {{ number_format($data['news']->views) }} Lượt xem</small></p>
                         </div>
                     </div>
                     <div class="news-content">{!! $data['news']->description !!}</div>
                 </div>
                 <div class="col-md-3" data-aos="fade-left">
                     <div class="card">
-                        <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png" width="100%"
-                        alt="" srcset="">
+                        <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png"
+                            width="100%" alt="" srcset="">
                     </div>
                     <div class="card mt-4">
                         <div class="card-header pb-0">
@@ -37,8 +45,7 @@
                             <div class="list-group">
                                 @if (count($data['feature']) > 0)
                                     @foreach ($data['feature'] as $item)
-                                        <a href="{{ $item->slug }}"
-                                            class="text-decoration-none mb-2">
+                                        <a href="{{ $item->slug }}" class="text-decoration-none mb-2">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <img class="card-img " height="70" width="50"
                                                     src="{{ asset($item->thumbnail) }}" alt="Card image"

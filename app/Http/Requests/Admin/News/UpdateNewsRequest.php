@@ -20,7 +20,7 @@ class UpdateNewsRequest extends FormRequest
             "new_category_id" => "required|exists:news_categories,id",
             "is_pin" => "nullable",
             "slug" => "required",
-            "thumbnail" => "nullable",
+            "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "is_show" => "required",
         ];
     }
@@ -35,6 +35,9 @@ class UpdateNewsRequest extends FormRequest
             "new_category_id.required" => "Danh mục không được để trống",
             "new_category_id.exists" => "Danh mục không tồn tại",
             "is_show.required" => "Trạng thái hiển thị không được để trống",
+            'thumbnail.image' => "Vui lòng chọn 1 ảnh",
+            'thumbnail.max' => "Vui lòng chọn ảnh nhỏ hơn 2MB",
+            'thumbnail.mimes' => "Vui chọn ảnh có dạng jpeg,png,jpg,gif,svg",
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\CategoryService;
+namespace App\Http\Requests\Admin\ProjectCategory;
 
 use App\Traits\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,7 +25,7 @@ class Store extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'slug' => 'required|string|unique:news_categories,slug',
+            'slug' => 'required|string|unique:project_categories,slug',
             'status' => 'required|in:1,0',
         ];
     }

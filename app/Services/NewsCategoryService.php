@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\News;
 use App\Models\NewsCategory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class NewsCategoryService extends BaseService
 {
@@ -54,7 +56,7 @@ class NewsCategoryService extends BaseService
       'data' => $studentProfiles,
     ];
   }
-  public function getBySlug($slug, $perPage = 5)
+  public function getBySlug($slug)
   {
     try {
       $category = $this->getModel()->where('slug', $slug)->first();
@@ -62,11 +64,11 @@ class NewsCategoryService extends BaseService
         return null;
       }
       $news = $category->news()
-        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+        ->with(['author:id,name,email'])
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at', 'author_id'])
         ->orderBy('is_pin', 'desc')
         ->latest()
-        ->paginate($perPage);
-
+        ->paginate(8);
       return [
         'category' => $category,
         'news' => $news
@@ -103,6 +105,7 @@ class NewsCategoryService extends BaseService
         return null;
       }
       $news = $category->news()
+        ->with(['author:id,name,email'])
         ->where('slug', $newsSlug)
         ->orderBy('is_pin', 'desc')
         ->latest()
@@ -116,6 +119,25 @@ class NewsCategoryService extends BaseService
     } catch (\Throwable $th) {
       $this->handleException($th);
       return null;
+    }
+  }
+  public function delete(int $id)
+  {
+    try {
+      DB::beginTransaction();
+      $category = $this->model::find($id);
+      if (!$category) {
+        DB::rollBack();
+        return false;
+      }
+      $category->news()->delete();
+      $category->delete();
+      DB::commit();
+      return true;
+    } catch (\Exception $e) {
+      DB::rollBack();
+      Log::error($e->getMessage());
+      return false;
     }
   }
 }

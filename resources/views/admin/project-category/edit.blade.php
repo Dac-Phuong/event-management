@@ -47,7 +47,7 @@
             })
             formData.append("_token", "{{ csrf_token() }}");
             $.ajax({
-                url: "{{ route('service-category.update') }}",
+                url: "{{ route('project-category.update') }}",
                 type: "POST",
                 data: formData,
                 processData: false,

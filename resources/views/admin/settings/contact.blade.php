@@ -5,11 +5,6 @@
             <input type="text" class="form-control" id="contact_name" placeholder="" name="contact_name" />
         </div>
         <div class="mb-3">
-            <label class="form-label" for="contact_short_name">Tên viết tắt</label>
-            <input class="form-control edit-numeral-mask" id="contact_short_name" type="text" placeholder=""
-                name="contact_short_name" />
-        </div>
-        <div class="mb-3">
             <label class="form-label" for="contact_phone">Số điện thoại</label>
             <input class="form-control edit-numeral-mask" id="contact_phone" maxlength="11" type="number"
                 placeholder="" name="contact_phone" />

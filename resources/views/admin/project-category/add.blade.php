@@ -5,7 +5,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body h-100 mx-0 flex-grow-0 pt-0">
-        <form class="add-new-user pt-0" id="addNewForm">
+        <form class="add-new-user pt-0" id="addCategoryForm">
             <div class="mb-3">
                 <label class="form-label" for="name">Tên danh mục</label>
                 <input type="text" class="form-control" id="name" placeholder="" name="name"
@@ -31,7 +31,7 @@
 </div>
 @push('scripts')
     <script>
-        $("#addNewForm").submit(function(e) {
+        $("#addCategoryForm").submit(function(e) {
             e.preventDefault();
             let formData = new FormData();
             $(this).find("input, select, textarea").each(function() {
@@ -45,7 +45,7 @@
             })
             formData.append("_token", "{{ csrf_token() }}");
             $.ajax({
-                url: "{{ route('service-category.store') }}",
+                url: "{{ route('project-category.store') }}",
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -56,7 +56,7 @@
                         toastr.error(error);
                     } else if (res.error_code == 0) {
                         toastr.success("Thêm thành công");
-                        $("#addNewForm")[0].reset();
+                        $("#addCategoryForm")[0].reset();
                         $('#offcanvasAdd').offcanvas('hide');
                         $('#Datatable').DataTable().ajax.reload();
                     } else {
@@ -65,7 +65,7 @@
                 }
             })
         });
-        $("#addNewForm input[name='name']").on("keyup", function() {
+        $("#addCategoryForm input[name='name']").on("keyup", function() {
             let title = $(this).val();
             $("#slug").val(toSlug(title));
         })

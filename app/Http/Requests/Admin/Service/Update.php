@@ -25,11 +25,11 @@ class Update extends FormRequest
     {
         return [
             "id" => "required|exists:services,id",
-            "title" => "required",
+            "name" => "required",
             "content" => "required",
-            "category_id" => "required|exists:service_categories,id",
             "slug" => "required",
-            "thumbnail" => "nullable",
+            "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "status" => "required|in:0,1",
         ];
     }
 
@@ -38,10 +38,13 @@ class Update extends FormRequest
         return [
             "id.required" => "ID bài viết không được bỏ trống",
             "id.exists" => "ID bài viết không tồn tại",
-            "title.required" => "Tiêu đề không được để trống",
+            "name.required" => "Tiêu đề không được để trống",
             "content.required" => "Nội dung không được để trống",
-            "category_id.required" => "Danh mục không được để trống",
-            "category_id.exists" => "Danh mục không tồn tại",
+            "status.required" => "Trạng thái không được để trống",
+            "thumbnail.required" => "Vui lòng chọn 1 ảnh",
+            'thumbnail.image' => "Vui lòng chọn 1 ảnh",
+            'thumbnail.max' => "Vui lòng chọn ảnh nhỏ hơn 2MB",
+            'thumbnail.mimes' => "Vui lòng chọn ảnh có dạng jpeg,png,jpg,gif,svg"
         ];
     }
 }

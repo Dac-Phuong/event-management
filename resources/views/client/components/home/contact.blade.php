@@ -5,10 +5,7 @@
                   <span class="badge bg-label-primary">Liên hệ với chúng tôi</span>
               </div>
               <h4 class="text-center mb-1">
-                  <span class="position-relative fw-extrabold z-1">Chúng ta hãy làm việc
-                      {{-- <img src="../../assets/img/front-pages/icons/section-title-icon.png" alt="laptop charging"
-                      class="section-title-img position-absolute object-fit-contain bottom-0 left-1/2 translate-x--50 z-n1"> --}}
-                  </span>
+                  <span class="position-relative fw-extrabold z-1">Chúng ta hãy làm việc</span>
                   cùng nhau
               </h4>
               <p class="text-center mb-12 pb-md-4">Có bất kỳ câu hỏi hoặc yêu cầu tư vấn nào không? Chỉ cần viết cho
@@ -44,7 +41,8 @@
                                               class="ti ti-phone-call ti-lg"></i></div>
                                       <div>
                                           <p class="mb-0">Phone</p>
-                                          <h6 class="mb-0"><a href="tel:+1234-568-963" class="text-heading contact-phone">+1234 568
+                                          <h6 class="mb-0"><a href="tel:+1234-568-963"
+                                                  class="text-heading contact-phone">+1234 568
                                                   963</a></h6>
                                       </div>
                                   </div>
@@ -62,25 +60,37 @@
                                   class="d-none d-lg-block">
                               quan hệ đối tác, bạn đã đến đúng nơi.
                           </p>
-                          <form accept="">
+                          <form id="contact-form">
                               <div class="row g-4">
                                   <div class="col-md-6">
                                       <label class="form-label" for="contact-form-fullname">Họ và tên</label>
-                                      <input type="text" class="form-control" id="contact-form-fullname" required
-                                          placeholder="Nhập họ và tên của bạn">
+                                      <input type="text" class="form-control" id="contact-form-fullname"
+                                          name="fullname" required placeholder="Nhập họ và tên">
                                   </div>
                                   <div class="col-md-6">
+                                      <label class="form-label" for="contact-form-phone">Số điện thoại</label>
+                                      <input type="text" id="contact-form-phone" name="phone" required
+                                          class="form-control" placeholder="Nhập số điện thoại">
+                                  </div>
+
+                                  <div class="col-md-6">
                                       <label class="form-label" for="contact-form-email">Địa chỉ Email</label>
-                                      <input type="email" id="contact-form-email" required class="form-control"
-                                          placeholder="Nhập địa chỉ Email của bạn">
+                                      <input type="email" id="contact-form-email" name="email" required
+                                          class="form-control" placeholder="Nhập địa chỉ Email">
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label class="form-label" for="contact-form-business">Tên doanh nghiệp</label>
+                                      <input type="text" id="contact-form-business" name="business_name"
+                                          class="form-control" placeholder="Nhập tên doanh nghiệp">
                                   </div>
                                   <div class="col-12">
                                       <label class="form-label" for="contact-form-message">Nội dung</label>
-                                      <textarea id="contact-form-message" class="form-control" rows="7" required placeholder="Viết một tin nhắn"></textarea>
+                                      <textarea id="contact-form-message" name="message" class="form-control" rows="7" required
+                                          placeholder="Viết một tin nhắn"></textarea>
                                   </div>
                                   <div class="col-12">
-                                      <button type="submit" class="btn btn-primary waves-effect waves-light">Gửi yêu
-                                          cầu</button>
+                                      <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                          <i class="ti ti-send me-2"></i>Gửi yêu cầu tư vấn</button>
                                   </div>
                               </div>
                           </form>
@@ -90,3 +100,31 @@
           </div>
       </div>
   </section>
+  @push('scripts')
+      <script>
+          $(document).ready(function() {
+              $("#contact-form").submit(function(e) {
+                  e.preventDefault();
+                  let formData = new FormData($("#contact-form")[0]);
+                  formData.append('_token', '{{ csrf_token() }}');
+                  $.ajax({
+                      url: "{{ route('send.contact') }}",
+                      type: "POST",
+                      data: formData,
+                      dataType: 'json',
+                      contentType: false,
+                      processData: false,
+                      success: function(res) {
+                          if (res.error_code == 0) {
+                              toastr.success('Vui lòng chờ phản hồi sau ít phút', 'Gửi yêu cầu thành công');
+                              $("#contact-form")[0].reset();
+                          } else {
+                              toastr.error(res.message);
+                          }
+                      }
+                  });
+              });
+
+          });
+      </script>
+  @endpush

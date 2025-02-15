@@ -6,11 +6,6 @@
                 aria-label="" />
         </div>
         <div class="mb-3">
-            <label class="form-label" for="social_group">Group</label>
-            <input class="form-control edit-numeral-mask" id="social_group" type="text" placeholder=""
-                name="social_group" />
-        </div>
-        <div class="mb-3">
             <label class="form-label" for="social_youtube">Youtube</label>
             <input class="form-control edit-numeral-mask" id="social_youtube" type="text" placeholder=""
                 name="social_youtube" />

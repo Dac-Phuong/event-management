@@ -24,21 +24,24 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-            "category_id" => "required|exists:service_categories,id",
-            "title" => "required",
+            "name" => "required",
             "content" => "required",
             "slug" => "required",
-            "thumbnail" => "nullable",
+            "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "status" => "required|in:0,1",
         ];
     }
 
     public function messages(): array
     {
         return [
-            "title.required" => "Tiêu đề không được để trống",
+            "name.required" => "Tiêu đề không được để trống",
             "content.required" => "Nội dung không được để trống",
-            "category_id.required" => "Danh mục không được để trống",
-            "category_id.exists" => "Danh mục không tồn tại",
+            "status.required" => "Trạng thái không được để trống",
+            "thumbnail.required" => "Vui lòng chọn 1 ảnh",
+            'thumbnail.image' => "Vui lòng chọn 1 ảnh",
+            'thumbnail.max' => "Vui lòng chọn ảnh nhỏ hơn 2MB",
+            'thumbnail.mimes' => "Vui lòng chọn ảnh có dạng jpeg,png,jpg,gif,svg",
         ];
     }
 }

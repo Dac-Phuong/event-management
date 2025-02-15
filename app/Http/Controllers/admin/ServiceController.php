@@ -12,16 +12,11 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $catgegories = $this->categoryService()->getAllActive();
-        return view("admin.service.index", compact("catgegories"));
+        return view("admin.service.index");
     }
     public function service()
     {
         return app(Services::class);
-    }
-    public function categoryService()
-    {
-        return app(ServiceCategories::class);
     }
     public function filterDataTable(Request $request)
     {

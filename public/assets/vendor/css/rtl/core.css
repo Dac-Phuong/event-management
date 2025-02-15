@@ -148,7 +148,12 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(75, 70, 92, 0);
 }
-
+.navbar.scrolled {
+  background-color: #fff;
+  padding: 15px 0;
+  animation: slideDown 0.5s ease-in-out;
+  box-shadow: 0 .125rem .5rem 0 rgba(47, 43, 61, .12);
+}
 hr {
   margin: 1rem 0;
   color: #dbdade;
@@ -3240,19 +3245,20 @@ textarea.form-control-lg {
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
   font-size: var(--bs-nav-link-font-size);
   font-weight: var(--bs-nav-link-font-weight);
-  color: var(--bs-nav-link-color);
+  color: var(--bs-white);
   background: none;
   border: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.nav-link.color{
+  color: var(--bs-black) !important;
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
   }
 }
-.nav-link:hover, .nav-link:focus {
-  color: var(--bs-nav-link-hover-color);
-}
+
 .nav-link:focus-visible {
   outline: 0;
   box-shadow: 0 0 0 0.15rem rgba(75, 70, 92, 0.75);
@@ -3279,7 +3285,9 @@ textarea.form-control-lg {
   border-top-left-radius: var(--bs-nav-tabs-border-radius);
   border-top-right-radius: var(--bs-nav-tabs-border-radius);
 }
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+
+
+.nav-tabs , .nav-tabs .nav-link:focus {
   isolation: isolate;
   border-color: var(--bs-nav-tabs-link-hover-border-color);
 }
@@ -3361,7 +3369,7 @@ textarea.form-control-lg {
   --bs-navbar-color: rgba(75, 70, 92, 0.5);
   --bs-navbar-hover-color: #6f6b7d;
   --bs-navbar-disabled-color: rgba(75, 70, 92, 0.3);
-  --bs-navbar-active-color: #6f6b7d;
+  --bs-navbar-active-color: #6E62E4;
   --bs-navbar-brand-padding-y: 0.4970625rem;
   --bs-navbar-brand-margin-end: 1rem;
   --bs-navbar-brand-font-size: 1rem;
@@ -3420,7 +3428,7 @@ textarea.form-control-lg {
   margin-bottom: 0;
   list-style: none;
 }
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+.navbar-nav, .navbar-nav .nav-link.show {
   color: var(--bs-navbar-active-color);
 }
 .navbar-nav .dropdown-menu {

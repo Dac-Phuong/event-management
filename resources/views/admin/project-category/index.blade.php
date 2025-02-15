@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
 @section('main')
-    <h4 class="mb-0 pb-2">Category Service</h4>
-    <p class="font-size-base">Quản lý danh mục dịch vụ</p>
+    <h4 class="mb-0 pb-2">Category</h4>
+    <p class="font-size-base">Quản lý danh mục dự án</p>
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -25,14 +25,14 @@
                                 <th>Slug</th>
                                 <th>Trạng thái</th>
                                 <th>Ngày tạo</th>
-                                <th>Action</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
             </div>
-            @include('admin.service-category.add')
-            @include('admin.service-category.edit')
+            @include('admin.project-category.add')
+            @include('admin.project-category.edit')
         </div>
     </div>
 @endsection
@@ -74,7 +74,7 @@
                     }).then(function(result) {
                         if (result.value) {
                             $.ajax({
-                                url: '{{ route('service-category.delete') }}',
+                                url: '{{ route('project-category.delete') }}',
                                 type: 'POST',
                                 data: {
                                     id: data.id,
@@ -116,7 +116,7 @@
                     className: "row-selected",
                 },
                 ajax: {
-                    url: "{{ route('service-category.datatable') }}",
+                    url: "{{ route('project-category.datatable') }}",
                     type: "POST",
                     data: function(data) {
                         data._token = "{{ csrf_token() }}";

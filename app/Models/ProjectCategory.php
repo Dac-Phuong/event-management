@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceCategory extends Model
+class ProjectCategory extends Model
 {
     use HasFactory;
     const STATUS_ACTIVE = '1';
     const STATUS_HIDE = '0';
-    protected $table = 'service_categories';
+    protected $table = 'project_categories';
     protected $fillable = [
         'name',
         'status',
         'slug'
     ];
-    public function service()
+    public function project()
     {
-        return $this->hasMany(Service::class, 'category_id', 'id');
+        return $this->hasMany(Project::class, 'category_id', 'id');
     }
 }

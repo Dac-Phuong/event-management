@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\CategoryService;
+namespace App\Http\Requests\Admin\ProjectCategory;
 
 use App\Traits\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,9 +24,9 @@ class Update extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|exists:service_categories,id',
+            'id' => 'required|exists:project_categories,id',
             'name' => 'required|string',
-            'slug' => 'required|string|unique:service_categories,slug,' . $this->id . ',id',
+            'slug' => 'required|string|unique:project_categories,slug,' . $this->id . ',id',
             'status' => 'required|in:1,0',
         ];
     }

@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Services;
-use App\Models\ServiceCategory;
 
-class ServiceCategories extends BaseService
+use App\Models\Contact;
+use App\Models\Service;
+
+class ContactService extends BaseService
 {
-    public function setModel()
+    function setModel()
     {
-        $this->model = new ServiceCategory();
+        $this->model = new Contact();
     }
+
     public function filterDataTable($data)
     {
         // Page Length
@@ -21,12 +24,13 @@ class ServiceCategories extends BaseService
 
         // $data['order'][0]['dir'] ??
         $query = $this->model::query();
-
         // Search
         $search = $data['search']['value'] ?? '';
         if (isset($search)) {
             $query = $query->where(function ($query) use ($search) {
-                $query->orWhere('name', 'like', "%" . $search . "%");
+                $query->orWhere('fullname', 'like', "%" . $search . "%");
+                $query->orWhere('email', 'like', "%" . $search . "%");
+                $query->orWhere('phone', 'like', "%" . $search . "%");
             });
         }
         $orderByName = 'id';
@@ -35,22 +39,28 @@ class ServiceCategories extends BaseService
                 $orderByName = 'id';
                 break;
             case '1':
-                $orderByName = 'name';
+                $orderByName = 'fullname';
                 break;
         }
-
         $query = $query->orderBy($orderByName, $orderBy);
-
         $recordsFiltered = $recordsTotal = $query->count();
-
-        $studentProfiles = $query->skip($skip)->take($pageLength)->get(['id', 'name', 'slug', 'created_at', 'status']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'fullname', 'business_name', 'email', 'created_at', 'phone', 'message']);
 
         return [
             "draw" => $data['draw'],
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
-            'data' => $studentProfiles,
+            'data' => $service,
         ];
     }
-    
+    function sendContact($data)
+    {
+        try {
+            $this->model::create($data);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
 }

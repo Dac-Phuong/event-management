@@ -5,11 +5,6 @@
             <input type="text" class="form-control" id="base_name" placeholder="" name="base_name" aria-label="" />
         </div>
         <div class="mb-3">
-            <label class="form-label" for="base_short_name">Tên viết tắt</label>
-            <input class="form-control edit-numeral-mask" id="base_short_name" type="text" placeholder=""
-                name="base_short_name" />
-        </div>
-        <div class="mb-3">
             <label for="base_description" class="form-label">Mô tả</label>
             <textarea class="form-control" id="base_description" name="base_description" rows="3"></textarea>
         </div>

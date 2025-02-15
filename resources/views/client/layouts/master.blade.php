@@ -99,11 +99,13 @@
                     method: 'GET',
                     success: function(res) {
                         if (res.error_code == 0) {
-                            $('.contact-phone').text(res.data.contact_phone).attr('href', `tel:${res.data.contact_phone || ''}`)
+                            $('.contact-phone').text(res.data.contact_phone).attr('href',
+                                `tel:${res.data.contact_phone || ''}`)
                             $('#contact-phone').attr('href', `tel:${res.data.contact_phone || ''}`)
                             $('#contact-zalo').attr('href', `${res.data.social_zalo || '#'}`)
                             $('#contact-fanpage').attr('href', `${res.data.social_fanpage || '#'}`)
-                            $('#contact-email').text(res.data.contact_email).attr('href', `mailto:${res.data.contact_email || ''}`)
+                            $('#contact-email').text(res.data.contact_email).attr('href',
+                                `mailto:${res.data.contact_email || ''}`)
                         }
                     },
                     error: function(error) {
@@ -114,6 +116,13 @@
             }
             getConfig()
         })
+        $(document).ready(function() {
+            $(".scrollToContact").click(function() {
+                $("html, body").animate({
+                    scrollTop: $("#landingContact").offset().top
+                }, 200); 
+            });
+        });
     </script>
     @stack('scripts')
 </body>

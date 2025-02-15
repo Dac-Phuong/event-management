@@ -1,19 +1,23 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\admin\IntroduceController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\admin\ProjectCategoryController;
+use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\RecruitmentController;
-use App\Http\Controllers\admin\ServiceCategoryController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\UploadController;
+use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\client\configController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\IntroduceController as ClientIntroduceController;
 use App\Http\Controllers\client\NewsController as ClientNewsController;
+use App\Http\Controllers\client\ProjectController as ClientProjectController;
 use App\Http\Controllers\client\RecruitmentController as ClientRecruitmentController;
 use App\Http\Controllers\client\ServiceController as ClientServiceController;
 use Illuminate\Support\Facades\Route;
@@ -45,8 +49,13 @@ Route::get('/get-config', [configController::class, 'getConfig'])->name('configs
 Route::get('/service/{slug}', [ClientServiceController::class, 'index'])->name('service');
 Route::get('/news/{slug}', [ClientNewsController::class, 'index'])->name('news');
 Route::get('/news/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
+Route::post('/news/search', [ClientNewsController::class, 'searchNews'])->name('news.search');
+
 Route::get('/recruitment', [ClientRecruitmentController::class, 'index'])->name('recruitment');
 Route::get('/recruitment/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
+Route::get('/project/{slug}', [ClientProjectController::class, 'index'])->name('project');
+Route::get('/project/{categorySlug}/{newsSlug}', [ClientProjectController::class, 'detail'])->name('project.detail');
+Route::post('/contact/send', [HomeController::class, 'sendContact'])->name('send.contact');
 
 
 // ........................................................................SERVER............................................................................
@@ -65,9 +74,20 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('settings/banner/store', [SettingController::class, 'store'])->name('settings.banner.store');
         Route::post('settings/banner/delete', [SettingController::class, 'destroy'])->name('settings.banner.delete');
         Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
+        // User
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', [UserController::class, 'index'])->name('users');
+            Route::post('/create', [UserController::class, 'store'])->name('user.create');
+            Route::post('/update', [UserController::class, 'update'])->name('user.update');
+            Route::post('/delete', [UserController::class, 'destroy'])->name('user.delete');
+            Route::post('/datatable', [userController::class, 'filterDataTable'])->name('user.datatable');
+        });
 
         // Introduce
         Route::get('introduce', [IntroduceController::class, 'index'])->name('introduce');
+        // Contact
+        Route::get('contact', [ContactController::class, 'index'])->name('contact');
+        Route::post('contact/datatable', [ContactController::class, 'filterDataTable'])->name('contact.datatable');
         //Upload
         Route::post('upload', [UploadController::class, 'upload'])->name('upload.image');
         // news category
@@ -90,14 +110,6 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update/content', [NewsController::class, 'content'])->name('news.update.content');
             Route::post('/delete', [NewsController::class, 'destroy'])->name('news.delete');
         });
-        // Service Category
-        Route::group(['prefix' => 'service-category'], function () {
-            Route::get('/', [ServiceCategoryController::class, 'index'])->name('service-category.index');
-            Route::post('/datatable', [ServiceCategoryController::class, 'filterDataTable'])->name('service-category.datatable');
-            Route::post('/update', [ServiceCategoryController::class, 'update'])->name('service-category.update');
-            Route::post('/store', [ServiceCategoryController::class, 'store'])->name('service-category.store');
-            Route::post('/delete', [ServiceCategoryController::class, 'destroy'])->name('service-category.delete');
-        });
         // Service
         Route::group(['prefix' => 'service'], function () {
             Route::get('/', [ServiceController::class, 'index'])->name('service.index');
@@ -107,6 +119,26 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
             Route::post('/update', [ServiceController::class, 'update'])->name('service.update');
             Route::post('/delete', [ServiceController::class, 'destroy'])->name('service.delete');
+        });
+        // Project Category
+        Route::group(['prefix' => 'project-category'], function () {
+            Route::get('/', [ProjectCategoryController::class, 'index'])->name('project-category.index');
+            Route::post('/datatable', [ProjectCategoryController::class, 'filterDataTable'])->name('project-category.datatable');
+            Route::post('/update', [ProjectCategoryController::class, 'update'])->name('project-category.update');
+            Route::post('/store', [ProjectCategoryController::class, 'store'])->name('project-category.store');
+            Route::post('/delete', [ProjectCategoryController::class, 'destroy'])->name('project-category.delete');
+        });
+        // Project
+        Route::group(['prefix' => 'project'], function () {
+            Route::get('/', [ProjectController::class, 'index'])->name('project.index');
+            Route::get('/create', [ProjectController::class, 'create'])->name('project.create');
+            Route::post('/store', [ProjectController::class, 'store'])->name('project.store');
+            Route::post('/datatable', [ProjectController::class, 'filterDataTable'])->name('project.datatable');
+            Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
+            Route::post('/update', [ProjectController::class, 'update'])->name('project.update');
+            Route::post('/get/content', [ProjectController::class, 'getContent'])->name('project.get.content');
+            Route::post('/update/content', [ProjectController::class, 'content'])->name('project.update.content');
+            Route::post('/delete', [ProjectController::class, 'destroy'])->name('project.delete');
         });
         // Recruitment
         Route::group(['prefix' => 'recruitment'], function () {

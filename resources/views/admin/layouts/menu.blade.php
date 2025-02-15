@@ -48,11 +48,49 @@
                     <div>Giới thiệu</div>
                 </a>
             </li>
+            <li class="menu-item {{ request()->routeIs('contact') ? 'active' : '' }}">
+                <a href="{{ url('admin/contact') }}" class="menu-link">
+                    <i class="menu-icon ti ti-mail"></i>
+                    <div>Liên hệ</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
+                <a href="{{ url('admin/users') }}" class="menu-link">
+                    <i class="menu-icon ti ti-users"></i>
+                    <div>Thành viên</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('service.*') ? 'active' : '' }}">
+                <a href="{{ url('admin/service') }}" class="menu-link">
+                    <i class="menu-icon ti ti-server-cog"></i>
+                    <div>Dịch vụ</div>
+                </a>
+            </li>
+
+            <li
+                class="menu-item {{ request()->routeIs('project.*') || request()->routeIs('project-category.*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon ti ti-table-alias"></i>
+                    <div>Dự án</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ request()->routeIs('project-category.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/project-category') }}" class="menu-link">
+                            <div>Danh mục</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs('project.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/project') }}" class="menu-link">
+                            <div>Danh sách</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li
                 class="menu-item {{ request()->routeIs('news.*') || request()->routeIs('news-category.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-news"></i>
-                    <div>Tin tức</div>
+                    <div>Blog</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item {{ request()->routeIs('news-category.*') ? 'active' : '' }}">
@@ -67,34 +105,15 @@
                     </li>
                 </ul>
             </li>
-            <li
-                class="menu-item {{ request()->routeIs('service.*') || request()->routeIs('service-category.*') ? 'open' : '' }}">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon ti ti-server-cog"></i>
-                    <div>Dịch vụ</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item {{ request()->routeIs('service-category.*') ? 'active' : '' }}">
-                        <a href="{{ url('admin/service-category') }}" class="menu-link">
-                            <div>Danh mục</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ request()->routeIs('service.*') ? 'active' : '' }}">
-                        <a href="{{ url('admin/service') }}" class="menu-link">
-                            <div>Danh sách</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li
-                class="menu-item {{ request()->routeIs('recruitment.*') || request()->routeIs('recruitment-list.*') ? 'open' : '' }}">
+
+            <li class="menu-item {{ request()->routeIs('recruitment.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon ti ti-users-plus"></i>
                     <div>Tuyển dụng</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item ">
-                        <a href="{{url('admin/recruitment')}}" class="menu-link">
+                    <li class="menu-item  {{ request()->routeIs('recruitment.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/recruitment') }}" class="menu-link">
                             <div>Đăng tin</div>
                         </a>
                     </li>

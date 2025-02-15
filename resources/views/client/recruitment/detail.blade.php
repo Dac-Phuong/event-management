@@ -1,6 +1,6 @@
 @extends('client.layouts.master')
 
-@section('title', 'Chi tiết tuyển dụng')
+@section('title', $recruitment->title)
 
 @section('content')
     @include('client.components.breadcrumb', [
@@ -16,20 +16,20 @@
                     <img src="{{ $recruitment->thumbnail }}" width="100%" height="83%" style="border-radius:12px"
                         alt="">
                     <h4 class="card-title mt-3 mb-1">{{ $recruitment->title }}</h4>
-                    <div class="d-flex">
-                        <p class="card-text"><small class="text-muted"><i class="ti ti-calendar-stats me-2"></i>
-                                Ngày hết hạn: {{ \Carbon\Carbon::parse($recruitment->expired_at)->format('d/m/Y') }}</small>
-                        </p>
-                        <p class="card-text" style="margin-left: 30px;"><small class="text-muted"><i
-                                    class="ti ti-eye me-2"></i>
-                                {{ $recruitment->views }} Lượt xem</small></p>
+                    <div class="d-flex flex-wrap">
+                        <p class="card-text me-3"><small class="text-muted">Người viết:
+                                {{ $recruitment->author->name ?? 'Admin' }} </small></p>
+                        <p class="card-text d-flex align-items-center me-3"><small class="text-muted"><i
+                                    class="ti ti-clock-hour-9 me-1"></i>
+                                {{ \Carbon\Carbon::parse($recruitment->created_at)->format('d/m/Y') }}</small></p>
+                        <p class="d-flex align-items-center"><small class="text-muted"><i class="ti ti-eye me-1"></i>
+                                {{ number_format($recruitment->views) }} Lượt xem</small></p>
                     </div>
                 </div>
                 <div class="news-content">{!! $recruitment->content !!}</div>
                 @if (isset($recruitment->url) && $recruitment->status == 1)
-                    <a href="{{ $recruitment->url }}" target="_blank" class="btn btn-primary"> <i class="ti ti-share-3 me-2"></i>Ứng tuyển ngay</a>
-                @else
-                    <a href="{{ url('contact') }}" class="btn btn-primary">Liên hệ</a>
+                    <a href="{{ $recruitment->url }}" target="_blank" class="btn btn-primary"> <i
+                            class="ti ti-share-3 me-2"></i>Ứng tuyển ngay</a>
                 @endif
             </div>
             <div class="col-md-3" data-aos="fade-left">

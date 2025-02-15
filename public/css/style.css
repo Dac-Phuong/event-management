@@ -76,7 +76,6 @@
   transition: background 0.3s ease;
 }
 
-/* Khi hover, overlay sẽ tối lại */
 .video-container:hover .video-overlay {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -112,19 +111,41 @@
   transform: scale(1.2);
 }
 
+
 /* header */
+.navbar {
+  padding: 20px 0;
+  transition: all 0.3s ease;
+}
+
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link {
+  margin: 0 15px;
+  font-weight: 600;
+}
+
+.btn-consult {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+
+.btn-consult:hover {
+  background-color: #f4511e;
+  color: white;
+}
+
 .btn-header:hover {
   transform: scale(1.1);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-.animate__fadeIn {
-  opacity: 1;
-}
-
-.animate__fadeIn.animate__faster {
-  animation-duration: 0.3s;
-}
 
 .btn-service {
   animation-name: pulse;
@@ -318,6 +339,7 @@
   max-width: 470px;
   margin: 50px 0;
 }
+
 .bg_abouts_right img {
   position: absolute;
   top: 50%;
@@ -325,6 +347,7 @@
   transform: translateY(-50%);
   width: 100%;
 }
+
 .bg_abouts_right .img-bg__category {
   position: absolute;
   top: 50%;
@@ -333,13 +356,9 @@
   border-top-left-radius: 145px;
   border-bottom-left-radius: 145px;
   z-index: 2;
-  max-width: calc(100% - 90px);
+  max-width: calc(106% - 90px);
+  height: 430px;
 }
-
-
-
-
-
 
 #button-contact-vr {
   position: fixed;
@@ -347,9 +366,11 @@
   z-index: 1;
   right: 10px;
 }
+
 #button-contact-vr .button-contact {
   position: relative;
 }
+
 #button-contact-vr .button-contact .phone-vr {
   position: relative;
   visibility: visible;
@@ -365,6 +386,7 @@
   bottom: 0;
   display: block;
 }
+
 #popup-vr .phone-vr-circle-fill {
   width: 65px;
   height: 65px;
@@ -384,6 +406,7 @@
   -webkit-animuiion: zoom 1.3s infinite;
   animation: zoom 1.3s infinite;
 }
+
 .phone-vr-circle-fill {
   width: 65px;
   height: 65px;
@@ -403,6 +426,7 @@
   -webkit-animuiion: zoom 1.3s infinite;
   animation: zoom 1.3s infinite;
 }
+
 #popup-vr .phone-vr-img-circle {
   background-color: #3050a2;
 }
@@ -421,6 +445,7 @@
   -webkit-animation: phone-vr-circle-fill 1s infinite ease-in-out;
   animation: phone-vr-circle-fill 1s infinite ease-in-out;
 }
+
 #popup-vr img {
   max-width: 26px;
   height: 26px;
@@ -432,24 +457,53 @@
   display: inline-block;
   vertical-align: middle;
 }
+
 #zalo-vr .phone-vr-circle-fill {
   box-shadow: 0 0 0 0 #2196f3;
   background-color: rgba(33, 150, 243, 0.7);
 }
+
 #zalo-vr .phone-vr-img-circle {
   background-color: #2196F3;
 }
 
+#search-results {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #ddd;
+  max-height: 400px;
+  overflow-y: auto;
+  left: 25px;
+  right: 25px;
+  top: 65px;
+  border-radius: 6px;
+}
+.text-hover:hover {
+  color: #7367F0 !important;
+}
 #phone-vr .phone-vr-circle-fill {
   box-shadow: 0 0 0 0 #e60808;
   background-color: #e60808a1;
 }
+
 #phone-vr .phone-vr-img-circle img {
   filter: brightness(0) invert(1) !important;
 }
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .text-description {
   width: 50% !important;
 }
+
 /* Responsive */
 @media screen and (max-width: 768px) {
   .text-description {
@@ -484,6 +538,7 @@
     transform: scale(1);
   }
 }
+
 @-webkit-keyframes zoom {
   0% {
     transform: scale(.9)
@@ -515,6 +570,7 @@
     box-shadow: 0 0 0 0 transparent
   }
 }
+
 @-webkit-keyframes phone-vr-circle-fill {
   0% {
     -webkit-transform: rotate(0) scale(1) skew(1deg);
@@ -542,5 +598,15 @@
 
   100% {
     -webkit-transform: rotate(0) scale(1) skew(1deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
   }
 }

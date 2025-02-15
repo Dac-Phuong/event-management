@@ -5,24 +5,25 @@
                 <input type="hidden" name="id" value="">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Danh mục</label>
-                        <select class="form-select" id="service-category" name="category_id">
-                            <option disabled selected>Chọn danh mục</option>
-                            @foreach ($catgegories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
+                        <label class="form-label" for="service-name">Tên dịch vụ</label>
+                        <input type="text" class="form-control" name="name" id="service-name1"
+                            placeholder="Tiêu đề bài viết" autofocus name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Ảnh</label>
+                        <input type="file" id="image" class="form-control" name="thumbnail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="datetime" class="form-label">Trạng thái</label>
+                        <select class="form-select" name="status" id="status">
+                            <option value="0">Ẩn</option>
+                            <option value="1" selected>Hiển thị</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="service-title">Tiêu đề</label>
-                        <input type="text" class="form-control" name="title" id="service-title1"
-                            placeholder="Tiêu đề bài viết" autofocus name="title">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="service-title">Nội dung</label>
+                        <label class="form-label" for="edit-content">Nội dung</label>
                         <textarea id="edit-content" name="content" class="form-control"></textarea>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Lưu</button>
@@ -50,7 +51,7 @@
         $("#editService").submit(function(e) {
             e.preventDefault();
             let formData = new FormData($("#editService")[0]);
-            const slug = $("#service-title1").val();
+            const slug = $("#service-name1").val();
             formData.append("slug", toSlug(slug));
             formData.append("_token", "{{ csrf_token() }}");
             $.ajax({

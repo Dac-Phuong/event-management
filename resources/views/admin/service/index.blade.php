@@ -22,8 +22,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tiêu đề</th>
-                                <th>Thể loại</th>
+                                <th>Tên dịch vụ</th>
+                                <th>Trạng thái</th>
                                 <th>Ngày đăng</th>
                                 <th>Action</th>
                             </tr>
@@ -87,8 +87,8 @@
                     $(document).on('click', '.btn-edit', function() {
                         const data = getRowData($(this).closest('tr'));
                         $('#editService input[name="id"]').val(data.id);
-                        $('#editService input[name="title"]').val(data.title);
-                        $('#editService select[name="category_id"]').val(data.category_id);
+                        $('#editService input[name="name"]').val(data.name);
+                        $('#editService select[name="status"]').val(data.status);
                         edit_editor.setData(data.content)
                         $('#modal-edit').modal('show');
                     })
@@ -118,10 +118,10 @@
                                 data: 'id'
                             },
                             {
-                                data: 'title'
+                                data: 'name'
                             },
                             {
-                                data: 'category.name'
+                                data: 'status'
                             },
                             {
                                 data: 'created_at'
@@ -146,7 +146,7 @@
                             {
                                 targets: 2,
                                 render: function(data, type, row) {
-                                    return `<span class="badge bg-label-primary">${data}</span>`
+                                    return `<span class="badge bg-label-${data == '1' ? 'primary' : 'danger'}">${data == '1' ? 'Hiển thị' : 'Ẩn'}</span>`
                                 },
                             },
                             {

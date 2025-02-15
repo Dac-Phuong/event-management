@@ -63,7 +63,6 @@ class NewsServices extends BaseService
     $query = $query->orderBy($orderByName, $orderBy);
     $recordsFiltered = $recordsTotal = $query->count();
     $news = $query->with('category', 'author')->skip($skip)->take($pageLength)->get(['id', 'title', 'views', 'is_show', 'is_pin', 'content', 'created_at', 'new_category_id', 'author_id']);
-
     return [
       "draw" => $data['draw'],
       "recordsTotal" => $recordsTotal,
@@ -98,7 +97,7 @@ class NewsServices extends BaseService
       return false;
     }
   }
- 
+
   public function content(int $id, array $data)
   {
     try {
@@ -108,7 +107,7 @@ class NewsServices extends BaseService
         DB::rollBack();
         return false;
       }
-     $news->description = $data['content'];
+      $news->description = $data['content'];
       $news->save();
 
       DB::commit();
@@ -135,6 +134,21 @@ class NewsServices extends BaseService
       DB::rollBack();
       Log::error($e->getMessage());
       return false;
+    }
+  }
+  public function searchNews($data)
+  {
+    try {
+      $search = trim($data['keyword'] ?? '');
+      if (empty($search)) {
+        return [];
+      }
+      $query = $this->model::query();
+      $query->where('title', 'LIKE', "%{$search}%");
+      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug','thumbnail', 'new_category_id']);
+    } catch (\Throwable $th) {
+      Log::error('Search News Error: ' . $th->getMessage());
+      return [];
     }
   }
 }

@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryService\Store;
-use App\Http\Requests\Admin\CategoryService\Update;
-use App\Services\ServiceCategories;
+use App\Http\Requests\Admin\ProjectCategory\Store;
+use App\Http\Requests\Admin\ProjectCategory\Update;
+use App\Services\ProjectCategoryService;
 use Illuminate\Http\Request;
 
-class ServiceCategoryController extends Controller
+class ProjectCategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.service-category.index');
+        return view('admin.project-category.index');
     }
-
     public function store(Store $request)
     {
         $data = $request->validated();
@@ -31,7 +30,7 @@ class ServiceCategoryController extends Controller
 
     public function categoryService()
     {
-        return app(ServiceCategories::class);
+        return app(ProjectCategoryService::class);
     }
     public function update(Update $request)
     {

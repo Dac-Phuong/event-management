@@ -45,7 +45,7 @@ class Services extends BaseService
         $search = $data['search']['value'] ?? '';
         if (isset($search)) {
             $query = $query->where(function ($query) use ($search) {
-                $query->orWhere('title', 'like', "%" . $search . "%");
+                $query->orWhere('name', 'like', "%" . $search . "%");
             });
         }
         $orderByName = 'id';
@@ -54,12 +54,12 @@ class Services extends BaseService
                 $orderByName = 'id';
                 break;
             case '1':
-                $orderByName = 'title';
+                $orderByName = 'name';
                 break;
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->with('category')->skip($skip)->take($pageLength)->get(['id', 'title', 'content', 'created_at', 'category_id']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'name','status', 'content', 'created_at', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -77,10 +77,10 @@ class Services extends BaseService
                 DB::rollBack();
                 return false;
             }
-            // if (isset($data['thumbnail']) && $data['thumbnail']) {
-            //     $path = parent::uploadImage($data['thumbnail']);
-            //     $data['thumbnail'] = $path;
-            // }
+            if (isset($data['thumbnail']) && $data['thumbnail']) {
+                $path = parent::uploadImage($data['thumbnail']);
+                $data['thumbnail'] = $path;
+            }
             $result = parent::update($id, $data);
             if ($result == false) {
                 DB::rollBack();

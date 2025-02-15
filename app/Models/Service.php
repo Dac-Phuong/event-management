@@ -10,15 +10,12 @@ class Service extends Model
     use HasFactory;
     protected $table = "services";
     protected $fillable = [
-        "title",
+        "name",
+        "status",
         "content",
         "category_id",
         "thumbnail",
         'slug',
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(ServiceCategory::class, 'category_id');
-    }
 }
