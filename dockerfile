@@ -21,8 +21,15 @@ RUN composer install --no-dev --optimize-autoloader
 # Copy toàn bộ mã nguồn vào container
 COPY . .
 
+# Tạo file .env nếu chưa có
+RUN cp .env.example .env
+
+# Tạo app key
+RUN php artisan key:generate
+
 # Thiết lập quyền cho storage và bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 777 storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache
 
 # Cấu hình Apache
 RUN a2enmod rewrite
