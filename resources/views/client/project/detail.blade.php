@@ -20,7 +20,7 @@
                                 {{ $data['category']->name }}
                             </div>
                             <div class="overlay"></div>
-                            <div class="play-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            <div class="play-yt-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
                                 <i class="fas fa-play"></i>
                             </div>
                         </div>
