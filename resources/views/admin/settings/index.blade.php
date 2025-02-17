@@ -51,8 +51,7 @@
                     if (res.data && res.error_code == 0) {
                         let data = res.data;
                         $("#base_name").val(data.base_name);
-                        $("#base_short_name").val(data.base_short_name);
-                        $("#base_description").val(data.base_description);
+                        $("#base_map_id").val(data.base_map_id);
                         let html = '';
                         if (data.base_banner && data.base_banner.length > 0) {
                             data.base_banner.forEach(function(item) {

@@ -7,13 +7,6 @@
         <div class="card">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-header">Danh sách liên hệ</h5>
-                <button class="dt-button add-new btn btn-primary ms-2 waves-effect waves-light" style="margin-right:24px"
-                    type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add">
-                    <span>
-                        <i class="ti ti-plus ti-xs me-0 me-sm-2"></i>
-                        <span class="d-none d-sm-inline-block">Thêm mới</span>
-                    </span>
-                </button>
             </div>
             <div class="card-datatable table-responsive pt-0">
                 <table class="table dataTable" id="Datatable">
@@ -30,6 +23,7 @@
             </div>
         </div>
     </div>
+    @include('admin.contact.show')
 @endsection
 @push('scripts')
     <script>
@@ -39,6 +33,18 @@
             if (dt_basic_table.length) {
                 const initAction = () => {
                     // Variable declaration
+                    $(document).on('click', '.btn-show', function() {
+                        const data = getRowData($(this).closest('tr'));
+                        console.log(data,'saa');
+                        $('#show-fullname').text(data.fullname);
+                        $('#show-email').text(data.email);
+                        $('#show-message').text(data.message ?? "Không có nội dung");
+                        $('#show-date').text(formatDateTime(data.created_at));
+                        $('#modal_show').modal('show');
+                    })
+                    const getRowData = (row) => {
+                        return dt_basic.row(row).data();
+                    }
                     // Show update
                     dt_basic = dt_basic_table.DataTable({
                         searchDelay: 500,
@@ -77,7 +83,7 @@
                         columnDefs: [{
                                 targets: 0,
                                 render: function(data, type, row) {
-                                    return `<a href="#" class="text-primary text-hover-primary">  ${data ?? ""}  </a>`;
+                                    return `<a href="#" class="text-primary text-hover-primary btn-show" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem chi tiết"> ${data  ?? ""}  </a>`;
                                 }
                             },
                             {

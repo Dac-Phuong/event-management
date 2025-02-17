@@ -4,7 +4,6 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Services\SettingService;
-use Illuminate\Http\Request;
 
 class configController extends Controller
 {

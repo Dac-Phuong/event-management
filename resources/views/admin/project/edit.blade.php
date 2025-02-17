@@ -16,7 +16,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="project-title">Tiêu đề</label>
                         <input type="text" class="form-control" name="title" id="project-title1"
-                            placeholder="Tiêu đề bài viết" autofocus name="title">
+                            placeholder="" autofocus name="title">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Mô tả</label>

@@ -27,8 +27,9 @@ class Update extends FormRequest
             "id" => "required|exists:services,id",
             "name" => "required",
             "content" => "required",
+            "description" => "required|max:255",
             "slug" => "required",
-            "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "status" => "required|in:0,1",
         ];
     }
@@ -41,10 +42,11 @@ class Update extends FormRequest
             "name.required" => "Tiêu đề không được để trống",
             "content.required" => "Nội dung không được để trống",
             "status.required" => "Trạng thái không được để trống",
-            "thumbnail.required" => "Vui lòng chọn 1 ảnh",
             'thumbnail.image' => "Vui lòng chọn 1 ảnh",
             'thumbnail.max' => "Vui lòng chọn ảnh nhỏ hơn 2MB",
-            'thumbnail.mimes' => "Vui lòng chọn ảnh có dạng jpeg,png,jpg,gif,svg"
+            'thumbnail.mimes' => "Vui lòng chọn ảnh có dạng jpeg,png,jpg,gif,svg",
+            'description.required'=> "Vui lòng nhập mô tả ngắn",
+            'description.max' => "Mô tả không được lớn hơn 255 kí tự"
         ];
     }
 }

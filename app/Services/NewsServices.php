@@ -151,4 +151,20 @@ class NewsServices extends BaseService
       return [];
     }
   }
+    public function getFeature()
+  {
+    try {
+      $feature = $this->getModel()
+        ->with('category:id,slug')
+        ->select(['id', 'title', 'slug', 'thumbnail', 'views', 'created_at','new_category_id'])
+        ->where('is_pin', 1)
+        ->latest()
+        ->limit(5)
+        ->get();
+      return $feature;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
 }

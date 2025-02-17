@@ -17,8 +17,7 @@ class SettingService extends BaseService
         return [
             // base
             'base_name' => Configs::get_config('base_name'),
-            'base_short_name' => Configs::get_config('base_short_name'),
-            'base_description' => Configs::get_config('base_description'),
+            'base_map_id' => Configs::get_config('base_map_id'),
             'base_logo' => $this->get_image('base_logo'),
             'base_banner' => json_decode(Configs::get_config('base_banner'), true),
             // contact
@@ -34,6 +33,7 @@ class SettingService extends BaseService
             'social_zalo' => Configs::get_config('social_zalo'),
             'social_tiktok' => Configs::get_config('social_tiktok'),
             'social_telegram' => Configs::get_config('social_telegram'),
+            'social_youtube' => Configs::get_config('social_youtube'),
 
         ];
     }

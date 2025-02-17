@@ -49,6 +49,10 @@
                 </div>
                 <div class="col-md-3" data-aos="fade-left">
                     <div class="card">
+                        <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png"
+                            width="100%" alt="" srcset="">
+                    </div>
+                    <div class="card mt-4">
                         <div class="card-header pb-2">
                             <div class="position-relative">
                                 <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm">
@@ -68,7 +72,7 @@
                     </div>
                     <div class="card mt-4">
                         <div class="card-header pb-0">
-                            <h5 class="card-title text-uppercase">Tin tức nổi bật</h5>
+                            <h5 class="card-title text-uppercase">Bài viết nổi bật</h5>
                         </div>
                         <div class="card-body">
                             <div class="list-group">
@@ -147,7 +151,7 @@
                                                     <div class="avatar me-2" style="width: 50px; height: 30px;">
                                                         <img src="${item.thumbnail}" width="100%" alt="Avatar" class="rounded-circle">
                                                     </div>
-                                                    <span class="text-uppercase text-hover">${item.title}</span>
+                                                    <span class="text-uppercase text-list text-hover">${item.title}</span>
                                                 </a>
                                             </li>`
                                         );

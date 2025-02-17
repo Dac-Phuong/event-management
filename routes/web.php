@@ -74,6 +74,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('settings/banner/store', [SettingController::class, 'store'])->name('settings.banner.store');
         Route::post('settings/banner/delete', [SettingController::class, 'destroy'])->name('settings.banner.delete');
         Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
+        // Setting introduce
+        Route::post('settings/introduce/update', [SettingController::class, 'update'])->name('settings.banner.update');
+
         // User
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('users');

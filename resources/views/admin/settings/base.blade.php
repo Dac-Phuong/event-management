@@ -1,12 +1,12 @@
 <div class="row col-6">
     <form class="add-new-user pt-0" id="addNewBase" enctype="multipart/form-data">
         <div class="mb-3">
-            <label class="form-label" for="base_name">Tên trang</label>
+            <label class="form-label" for="base_name">Tên công ty</label>
             <input type="text" class="form-control" id="base_name" placeholder="" name="base_name" aria-label="" />
         </div>
         <div class="mb-3">
-            <label for="base_description" class="form-label">Mô tả</label>
-            <textarea class="form-control" id="base_description" name="base_description" rows="3"></textarea>
+            <label class="form-label" for="base_map_id">ID google map (<a href="https://support.google.com/mymaps/answer/3024454?hl=en&amp%3Bref_topic=3188329" target="_blank">Tạo google map</a>)</label>
+            <input type="text" class="form-control" id="base_map_id" placeholder="VD: 16N0_4Geap6ARcVAAqINcxKMMN68xLEY&ll" name="base_map_id" aria-label="" />
         </div>
         <div class="mb-3">
             <label for="base_logo" class="form-label">Ảnh Logo</label>

@@ -42,12 +42,6 @@
                     <div>Cài đặt</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('introduce') ? 'active' : '' }}">
-                <a href="{{ url('admin/introduce') }}" class="menu-link">
-                    <i class="menu-icon ti ti-device-analytics"></i>
-                    <div>Giới thiệu</div>
-                </a>
-            </li>
             <li class="menu-item {{ request()->routeIs('contact') ? 'active' : '' }}">
                 <a href="{{ url('admin/contact') }}" class="menu-link">
                     <i class="menu-icon ti ti-mail"></i>
@@ -65,7 +59,6 @@
                     <i class="menu-icon ti ti-server-cog"></i>
                     <div>Dịch vụ</div>
                 </a>
-            </li>
 
             <li
                 class="menu-item {{ request()->routeIs('project.*') || request()->routeIs('project-category.*') ? 'open' : '' }}">
@@ -115,6 +108,26 @@
                     <li class="menu-item  {{ request()->routeIs('recruitment.*') ? 'active' : '' }}">
                         <a href="{{ url('admin/recruitment') }}" class="menu-link">
                             <div>Đăng tin</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            </li>
+            <li
+                class="menu-item {{ request()->routeIs('project.*') || request()->routeIs('settings.*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon ti ti-settings-cog"></i>
+                    <div>Cấu hình chung</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ request()->routeIs('settings.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/settings/introduce') }}" class="menu-link">
+                            <div>Giới thiệu</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs('project.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/project') }}" class="menu-link">
+                            <div>Danh sách</div>
                         </a>
                     </li>
                 </ul>

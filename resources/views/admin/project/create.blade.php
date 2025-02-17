@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="project-title">Tiêu đề</label>
                         <input type="text" class="form-control" name="title" id="project-title"
-                            placeholder="Tiêu đề bài viết" autofocus name="title">
+                            placeholder="" autofocus name="title">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Mô tả</label>
@@ -24,7 +24,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="project-url">ID youtube</label>
                         <input type="text" class="form-control" name="url" id="project-url"
-                            placeholder="Tiêu đề bài viết" autofocus name="url">
+                            placeholder="VD: RLmWqsFlswQ" autofocus name="url">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>

@@ -27,6 +27,7 @@ class Store extends FormRequest
             "name" => "required",
             "content" => "required",
             "slug" => "required",
+            "description" => "required|max:255",
             "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "status" => "required|in:0,1",
         ];
@@ -42,6 +43,8 @@ class Store extends FormRequest
             'thumbnail.image' => "Vui lòng chọn 1 ảnh",
             'thumbnail.max' => "Vui lòng chọn ảnh nhỏ hơn 2MB",
             'thumbnail.mimes' => "Vui lòng chọn ảnh có dạng jpeg,png,jpg,gif,svg",
+            'description.required'=> "Vui lòng nhập mô tả ngắn",
+            'description.max'=> "Mô tả không được lớn hơn 255 kí tự"
         ];
     }
 }

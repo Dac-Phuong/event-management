@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\client\Home\Store;
 use App\Models\Configs;
 use App\Services\ContactService;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -18,7 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $banner = json_decode(Configs::get_config('base_banner'), true);
-        return view('client.home.index', compact('banner'));
+        $services = \App\Models\Service::where('status', 1)->limit(6)->get();
+        return view('client.home.index', compact('banner','services'));
     }
     public function sendContact(Store $request)
     {

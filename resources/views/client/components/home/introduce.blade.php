@@ -1,7 +1,26 @@
     <div class="container-fluid py-5 position-relative">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
+            <div class="row align-items-center position-relative">
+                <!-- Image Column -->
+                <div class="col-lg-6 position-relative p-0 ">
+                    <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-1.png?v=2"
+                        alt="Business meeting" class="img-fluid rounded intro-card-img" width="100%">
+                    <div class="play-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
+                        <div id="phone-vr" class="button-contact btn-viber" >
+                            <div class="phone-vr">
+                                <div class="phone-vr-circle-fill"></div>
+                                <div class="phone-vr-img-circle">
+                                    <div class="play">
+                                        <i class="fas fa-play text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Column -->
+                <div class="col-lg-6 bg-white p-3 p-md-5 mt-3 mt-md-0 content-overlay"
+                    style="right: 120px; border-radius: 12px;">
                     <h1 class=" fw-bold fs-2 text-primary mb-2">GIỚI THIỆU VỀ TẬP ĐOÀN ANH SƠN</h1>
                     <hr class="hr-title mt-0 mb-4">
                     <h5 class=" mb-2">CÔNG TY CỔ PHẦN TẬP ĐOÀN TẬP ĐOÀN ANH SƠN</h5>
@@ -28,18 +47,11 @@
                         mục Sự
                         kiện – Văn hóa năm 2019.
                     </p>
-                    <a href="{{ url('/introduce') }}" class="btn btn-primary mt-2">Xem thêm <i class="ti ti-arrow-right"
-                            style="margin-left: 2px"></i></a>
-                </div>
-
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="position-relative video-container">
-                        <img width="100%"
-                            src="https://anhsongroup.com/images/sukien_porfolio/huu_%20nghi_%20viet_%20lao_%202012.jpg"
-                            alt="Video Thumbnail" class="video-thumbnail">
-                        <div class="play-icon" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <i class="fas fa-play"></i>
-                        </div>
+                    <div class="d-flex flex-warp align-items-center mt-4">
+                        <a href="{{ url('/introduce') }}" class="btn btn-primary rounded-pill me-4">Xem thêm <i
+                                class="ti ti-arrow-right" style="margin-left: 5px"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-primary rounded-pill scrollToContact"><i
+                                class="ti ti-mail-share me-2"></i> Yêu cầu tư vấn</a>
                     </div>
                 </div>
             </div>

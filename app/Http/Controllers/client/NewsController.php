@@ -21,9 +21,9 @@ class NewsController extends Controller
     }
     public function detail($categorySlug, $newsSlug)
     {
-
         $data = $this->newsCategoryService()->getBySlugDetail($categorySlug, $newsSlug);
         $feature = $this->newsCategoryService()->getBySlugWithFeature($categorySlug);
+        $data['categories'] = $this->newsCategoryService()->getAll();
         $data['feature'] = $feature;
         return view('client.news.detail', compact('data'));
     }

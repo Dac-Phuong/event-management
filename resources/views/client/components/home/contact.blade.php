@@ -89,7 +89,7 @@
                                           placeholder="Viết một tin nhắn"></textarea>
                                   </div>
                                   <div class="col-12">
-                                      <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                      <button type="submit" class="btn btn-primary rounded-pill waves-light">
                                           <i class="ti ti-send me-2"></i>Gửi yêu cầu tư vấn</button>
                                   </div>
                               </div>

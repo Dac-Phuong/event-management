@@ -89,6 +89,7 @@
                         $('#editRecruitment input[name="id"]').val(data.id);
                         $('#editRecruitment input[name="title"]').val(data.title);
                         $('#editRecruitment input[name="number"]').val(data.number);
+                        $('#editRecruitment input[name="url"]').val(data.url);
                         const expiredAt = new Date(data.expired_at).toISOString().slice(0, 16);
                         $('#editRecruitment input[name="expired_at"]').val(expiredAt);
                         $('#editRecruitment select[name="status"]').val(data.status);

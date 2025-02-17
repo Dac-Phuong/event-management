@@ -3285,8 +3285,15 @@ textarea.form-control-lg {
   border-top-left-radius: var(--bs-nav-tabs-border-radius);
   border-top-right-radius: var(--bs-nav-tabs-border-radius);
 }
-
-
+#search-results{
+  background-color: var(--bs-white) !important;
+}
+.text-list {
+  color: var(--bs-card-title-color);
+}
+.text-hover:hover {
+  color: var(--bs-link-hover-color) !important;
+}
 .nav-tabs , .nav-tabs .nav-link:focus {
   isolation: isolate;
   border-color: var(--bs-nav-tabs-link-hover-border-color);

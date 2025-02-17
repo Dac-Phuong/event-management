@@ -15,6 +15,7 @@ class Service extends Model
         "content",
         "category_id",
         "thumbnail",
+        "description",
         'slug',
     ];
 

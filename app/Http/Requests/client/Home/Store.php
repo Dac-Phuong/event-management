@@ -28,8 +28,10 @@ class Store extends FormRequest
             "phone" => "required|numeric|digits_between:10,11",
             "email" => "required|email",
             "business_name" => "nullable|max:100",
+            "message" => "required",
         ];
     }
+
 
     public function messages(): array
     {
@@ -42,6 +44,7 @@ class Store extends FormRequest
             "email.required" => "Vui lòng nhập email",
             "email.email" => "Email không đúng định dạng",
             "business_name.max" => "Tên doanh nghiệp quá dài",
+            "message.required" => "Vui lòng nhập nội dung",
         ];
     }
 }

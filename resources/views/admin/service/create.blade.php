@@ -5,12 +5,16 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label" for="service-name">Tên dịch vụ</label>
-                        <input type="text" class="form-control" name="name" id="service-name"
-                            placeholder="Tiêu đề bài viết" autofocus name="name">
+                        <input type="text" class="form-control" name="name" id="service-name" placeholder=""
+                            autofocus name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Mô tả ngắn</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder="" name="description"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
-                        <input type="file" id="image" class="form-control" name="thumbnail" required>
+                        <input type="file" id="image" class="form-control" name="thumbnail" >
                     </div>
                     <div class="mb-3">
                         <label for="datetime" class="form-label">Trạng thái</label>

@@ -59,7 +59,7 @@ class Services extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->skip($skip)->take($pageLength)->get(['id', 'name','status', 'content', 'created_at', 'thumbnail']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'name','status','description', 'content', 'created_at', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],

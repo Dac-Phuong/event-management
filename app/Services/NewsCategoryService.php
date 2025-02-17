@@ -97,6 +97,7 @@ class NewsCategoryService extends BaseService
       return null;
     }
   }
+
   public function getBySlugDetail($slug, $newsSlug)
   {
     try {

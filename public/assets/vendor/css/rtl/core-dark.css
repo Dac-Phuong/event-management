@@ -3418,11 +3418,20 @@ textarea.form-control-lg {
   margin-bottom: 0;
   list-style: none;
 }
-
+#search-results {
+  background-color: #2F3349 !important;
+  border-color:#2F3349 !important;
+}
 .navbar-nav .dropdown-menu {
   position: static;
 }
+.text-list {
+  color: var(--bs-card-title-color);
+}
 
+.text-hover:hover {
+  color: var(--bs-link-hover-color) !important;
+}
 .navbar-text {
   padding-top: 0.543rem;
   padding-bottom: 0.543rem;

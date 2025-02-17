@@ -61,7 +61,7 @@ class RecruitmentService extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->skip($skip)->take($pageLength)->get(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'number', 'thumbnail']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'title', 'author_id', "description", "expired_at", 'status', 'views', 'created_at', 'number', 'thumbnail','url']);
 
         return [
             "draw" => $data['draw'],

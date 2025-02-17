@@ -7,12 +7,12 @@
                      <span class="badge bg-label-primary ">Đánh giá của khách hàng thực tế</span>
                  </div>
                  <h4 class="mb-1">
-                     <span class="position-relative fw-extrabold z-1">Mọi người nói gì
+                     <span class="position-relative fw-extrabold z-1">Mọi người nói gì?
                      </span>
                  </h4>
                  <p class="mb-5 mb-md-12">
-                     Xem những gì khách hàng của chúng tôi phải<br class="d-none d-xl-block">
-                     nói về kinh nghiệm của họ.
+                     Khách hàng của chúng tôi đã chia sẻ <br class="d-none d-xl-block">
+                     những cảm nhận chân thực về trải nghiệm các dịch vụ của chúng tôi.
                  </p>
                  <div class="landing-reviews-btns">
                      <button id="reviews-previous-btn"
@@ -36,16 +36,17 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                                             nemo mollitia, ad eum
-                                             officia numquam nostrum repellendus consequuntur!
+                                             “Dịch vụ tổ chức sự kiện của Anhson Group thực sự chuyên nghiệp! Từ khâu
+                                             lên
+                                             ý tưởng đến triển khai đều rất chỉn chu, giúp sự kiện của chúng tôi thành
+                                             công ngoài mong đợi.”
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
                                              <i class="ti ti-star-filled"></i>
                                              <i class="ti ti-star-filled"></i>
                                              <i class="ti ti-star-filled"></i>
-                                             <i class="ti ti-star"></i>
+                                             <i class="ti ti-star-filled"></i>
                                          </div>
                                          <div class="d-flex align-items-center">
                                              <div class="avatar me-3 avatar-sm">
@@ -65,9 +66,9 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             “Vuexy is hands down the most useful front end Bootstrap theme
-                                             I've ever used. I can't wait
-                                             to use it again for my next project.”
+                                             “Tôi rất ấn tượng với chiến lược quảng cáo mà Anhson Group mang lại. Chiến
+                                             dịch truyền thông sáng tạo giúp thương hiệu của chúng tôi tiếp cận đúng
+                                             khách hàng mục tiêu và tăng trưởng mạnh mẽ”
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
@@ -94,9 +95,7 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             “I've never used a theme as versatile and flexible as Vuexy.
-                                             It's my go to for building
-                                             dashboard sites on almost any project.”
+                                             “Dịch vụ nghỉ dưỡng của Anhson Group vượt ngoài mong đợi. Không gian sang trọng, tiện nghi và phong cách phục vụ chuyên nghiệp giúp chúng tôi có những phút giây thư giãn tuyệt vời.”
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
@@ -123,9 +122,7 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             This template is really clean &amp; well documented. The docs
-                                             are really easy to understand and
-                                             it's always easy to find a screenshot from their website.
+                                             Tôi đã làm việc với nhiều đơn vị tổ chức triển lãm, nhưng Anhson Group thực sự khác biệt. Sự hỗ trợ tận tâm và giải pháp sáng tạo giúp gian hàng của chúng tôi thu hút đông đảo khách tham quan.
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
@@ -153,9 +150,7 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             All the requirements for developers have been taken into
-                                             consideration, so I’m able to build
-                                             any interface I want.
+                                            Sự kiện do Anhson Group tổ chức không chỉ chuyên nghiệp mà còn đầy sáng tạo. Đội ngũ hỗ trợ tận tình, luôn sẵn sàng giải quyết mọi vấn đề, giúp chương trình diễn ra suôn sẻ.
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
@@ -182,9 +177,7 @@
                                  <div class="card h-100">
                                      <div class="card-body text-body d-flex flex-column justify-content-between h-100">
                                          <p>
-                                             “I've never used a theme as versatile and flexible as Vuexy.
-                                             It's my go to for building
-                                             dashboard sites on almost any project.”
+                                             “Chất lượng dịch vụ nghỉ dưỡng của Anhson Group thực sự đẳng cấp. Không gian yên tĩnh, dịch vụ hoàn hảo, mang đến trải nghiệm nghỉ dưỡng tuyệt vời cho gia đình tôi.”
                                          </p>
                                          <div class="text-warning mb-4">
                                              <i class="ti ti-star-filled"></i>
@@ -223,9 +216,9 @@
      <script>
          $(document).ready(function() {
              var swiper = new Swiper("#swiper-reviews", {
-                 loop: true, 
-                 slidesPerView: 3, 
-                 spaceBetween: 20, 
+                 loop: true,
+                 slidesPerView: 3,
+                 spaceBetween: 20,
                  navigation: {
                      nextEl: "#reviews-next-btn",
                      prevEl: "#reviews-previous-btn",

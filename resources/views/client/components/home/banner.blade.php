@@ -8,7 +8,7 @@
                         <div class="slide-content">
                             <h2 class="text-white fs-2 text-shadow">{{ $item['title'] }}</h2>
                             <p class="text-white mb-3 fs-5 m-auto text-description">{{ $item['description'] }}</p>
-                            <button class="btn btn-primary next-slide">Xem thêm</button>
+                            <button class="btn btn-primary next-slide rounded-pill">Xem thêm</button>
                         </div>
                     </div>
                 @endforeach
