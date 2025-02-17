@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\ContactController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\IntroduceController;
-use App\Http\Controllers\Admin\NewsCategoryController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\admin\NewsCategoryController;
+use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\ProjectCategoryController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\RecruitmentController;
