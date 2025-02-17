@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row align-items-center position-relative">
                 <!-- Image Column -->
-                <div class="col-lg-6 position-relative p-0 ">
+                <div class="col-lg-6 position-relative p-0 " data-aos="fade-right">
                     <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-1.png?v=2"
                         alt="Business meeting" class="img-fluid rounded intro-card-img" width="100%">
                     <div class="play-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
@@ -20,7 +20,7 @@
                 </div>
                 <!-- Content Column -->
                 <div class="col-lg-6 bg-white p-3 p-md-5 mt-3 mt-md-0 content-overlay"
-                    style="right: 120px; border-radius: 12px;">
+                    style="right: 120px; border-radius: 12px;" data-aos="fade-left">
                     <h1 class=" fw-bold fs-2 text-primary mb-2">GIỚI THIỆU VỀ TẬP ĐOÀN ANH SƠN</h1>
                     <hr class="hr-title mt-0 mb-4">
                     <h5 class=" mb-2">CÔNG TY CỔ PHẦN TẬP ĐOÀN TẬP ĐOÀN ANH SƠN</h5>
