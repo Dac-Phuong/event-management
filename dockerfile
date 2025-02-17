@@ -15,8 +15,9 @@ WORKDIR /var/www/html
 # Copy file composer.json và composer.lock trước để cache dependencies
 COPY composer.json composer.lock ./
 
-# Chạy Composer để cài đặt dependencies
-RUN composer install --no-dev --optimize-autoloader
+# **Chạy Composer dưới user www-data**
+RUN chown -R www-data:www-data /var/www/html \
+    && su www-data -s /bin/bash -c "composer install --no-dev --optimize-autoloader"
 
 # Copy toàn bộ mã nguồn vào container
 COPY . .
@@ -24,8 +25,10 @@ COPY . .
 # Tạo file .env nếu chưa có
 RUN cp .env.example .env
 
-# Tạo app key
-RUN php artisan key:generate
+# **Chạy lệnh Artisan dưới quyền www-data**
+RUN chown -R www-data:www-data /var/www/html \
+    && su www-data -s /bin/bash -c "php artisan key:generate" \
+    && su www-data -s /bin/bash -c "php artisan cache:clear"
 
 # Thiết lập quyền cho storage và bootstrap/cache
 RUN chmod -R 777 storage bootstrap/cache \
