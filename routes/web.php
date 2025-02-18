@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\userController;
-use App\Http\Controllers\Client\configController;
+use App\Http\Controllers\Client\ConfigController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\IntroduceController as ClientIntroduceController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
