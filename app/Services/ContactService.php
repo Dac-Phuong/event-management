@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Contact;
-use App\Models\Service;
 
 class ContactService extends BaseService
 {

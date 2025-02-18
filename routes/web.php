@@ -1,25 +1,25 @@
 <?php
 
-use App\Http\Controllers\admin\AuthController;
-use App\Http\Controllers\admin\ContactController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\IntroduceController;
-use App\Http\Controllers\admin\NewsCategoryController;
-use App\Http\Controllers\admin\NewsController;
-use App\Http\Controllers\admin\ProjectCategoryController;
-use App\Http\Controllers\admin\ProjectController;
-use App\Http\Controllers\admin\RecruitmentController;
-use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\admin\SettingController;
-use App\Http\Controllers\admin\UploadController;
-use App\Http\Controllers\admin\userController;
-use App\Http\Controllers\client\configController;
-use App\Http\Controllers\client\HomeController;
-use App\Http\Controllers\client\IntroduceController as ClientIntroduceController;
-use App\Http\Controllers\client\NewsController as ClientNewsController;
-use App\Http\Controllers\client\ProjectController as ClientProjectController;
-use App\Http\Controllers\client\RecruitmentController as ClientRecruitmentController;
-use App\Http\Controllers\client\ServiceController as ClientServiceController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\IntroduceController;
+use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProjectCategoryController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\RecruitmentController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\userController;
+use App\Http\Controllers\Client\configController;
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\IntroduceController as ClientIntroduceController;
+use App\Http\Controllers\Client\NewsController as ClientNewsController;
+use App\Http\Controllers\Client\ProjectController as ClientProjectController;
+use App\Http\Controllers\Client\RecruitmentController as ClientRecruitmentController;
+use App\Http\Controllers\Client\ServiceController as ClientServiceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 /*
@@ -75,7 +75,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('settings/banner/delete', [SettingController::class, 'destroy'])->name('settings.banner.delete');
         Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
         // Setting introduce
-        Route::post('settings/introduce/update', [SettingController::class, 'update'])->name('settings.banner.update');
+        Route::post('settings/introduce/update', [SettingController::class, 'update'])->name('settings.introduce.update');
 
         // User
         Route::group(['prefix' => 'users'], function () {

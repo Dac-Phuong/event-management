@@ -2,9 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\AdminLogHelper;
-use App\Models\UserLog;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\UploadedFile;
 
