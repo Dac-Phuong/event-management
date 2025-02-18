@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\RecruitmentController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UploadController;
-use App\Http\Controllers\Admin\userController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ConfigController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\IntroduceController as ClientIntroduceController;
@@ -40,12 +40,12 @@ Route::get('/clear-cache', function () {
     Artisan::call('view:clear');
     Artisan::call('config:clear');
     Artisan::call('route:clear');
-    return "All caches are cleared";
+    return "All caches are cleared.";
 });
 // .......................................................................CLIENT............................................................................
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/introduce', [ClientIntroduceController::class, 'index'])->name('introduce');
-Route::get('/get-config', [configController::class, 'getConfig'])->name('configs');
+Route::get('/get-config', [ConfigController::class, 'getConfig'])->name('configs');
 Route::get('/service/{slug}', [ClientServiceController::class, 'index'])->name('service');
 Route::get('/news/{slug}', [ClientNewsController::class, 'index'])->name('news');
 Route::get('/news/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/create', [UserController::class, 'store'])->name('user.create');
             Route::post('/update', [UserController::class, 'update'])->name('user.update');
             Route::post('/delete', [UserController::class, 'destroy'])->name('user.delete');
-            Route::post('/datatable', [userController::class, 'filterDataTable'])->name('user.datatable');
+            Route::post('/datatable', [UserController::class, 'filterDataTable'])->name('user.datatable');
         });
 
         // Introduce
