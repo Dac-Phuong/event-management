@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Service\Store;
 use App\Http\Requests\Admin\Service\Update;
 use App\Services\Services;
-use App\Services\ServiceCategories;
 class ServiceController extends Controller
 {
     public function index()
