@@ -48,18 +48,31 @@
                     <div>Liên hệ</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
-                <a href="{{ url('admin/users') }}" class="menu-link">
-                    <i class="menu-icon ti ti-users"></i>
-                    <div>Thành viên</div>
-                </a>
-            </li>
+
             <li class="menu-item {{ request()->routeIs('service.*') ? 'active' : '' }}">
                 <a href="{{ url('admin/service') }}" class="menu-link">
                     <i class="menu-icon ti ti-server-cog"></i>
                     <div>Dịch vụ</div>
                 </a>
-
+            </li>
+            <li class="menu-item {{ request()->is('admin/users*') || request()->is('admin/users-category*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon ti ti-users"></i>
+                    <div>Thành viên</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ request()->is('admin/users-category') ? 'active' : '' }}">
+                        <a href="{{ url('admin/users-category') }}" class="menu-link">
+                            <div>Danh mục</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->is('admin/users') ? 'active' : '' }}">
+                        <a href="{{ url('admin/users') }}" class="menu-link">
+                            <div>Danh sách</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li
                 class="menu-item {{ request()->routeIs('project.*') || request()->routeIs('project-category.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -113,7 +126,7 @@
                 </ul>
             </li>
             </li>
-            <li
+            {{-- <li
                 class="menu-item {{ request()->routeIs('project.*') || request()->routeIs('settings.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon ti ti-settings-cog"></i>
@@ -125,12 +138,8 @@
                             <div>Giới thiệu</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs('project.*') ? 'active' : '' }}">
-                        <a href="{{ url('admin/project') }}" class="menu-link">
-                            <div>Danh sách</div>
-                        </a>
-                    </li>
+                   
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </aside>

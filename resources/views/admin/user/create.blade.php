@@ -1,4 +1,4 @@
-<div class="modal fade" id="kt_modal_add" tabindex="-1" aria-hidden="true" >
+<div class="modal fade" id="kt_modal_add" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog">
         <!--begin::Modal content-->
@@ -25,27 +25,18 @@
                         <div class="card-body">
                             <div class="mb-2">
                                 <label class="form-label" for="basic-icon-default-user">Họ và tên</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="ti ti-user"></i></span>
-                                    <input type="text" id="basic-icon-default-user" name="name"
-                                        class="form-control" placeholder="">
-                                </div>
+                                <input type="text" id="basic-icon-default-user" name="name" class="form-control"
+                                    placeholder="">
                             </div>
                             <div class="mb-2">
                                 <label class="form-label" for="basic-icon-default-email">Địa chỉ Email</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="ti ti-mail"></i></span>
-                                    <input type="email" id="basic-icon-default-email" name="email"
-                                        class="form-control" placeholder="">
-                                </div>
+                                <input type="email" id="basic-icon-default-email" name="email" class="form-control"
+                                    placeholder="">
                             </div>
                             <div class="mb-2">
                                 <label class="form-label" for="basic-icon-default-phone">Số điện thoại</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="ti ti-phone"></i></span>
-                                    <input type="text" id="basic-icon-default-phone" name="phone"
-                                        class="form-control" placeholder="">
-                                </div>
+                                <input type="text" id="basic-icon-default-phone" name="phone" class="form-control"
+                                    placeholder="">
                             </div>
                             <div class="mb-2">
                                 <div class="form-password-toggle">
@@ -59,6 +50,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="basic-icon-default-facebook">Facebook</label>
+                                <input type="text" id="basic-icon-default-facebook" name="facebook"
+                                    class="form-control" placeholder="">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="basic-icon-default-zalo">Zalo</label>
+                                <input type="text" id="basic-icon-default-zalo" name="zalo" class="form-control"
+                                    placeholder="">
+                            </div>
                             <div class="col-md-4 mb-2 user_plan w-100">
                                 <label class="form-label" for="multicol-password">Vai trò</label>
                                 <select id="UserPlan" name="role" class="form-select text-capitalize">
@@ -68,10 +69,10 @@
                                 </select>
                             </div>
                             <div class="col-md-4 user_plan w-100">
-                                <label class="form-label" for="multicol-password">Trạng thái</label>
+                                <label class="form-label" for="multicol-password">Cho phép đăng nhập</label>
                                 <select id="UserPlan" name="status" class="form-select text-capitalize">
-                                    <option value="1">Hoạt động</option>
-                                    <option value="0">Khóa</option>
+                                    <option value="1">Có</option>
+                                    <option value="0">Không</option>
                                 </select>
                             </div>
                         </div>

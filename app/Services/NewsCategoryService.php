@@ -111,6 +111,7 @@ class NewsCategoryService extends BaseService
         ->orderBy('is_pin', 'desc')
         ->latest()
         ->firstOrFail();
+      if (!$news) return null;
       $news->views += 1;
       $news->save();
       return [

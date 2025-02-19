@@ -2,21 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Models\UserProfile;
+use App\Models\UserCategory;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
-class UserService extends BaseService
+class UserCategoryService extends BaseService
 {
     function setModel()
     {
-        $this->model = new User();
+        $this->model = new UserCategory();
     }
 
     public function create(array $data)
     {
         try {
+            $data['is_pin'] = isset($data['is_pin']) ? 1 : 0;
             parent::create($data);
             return true;
         } catch (\Throwable $th) {
@@ -28,34 +27,8 @@ class UserService extends BaseService
     {
         try {
             DB::beginTransaction();
-            if (!isset($data['password'])) {
-                unset($data['password']);
-            }
+            $data['is_pin'] = isset($data['is_pin']) ? 1 : 0;
             parent::update($id, $data);
-            DB::commit();
-            return true;
-        } catch (\Throwable $th) {
-            $this->handleException($th);
-            return false;
-        }
-    }
-    public function updateProfile(int $id, array $data)
-    {
-        try {
-            DB::beginTransaction();
-            if(isset($data['avatar']) && $data['avatar']){
-                $path = parent::uploadImage($data['avatar']);
-                $data['avatar'] = $path;
-            }
-            $user_profile = UserProfile::where('user_id', $id)->first();
-            if ($user_profile) {
-                $user_profile->update($data);
-            } else {
-                $user_profile = new UserProfile();
-                $user_profile->user_id = $id;
-                $user_profile->fill($data);
-                $user_profile->save();
-            }
             DB::commit();
             return true;
         } catch (\Throwable $th) {
@@ -66,10 +39,6 @@ class UserService extends BaseService
     public function delete(int $id)
     {
         try {
-            $user = $this->findById($id);
-            if($user->role == 100){
-                return false;
-            }
             return parent::delete($id);
         } catch (\Throwable $th) {
             $this->handleException($th);
@@ -88,11 +57,6 @@ class UserService extends BaseService
         $orderByColumn = $data['columns'][$orderColumnIndex]['data'] ?? 'created_at';
         $orderType = $data['order'][0]['dir'] ?? 'desc';
 
-        // Validate column existence
-        if (!Schema::hasColumn($this->model->getTable(), $orderByColumn)) {
-            $orderByColumn = 'created_at'; // Fallback column
-        }
-
         $query = $this->model->query();
 
         // Search
@@ -100,8 +64,7 @@ class UserService extends BaseService
         if (!empty($search)) {
             $query = $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('phone', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%');
             });
         }
 
@@ -111,11 +74,7 @@ class UserService extends BaseService
         }
 
         $recordsFiltered = $query->count();
-
-        $result = $query->with('userProfile')->where('email', '!=', 'admin@gmail.com')
-            ->skip($skip)
-            ->take($pageLength)
-            ->get();
+        $result = $query->with('userProfile')->skip($skip)->take($pageLength)->get();
 
         $recordsTotal = $this->model->count();
 

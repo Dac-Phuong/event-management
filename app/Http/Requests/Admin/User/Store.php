@@ -27,6 +27,8 @@ class Store extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|numeric|unique:users,phone',
+            'facebook' => 'nullable|url',
+            'zalo' => 'nullable|url',
             'password' => 'required|min:6',
             'role' => 'required',
             'status' => 'required|in:1,0',

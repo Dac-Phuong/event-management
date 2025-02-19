@@ -14,29 +14,37 @@ class SettingService extends BaseService
     }
     public function get_settings()
     {
-        return [
-            // base
-            'base_name' => Configs::get_config('base_name'),
-            'base_map_id' => Configs::get_config('base_map_id'),
-            'base_logo' => $this->get_image('base_logo'),
-            'base_banner' => json_decode(Configs::get_config('base_banner'), true),
-            // contact
-            'contact_name' => Configs::get_config('contact_name'),
-            'contact_short_name' => Configs::get_config('contact_short_name'),
-            'contact_phone' => Configs::get_config('contact_phone'),
-            'contact_email' => Configs::get_config('contact_email'),
-            'contact_address' => Configs::get_config('contact_address'),
-            // contact
-            'social_fanpage' => Configs::get_config('social_fanpage'),
-            'social_group' => Configs::get_config('social_group'),
-            'social_messenger' => Configs::get_config('social_messenger'),
-            'social_zalo' => Configs::get_config('social_zalo'),
-            'social_tiktok' => Configs::get_config('social_tiktok'),
-            'social_telegram' => Configs::get_config('social_telegram'),
-            'social_youtube' => Configs::get_config('social_youtube'),
-
+        $keys = [
+            // Base
+            'base_name',
+            'base_map_id',
+            'base_logo',
+            'base_banner',
+            // Contact
+            'contact_name',
+            'contact_short_name',
+            'contact_phone',
+            'contact_email',
+            'contact_address',
+            'contact_services',
+            // Social
+            'social_fanpage',
+            'social_group',
+            'social_messenger',
+            'social_zalo',
+            'social_tiktok',
+            'social_telegram',
+            'social_youtube'
         ];
+
+        $settings = [];
+
+        foreach ($keys as $key) {
+            $settings[$key] = ($key === 'base_logo') ? $this->get_image($key) : (($key === 'base_banner') ? json_decode(Configs::get_config($key), true) : Configs::get_config($key));
+        }
+        return $settings;
     }
+
     private function get_image($key)
     {
         $path = Configs::get_config($key);
@@ -104,7 +112,7 @@ class SettingService extends BaseService
                 $path = parent::uploadImage($data['thumbnail']);
                 $data['thumbnail'] = $path;
             } else {
-                unset($data['thumbnail']); 
+                unset($data['thumbnail']);
             }
             $config = Configs::where('key', 'base_banner')->first();
 

@@ -32,7 +32,7 @@
                     <ul class="list-unstyled">
                         @foreach ($services as $service)
                             <li class="mb-3">
-                                <a href="{{ url('service', $service->slug) }}"
+                                <a href="{{ url('dich-vu', $service->slug) }}"
                                     class="footer-link">{{ $service->name }}</a>
                             </li>
                         @endforeach
@@ -45,13 +45,13 @@
                             <a href="{{ url('/') }}" class="footer-link">Trang chủ</a>
                         </li>
                         <li class="mb-3">
-                            <a href="{{ url('introduce') }}" class="footer-link">Giới thiệu</a>
+                            <a href="{{ url('gioi-thieu') }}" class="footer-link">Giới thiệu</a>
                         </li>
                         <li class="mb-3">
                             <a href="#" class="footer-link">Dịch vụ</a>
                         </li>
                         <li class="mb-3">
-                            <a href="{{ url('recruitment') }}" class="footer-link">Tuyển dụng</a>
+                            <a href="{{ url('tuyen-dung') }}" class="footer-link">Tuyển dụng</a>
                         </li>
                     </ul>
                 </div>

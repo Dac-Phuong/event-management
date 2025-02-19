@@ -119,7 +119,9 @@
 .play-icon:hover i {
   transform: scale(1.2);
 }
-
+.landing-reviews .swiper{
+  padding: 15px;
+}
 
 /* header */
 .navbar {

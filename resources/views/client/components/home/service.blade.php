@@ -1,4 +1,4 @@
-<div class="container py-5" data-aos="fade-up">
+<div class="container pb-5" data-aos="fade-up">
     <h2 class="text-primary fw-bold text-center text-uppercase" >Dịch vụ của chúng tôi</h2>
     <div class="row row-cols-1 row-cols-md-3 g-6 mb-12 mt-5">
         @foreach ($services as $service)

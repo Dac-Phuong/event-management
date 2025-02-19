@@ -1,4 +1,4 @@
-  <section id="landingContact" class="section-py bg-body landing-contact">
+  <section id="landingContact" class="section-py landing-contact">
       <div class="container">
           <div data-aos="zoom-out">
               <div class="text-center mb-4">
@@ -12,7 +12,6 @@
                   chúng tôi một
                   tin nhắn</p>
           </div>
-
           <div class="row g-6">
               <div class="col-lg-5 mt-2" data-aos="zoom-in">
                   <div class="contact-img-box position-relative border p-2 h-100">
@@ -63,7 +62,8 @@
                           <form id="contact-form">
                               <div class="row g-4">
                                   <div class="col-md-6">
-                                      <label class="form-label" for="contact-form-fullname">Họ và tên</label>
+                                      <label class="form-label" for="contact-form-fullname">Họ và tên hoặc tên doanh
+                                          nghiệp</label>
                                       <input type="text" class="form-control" id="contact-form-fullname"
                                           name="fullname" required placeholder="Nhập họ và tên">
                                   </div>
@@ -79,9 +79,10 @@
                                           class="form-control" placeholder="Nhập địa chỉ Email">
                                   </div>
                                   <div class="col-md-6">
-                                      <label class="form-label" for="contact-form-business">Tên doanh nghiệp</label>
-                                      <input type="text" id="contact-form-business" name="business_name"
-                                          class="form-control" placeholder="Nhập tên doanh nghiệp">
+                                      <label class="form-label" for="contact-form-service">Dịch vụ cần tư vấn</label>
+                                      <select class="form-select" id="contact-form-service" required name="service_email">
+                                          <option selected disabled>--Chọn dịch vụ--</option>
+                                      </select>
                                   </div>
                                   <div class="col-12">
                                       <label class="form-label" for="contact-form-message">Nội dung</label>
@@ -116,7 +117,7 @@
                       processData: false,
                       success: function(res) {
                           if (res.error_code == 0) {
-                              toastr.success('Vui lòng chờ phản hồi sau ít phút', 'Gửi yêu cầu thành công');
+                              toastr.success('Vui lòng chờ phản hồi sau ít phút','Gửi yêu cầu thành công!');
                               $("#contact-form")[0].reset();
                           } else {
                               toastr.error(res.message);

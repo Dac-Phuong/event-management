@@ -7,7 +7,7 @@
         'title' => 'Tuyển dụng',
         'subtitle' => $recruitment->title,
         'name' => 'Tuyển dụng',
-        'url' => url('recruitment'),
+        'url' => url('tuyen-dung'),
     ])
     <div class="container py-5">
         <div class="row ">
@@ -63,7 +63,7 @@
                         <div class="list-group">
                             @if (isset($feature) && count($feature) > 0)
                                 @foreach ($feature as $item)
-                                    <a href="{{ 'news/' . $item->category->slug . '/' . $item->slug }}"
+                                    <a href="{{ 'blog/' . $item->category->slug . '/' . $item->slug }}"
                                         class="text-decoration-none mb-2">
                                         <div class="d-flex w-100 justify-content-between">
                                             <img class="card-img " height="70" width="50"

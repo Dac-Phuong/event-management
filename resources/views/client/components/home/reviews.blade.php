@@ -1,4 +1,4 @@
- <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
+ <section id="landingReviews" class="section-py landing-reviews pb-0">
      <!-- What people say slider: Start -->
      <div class="container">
          <div class="row align-items-center gx-0 gy-4 g-lg-5 pb-md-5">

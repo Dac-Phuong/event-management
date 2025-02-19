@@ -2,11 +2,11 @@
 
 @section('main')
     <div class="content-header row">
-        <h4 class="mb-0 pb-2">Member</h4>
-        <p class="font-size-base">Quản lý các Thành viên </p>
+        <h4 class="mb-0 pb-2">Departments and divisions</h4>
+        <p class="font-size-base">Quản lý Các ban và bộ phận trong công ty</p>
         <div class="card">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-header">Danh sách thành viên</h5>
+                <h5 class="card-header">Danh sách</h5>
                 <button class="dt-button add-new btn btn-primary ms-2 waves-effect waves-light" style="margin-right:24px"
                     type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add">
                     <span>
@@ -16,13 +16,14 @@
                 </button>
             </div>
             <div class="card-datatable table-responsive pt-0">
-                <table class="table dataTable" id="userDatatable">
+                <table class="table dataTable" id="Datatable">
                     <thead>
                         <tr>
-                            <th>Họ và tên</th>
-                            <th>Địa chỉ Email</th>
-                            <th>Vai trò</th>
-                            <th>Đăng nhập</th>
+                            <th>ID</th>
+                            <th>Tên ban/bộ phận</th>
+                            <th>Số lượng</th>
+                            <th>Ghim</th>
+                            <th>Trạng thái</th>
                             <th>Ngày tạo</th>
                             <th>Hành động</th>
                         </tr>
@@ -30,41 +31,39 @@
                 </table>
             </div>
         </div>
-        @include('admin.user.create')
-        @include('admin.user.update')
-        @include('admin.user.update-profile')
+        @include('admin.user-category.create')
+        @include('admin.user-category.update')
+        @include('admin.user-category.show')
+
     </div>
 @endsection
 @push('scripts')
     <script>
         $(document).on("DOMContentLoaded", function() {
-            var dt_basic_table = $('#userDatatable');
+            var dt_basic_table = $('#Datatable');
             var dt_basic = null;
             if (dt_basic_table.length) {
                 const initAction = () => {
                     // Variable declaration
                     let roles = [];
                     // Show update
-                    $(document).on('click', '.btn-show', function() {
+                    $(document).on('click', '.btn-view', function() {
                         const data = getRowData($(this).closest('tr'));
-                        $('#kt_modal_update_user input[name="id"]').val(data.id);
-                        $('#kt_modal_update_user input[name="name"]').val(data.name);
-                        $('#kt_modal_update_user input[name="email"]').val(data.email);
-                        $('#kt_modal_update_user input[name="phone"]').val(data.phone);
-                        $('#kt_modal_update_user input[name="facebook"]').val(data.facebook);
-                        $('#kt_modal_update_user input[name="zalo"]').val(data.zalo);
-                        $('#kt_modal_update_user select[name="role"]').val(data.role);
-                        $('#kt_modal_update_user select[name="status"]').val(data.status);
+                        $('#kt_modal_update input[name="id"]').val(data.id);
+                        $('#kt_modal_update input[name="name"]').val(data.name);
+                        $('#kt_modal_update input[name="is_pin"]').prop('checked', data.is_pin == 1);
+                        $('#kt_modal_update textarea[name="description"]').val(data.description);
+                        $('#kt_modal_update select[name="status"]').val(data.status);
                         $('#kt_modal_update').modal('show');
                     })
-                    $(document).on('click', '.btn-profile', function() {
+                    $(document).on('click', '.btn-show', function() {
                         const data = getRowData($(this).closest('tr'));
-                        $('#kt_modal_update_profile input[name="user_id"]').val(data.id);
-                        $('#kt_modal_update_profile input[name="education"]').val(data.user_profile[0]?.education);
-                        $('#kt_modal_update_profile textarea[name="experience"]').val(data.user_profile[0]?.experience);
-                        $('#kt_modal_update_profile textarea[name="philosophy"]').val(data.user_profile[0]?.philosophy);
-                        editor.setData(data.user_profile[0]?.content || "")
-                        $('#modal-update-profile').modal('show');
+                        $('#kt_modal_update input[name="id"]').val(data.id);
+                        $('#kt_modal_update input[name="name"]').val(data.name);
+                        $('#kt_modal_update input[name="is_pin"]').prop('checked', data.is_pin == 1);
+                        $('#kt_modal_update textarea[name="description"]').val(data.description);
+                        $('#kt_modal_update select[name="status"]').val(data.status);
+                        $('#kt_modal_show').modal('show');
                     })
                     $(document).on('click', '.btn-delete', function() {
                         const data = getRowData($(this).closest('tr'));
@@ -84,7 +83,7 @@
                         }).then(function(result) {
                             if (result.value) {
                                 $.ajax({
-                                    url: '{{ route('user.delete') }}',
+                                    url: '{{ route('users-category.delete') }}',
                                     type: 'POST',
                                     data: {
                                         id: data.id,
@@ -125,20 +124,23 @@
                         displayLength: 10,
                         lengthMenu: [10, 25, 50, 75, 100],
                         ajax: {
-                            url: '{{ route('user.datatable') }}',
+                            url: '{{ route('users-category.datatable') }}',
                             type: "POST",
                             data: function(data) {
                                 data._token = "{{ csrf_token() }}";
                             },
                         },
                         columns: [{
+                                data: 'id'
+                            },
+                            {
                                 data: 'name'
                             },
                             {
-                                data: 'email'
+                                data: 'user_profile'
                             },
                             {
-                                data: 'role'
+                                data: 'is_pin'
                             },
                             {
                                 data: 'status'
@@ -158,18 +160,27 @@
                             },
                             {
                                 targets: 2,
+                                 orderable: false,
                                 render: function(data, type, row) {
-                                    return `<badge class="bg-label-${data ==  '100' ? 'primary' : 'secondary'} badge">${data ==  '100' ? 'Admin' : 'Member'} </bad>`;
+                                    return `<div>${data.length}</div>`;
                                 }
                             },
                             {
                                 targets: 3,
+                                 orderable: false,
                                 render: function(data, type, row) {
-                                    return `<badge class="bg-label-${data ==  '1' ? 'primary' : 'danger'} badge">${data ==  '1' ? 'Có' : 'Không'} </bad>`;
+                                    return `<badge class="bg-label-${data ==  '1' ? 'primary' : 'danger'} badge">${data ==  '1' ? 'có' : 'Không'} </badge>`;
                                 }
                             },
                             {
                                 targets: 4,
+                                 orderable: false,
+                                render: function(data, type, row) {
+                                    return `<badge class="bg-label-${data ==  '1' ? 'success' : 'danger'} badge">${data ==  '1' ? 'Hiển thị' : 'Ẩn'} </badge>`;
+                                }
+                            },
+                            {
+                                targets: 5,
                                 render: function(data, type, row) {
                                     return `<span>${formatDateTime(data)} </span>`;
                                 }
@@ -185,9 +196,9 @@
                                            <i class="ti ti-dots-vertical"></i>
                                        </button>
                                        <div class="dropdown-menu">
-                                           <button class="dropdown-item btn-show"><i class="ti ti-pencil me-2"></i>Sửa thành viên</button>
-                                           <button class="dropdown-item btn-profile"><i class="ti ti-edit-circle me-2"></i>Cập nhật thành viên</button>
-                                           <button class="dropdown-item btn-delete"><i class="ti ti-trash me-2"></i>Xóa thành viên</button>
+                                           <button class="dropdown-item btn-view"><i class="ti ti-edit-circle me-2"></i>Sửa thông tin</button>
+                                           <button class="dropdown-item btn-show"><i class="ti ti-eye me-2"></i>Xem thành viên</button>
+                                           <button class="dropdown-item btn-delete"><i class="ti ti-trash me-2"></i>Xóa ban/bộ phận</button>
                                        </div>
                                    </div>`;
                                 },

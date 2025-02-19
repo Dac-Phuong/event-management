@@ -4,7 +4,7 @@
     <div>
         @include('client.components.breadcrumb', [
             'title' => 'Dự án',
-            'url' => url('project/' . $data['category']->slug),
+            'url' => url('du-an/' . $data['category']->slug),
             'name' => $data['category']->name,
             'subtitle' => $data['project']->title,
         ])

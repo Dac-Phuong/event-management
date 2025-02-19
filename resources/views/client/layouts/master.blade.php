@@ -89,9 +89,7 @@
         const formatDateTime = (dateTime) => {
             const date = new Date(dateTime);
             const day = date.getDate().toString().padStart(2, '0');
-            const month = date.toLocaleString('vi-VN', {
-                month: 'short'
-            }).replace('.', '');
+            const month = date.toLocaleString('vi-VN', {month: 'short'}).replace('.', '');
             const year = date.getFullYear();
             const hours = date.getHours().toString().padStart(2, '0');
             const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -116,8 +114,11 @@
                             $('.social-youtube').attr('href', `${res.data.social_youtube || '#'}`)
                             $('#contact-email').text(res.data.contact_email).attr('href',`mailto:${res.data.contact_email || 'pro@anhsongroup.com'}`)
                             $('.contact-email').text(res.data.contact_email || 'pro@anhsongroup.com')
+                            $('#contact-form-service').html(JSON.parse(res.data.contact_services || '[]').map(service => `<option value="${service.email}">${service.name}</option>`).join(''))
                             $('#logo').attr('src', res.data.base_logo)
                             $('#map-iframe').attr('src', `https://www.google.com/maps/d/embed?mid=${res.data.base_map_id}&z=5&center=14.0583,108.2772`);
+                        } else {
+                            console.log(res.data);
                         }
                     },
                     error: function(error) {

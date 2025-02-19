@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RecruitmentController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\UserCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ConfigController;
 use App\Http\Controllers\Client\HomeController;
@@ -44,17 +45,17 @@ Route::get('/clear-cache', function () {
 });
 // .......................................................................CLIENT............................................................................
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/introduce', [ClientIntroduceController::class, 'index'])->name('introduce');
+Route::get('/gioi-thieu', [ClientIntroduceController::class, 'index']);
 Route::get('/get-config', [ConfigController::class, 'getConfig'])->name('configs');
-Route::get('/service/{slug}', [ClientServiceController::class, 'index'])->name('service');
-Route::get('/news/{slug}', [ClientNewsController::class, 'index'])->name('news');
-Route::get('/news/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
+Route::get('/dich-vu/{slug}', [ClientServiceController::class, 'index'])->name('service');
+Route::get('/blog/{slug}', [ClientNewsController::class, 'index'])->name('news');
+Route::get('/blog/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
 Route::post('/news/search', [ClientNewsController::class, 'searchNews'])->name('news.search');
 
-Route::get('/recruitment', [ClientRecruitmentController::class, 'index'])->name('recruitment');
-Route::get('/recruitment/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
-Route::get('/project/{slug}', [ClientProjectController::class, 'index'])->name('project');
-Route::get('/project/{categorySlug}/{newsSlug}', [ClientProjectController::class, 'detail'])->name('project.detail');
+Route::get('/tuyen-dung', [ClientRecruitmentController::class, 'index'])->name('recruitment');
+Route::get('/tuyen-dung/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
+Route::get('/du-an/{slug}', [ClientProjectController::class, 'index'])->name('project');
+Route::get('/du-an/{categorySlug}/{newsSlug}', [ClientProjectController::class, 'detail'])->name('project.detail');
 Route::post('/contact/send', [HomeController::class, 'sendContact'])->name('send.contact');
 
 
@@ -65,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('login', [AuthController::class, 'post_login'])->name('post_login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     });
-    // Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth']], function () {
         Route::get('', [DashboardController::class, 'index'])->name('statistical');
         // Setting
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
@@ -76,12 +77,20 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
         // Setting introduce
         Route::post('settings/introduce/update', [SettingController::class, 'update'])->name('settings.introduce.update');
-
+        // User Category
+        Route::group(['prefix' => 'users-category'], function () {
+            Route::get('/', [UserCategoryController::class, 'index'])->name('users-category');
+            Route::post('/create', [UserCategoryController::class, 'store'])->name('users-category.create');
+            Route::post('/update', [UserCategoryController::class, 'update'])->name('users-category.update');
+            Route::post('/delete', [UserCategoryController::class, 'destroy'])->name('users-category.delete');
+            Route::post('/datatable', [UserCategoryController::class, 'filterDataTable'])->name('users-category.datatable');
+        });
         // User
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('users');
             Route::post('/create', [UserController::class, 'store'])->name('user.create');
             Route::post('/update', [UserController::class, 'update'])->name('user.update');
+            Route::post('/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
             Route::post('/delete', [UserController::class, 'destroy'])->name('user.delete');
             Route::post('/datatable', [UserController::class, 'filterDataTable'])->name('user.datatable');
         });
@@ -155,5 +164,5 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update/content', [RecruitmentController::class, 'content'])->name('recruitment.update.content');
             Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('recruitment.delete');
         });
-    // });
+    });
 });

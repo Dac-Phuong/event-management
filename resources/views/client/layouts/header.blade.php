@@ -40,10 +40,10 @@
                          <a class="nav-link fw-medium fs-5 {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
                              href="{{ url('/') }}">Trang chủ</a>
                      </li>
-                     <li class="nav-item {{ request()->is('introduce') ? 'active' : '' }}">
-                         <a class="nav-link fw-medium fs-5" href="{{ url('introduce') }}">Giới thiệu</a>
+                     <li class="nav-item {{ request()->is('gioi-thieu') ? 'active' : '' }}">
+                         <a class="nav-link fw-medium fs-5" href="{{ url('gioi-thieu') }}">Giới thiệu</a>
                      </li>
-                     <li class="nav-item dropdown {{ request()->is('service/*') ? 'active' : '' }}" id="hover-dropdown">
+                     <li class="nav-item dropdown {{ request()->is('dich-vu/*') ? 'active' : '' }}" id="hover-dropdown">
                          <a href="javascript:void(0);"
                              class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown dropdown fw-medium fs-5"
                              aria-expanded="false" data-bs-toggle="dropdown" data-trigger="hover">
@@ -54,7 +54,7 @@
                                  @foreach ($services as $service)
                                      <li>
                                          <a class="dropdown-item waves-effect"
-                                             href="{{ url('service', $service->slug) }}">{{ $service->name }}</a>
+                                             href="{{ url('dich-vu', $service->slug) }}">{{ $service->name }}</a>
                                      </li>
                                  @endforeach
                              @else
@@ -63,7 +63,7 @@
 
                          </ul>
                      </li>
-                     <li class="nav-item dropdown {{ request()->is('project/*') ? 'active' : '' }}" id="hover-dropdown">
+                     <li class="nav-item dropdown {{ request()->is('du-an/*') ? 'active' : '' }}" id="hover-dropdown">
                          <a href="javascript:void(0);"
                              class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown dropdown fw-medium fs-5"
                              aria-expanded="false" data-bs-toggle="dropdown" data-trigger="hover">
@@ -73,7 +73,7 @@
                              @if (count($projects) > 0)
                                  @foreach ($projects as $project)
                                      <li><a class="dropdown-item waves-effect"
-                                             href="{{ url('project', $project->slug) }}">{{ $project->name }}</a>
+                                             href="{{ url('du-an', $project->slug) }}">{{ $project->name }}</a>
                                      </li>
                                  @endforeach
                              @else
@@ -81,7 +81,7 @@
                              @endif
                          </ul>
                      </li>
-                     <li class="nav-item dropdown {{ request()->is('news/*') ? 'active' : '' }}" id="hover-dropdown">
+                     <li class="nav-item dropdown {{ request()->is('blog/*') ? 'active' : '' }}" id="hover-dropdown">
                          <a href="javascript:void(0);"
                              class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown dropdown fw-medium fs-5"
                              aria-expanded="false" data-bs-toggle="dropdown" data-trigger="hover">
@@ -91,7 +91,7 @@
                              @if (count($news) > 0)
                                  @foreach ($news as $new)
                                      <li><a class="dropdown-item waves-effect"
-                                             href="{{ url('news', $new->slug) }}">{{ $new->name }}</a></li>
+                                             href="{{ url('blog', $new->slug) }}">{{ $new->name }}</a></li>
                                  @endforeach
                              @else
                                  <li><a class="dropdown-item waves-effect" href="#">Chưa có tin tức</a></li>
@@ -99,8 +99,8 @@
                          </ul>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link fw-medium fs-5 {{ request()->is('recruitment') ? 'active' : '' }}"
-                             href="{{ url('recruitment') }}">Tuyển dụng</a>
+                         <a class="nav-link fw-medium fs-5 {{ request()->is('tuyen-dung') ? 'active' : '' }}"
+                             href="{{ url('tuyen-dung') }}">Tuyển dụng</a>
                      </li>
                  </ul>
              </div>

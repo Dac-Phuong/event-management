@@ -4,8 +4,8 @@
     <div data-bs-spy="scroll" class="scrollspy-example">
         @include('client.components.home.banner')
         @include('client.components.home.introduce')
-        <section id="landingPricing">
-            <div class="journey py-5">
+        <section id="landingPricing" class="section-py">
+            <div class="journey">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">

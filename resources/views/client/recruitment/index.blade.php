@@ -12,14 +12,14 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-4 overflow-hidden card-hover">
-                                            <a href="{{ 'recruitment/' . $item->slug }}">
+                                            <a href="{{ 'tuyen-dung/' . $item->slug }}">
                                                 <img class="card-img card-img-left" height="100%"
                                                     src="{{ asset($item->thumbnail) }}" alt="Card image">
                                             </a>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <a href="{{ 'recruitment/' . $item->slug }}"
+                                                <a href="{{ 'tuyen-dung/' . $item->slug }}"
                                                     class="text-decoration-none text-black">
                                                     <h5 class="card-title">{{ $item->title }}</h5>
                                                 </a>
@@ -63,7 +63,7 @@
                             <ul class="list-group list-group-flush border-bottom">
                                 @foreach ($categories as $item)
                                     <li class="list-group-item">
-                                        <a href="{{ url('news/'.$item->slug) }}" class="text-list text-hover">{{ $item->name }}</a>
+                                        <a href="{{ url('blog/'.$item->slug) }}" class="text-list text-hover">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -77,7 +77,7 @@
                             <div class="list-group">
                                 @if (isset($feature) && count($feature) > 0)
                                     @foreach ($feature as $item)
-                                        <a href="{{ 'news/' . $item->category->slug . '/' . $item->slug }}"
+                                        <a href="{{ 'blog/' . $item->category->slug . '/' . $item->slug }}"
                                             class="text-decoration-none mb-2">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <img class="card-img " height="70" width="50"

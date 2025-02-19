@@ -23,6 +23,8 @@ class User extends Authenticatable
         'phone',
         'role',
         'status',
+        'facebook',
+        'zalo',
         'password',
     ];
 
@@ -48,5 +50,9 @@ class User extends Authenticatable
     public function news()
     {
         return $this->hasMany(News::class, 'author_id', 'id');
+    }
+    public function userProfile()
+    {
+        return $this->hasMany(UserProfile::class, 'user_id', 'id');
     }
 }

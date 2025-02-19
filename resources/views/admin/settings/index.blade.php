@@ -7,19 +7,25 @@
             <div class="nav-align-top nav-tabs-shadow mb-6">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link waves-effect active text-primary" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#navs-top-base" aria-controls="navs-top-base" aria-selected="true">Cơ
+                        <button type="button" class="nav-link waves-effect active text-primary" role="tab"
+                            data-bs-toggle="tab" data-bs-target="#navs-top-base" aria-controls="navs-top-base"
+                            aria-selected="true">Cơ
                             bản</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link waves-effect text-primary" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#navs-top-contact" aria-controls="navs-top-contact" aria-selected="false"
-                            tabindex="-1">Liên hệ</button>
+                        <button type="button" class="nav-link waves-effect text-primary" role="tab"
+                            data-bs-toggle="tab" data-bs-target="#navs-top-contact" aria-controls="navs-top-contact"
+                            aria-selected="false" tabindex="-1">Liên hệ</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link waves-effect text-primary" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#navs-top-social" aria-controls="navs-top-social" aria-selected="false"
-                            tabindex="-1">Mạng xã hội</button>
+                        <button type="button" class="nav-link waves-effect text-primary" role="tab"
+                            data-bs-toggle="tab" data-bs-target="#navs-top-social" aria-controls="navs-top-social"
+                            aria-selected="false" tabindex="-1">Mạng xã hội</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button type="button" class="nav-link waves-effect text-primary" role="tab"
+                            data-bs-toggle="tab" data-bs-target="#navs-top-introduce" aria-controls="navs-top-introduce"
+                            aria-selected="false" tabindex="-1">Giới thiệu</button>
                     </li>
 
                 </ul>
@@ -32,6 +38,9 @@
                     </div>
                     <div class="tab-pane fade" id="navs-top-social" role="tabpanel">
                         @include('admin.settings.social')
+                    </div>
+                    <div class="tab-pane fade" id="navs-top-introduce" role="tabpanel">
+                        @include('admin.settings.introduce')
                     </div>
                 </div>
             </div>
@@ -68,15 +77,23 @@
                             </div>
                             `
                             })
-                        }else{
-                            html += `<p class="d-flex align-items-center justify-content-center m-0" style="color: red; height: 100px;">Chưa có banner</p>`
+                        } else {
+                            html +=
+                                `<p class="d-flex align-items-center justify-content-center m-0" style="color: red; height: 100px;">Chưa có banner</p>`
                         }
                         $("#base_banner").html(html)
-                        $("#contact_name").val(data.contact_name);
-                        $("#contact_short_name").val(data.contact_short_name);
                         $("#contact_phone").val(data.contact_phone);
                         $("#contact_email").val(data.contact_email);
                         $("#contact_address").val(data.contact_address);
+                        $(".service-container").html(
+                            (data.contact_services ? JSON.parse(data.contact_services) : []).map(
+                                item => `<div class="input-group service-item mb-2">
+                                    <input type="text" class="form-control service-name" name="contact_service_name[]" value="${item.name}" placeholder="Nhập tên dịch vụ">
+                                    <input type="text" class="form-control service-email" name="contact_service_email[]" value="${item.email}" placeholder="Nhập email dịch vụ">
+                                    <button class="btn btn-danger remove-service" type="button"><i class="ti ti-trash"></i></button>
+                                </div>`
+                            ).join('')
+                        );
                         // social
                         $("#social_fanpage").val(data.social_fanpage);
                         $("#social_group").val(data.social_group);

@@ -29,6 +29,8 @@ class Update extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email,' . $this->id],
             'phone' => ['required', 'numeric', 'unique:users,phone,' . $this->id],
+            'facebook' => 'nullable|url',
+            'zalo' => 'nullable|url',
             'password' => 'nullable|min:6',
             'status' => 'required',
             'role' => 'required'
