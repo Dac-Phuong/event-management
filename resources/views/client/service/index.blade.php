@@ -15,7 +15,8 @@
                     <hr class="hr-title mt-0 mb-4">
                     {!! $service->content !!}
                     <div class="d-flex align-items-center mt-5">
-                        <button class="btn btn-primary rounded-pill scrollToContact"><i class="ti ti-mail-share me-2"></i> Yêu cầu tư vấn</button>
+                        <button class="btn btn-primary rounded-pill scrollToContact"><i class="ti ti-mail-share me-2"></i> Yêu
+                            cầu tư vấn</button>
                     </div>
                 </div>
             </div>

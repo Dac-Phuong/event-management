@@ -9,4 +9,5 @@
         @include('client.components.introduce.our-mission')
         @include('client.components.home.contact')
     </div>
+    
 @endsection

@@ -61,6 +61,7 @@
                         const data = getRowData($(this).closest('tr'));
                         $('#kt_modal_update_profile input[name="user_id"]').val(data.id);
                         $('#kt_modal_update_profile input[name="education"]').val(data.user_profile[0]?.education);
+                        $('#kt_modal_update_profile input[name="position"]').val(data.user_profile[0]?.position);
                         $('#kt_modal_update_profile textarea[name="experience"]').val(data.user_profile[0]?.experience);
                         $('#kt_modal_update_profile textarea[name="philosophy"]').val(data.user_profile[0]?.philosophy);
                         editor.setData(data.user_profile[0]?.content || "")

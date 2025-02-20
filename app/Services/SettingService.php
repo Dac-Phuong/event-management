@@ -34,7 +34,12 @@ class SettingService extends BaseService
             'social_zalo',
             'social_tiktok',
             'social_telegram',
-            'social_youtube'
+            'social_youtube',
+            // introduce
+            'introduce_youtube_id',
+            'introduce_image',
+            'introduce_image_2',
+            'introduce_content',
         ];
 
         $settings = [];

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Configs;
 use App\Models\UserCategory;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,15 @@ class UserCategoryService extends BaseService
     {
         $this->model = new UserCategory();
     }
-
+    public function getUserCategory()
+    {
+        try {
+            return $this->model->with('userProfile.user')->get();
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+            return false;
+        }
+    }
     public function create(array $data)
     {
         try {
@@ -85,6 +94,13 @@ class UserCategoryService extends BaseService
             'data' => $result
         ];
     }
-
+    function getConfig(){
+        try {
+            $settings = Configs::whereIn('key', ['introduce_image_2', 'introduce_content', 'introduce_youtube_id'])->pluck('value', 'key')->toArray();
+            return $settings;
+        } catch (\Throwable $th) {
+           return null;
+        }
+    }
 
 }

@@ -17,6 +17,7 @@ class UserProfile extends Model
         "experience",
         'philosophy',
         "content",
+        "position",
     ];
 
     public function user()

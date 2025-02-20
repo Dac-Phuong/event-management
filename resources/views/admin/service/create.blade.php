@@ -54,7 +54,7 @@
         $("#addService").submit(function(e) {
             e.preventDefault();
             let formData = new FormData($("#addService")[0]);
-            const slug = $("#service-title").val();
+            const slug = $("#service-name").val();
             formData.append("slug", toSlug(slug));
             formData.append("_token", "{{ csrf_token() }}");
             $.ajax({

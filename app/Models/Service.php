@@ -13,7 +13,6 @@ class Service extends Model
         "name",
         "status",
         "content",
-        "category_id",
         "thumbnail",
         "description",
         'slug',

@@ -38,6 +38,11 @@
                                 </select>
                             </div>
                             <div class="mb-2">
+                                <label for="basic-default-position" class="form-label">Chức vụ</label>
+                                <input id="basic-default-position" class="form-control" placeholder=""
+                                    name="position"></input>
+                            </div>
+                            <div class="mb-2">
                                 <label for="basic-default-education" class="form-label">Học vấn</label>
                                 <input id="basic-default-education" class="form-control" placeholder=""
                                     name="education"></input>

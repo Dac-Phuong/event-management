@@ -64,7 +64,7 @@
                             <ul class="list-group list-group-flush border-bottom">
                                 @foreach ($data['categories'] as $item)
                                     <li class="list-group-item">
-                                        <a href="{{ $item->slug }}" class="text-list text-hover">{{ $item->name }}</a>
+                                        <a href="{{ url($item->slug) }}" class="text-list text-hover">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>

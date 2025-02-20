@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('education')->nullable();
             $table->string('experience')->nullable();
             $table->string('philosophy')->nullable();
+            $table->string('position')->nullable();
             $table->text('content')->nullable();
             $table->timestamps();
         });

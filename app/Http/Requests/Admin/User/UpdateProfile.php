@@ -27,10 +27,11 @@ class UpdateProfile extends FormRequest
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:user_categories,id',
             'education' => ['required', 'string'],
+            'position' => ['required', 'string'],
             'experience' => ['required', 'string'],
             'philosophy' => 'required',
-            'content' => 'required',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'content' => 'nullable',
         ];
     }
     public function messages()
@@ -43,7 +44,7 @@ class UpdateProfile extends FormRequest
             'philosophy.required' => 'Triết lý là trường bắt buộc.',
             'avatar.image' => 'Vui lý chọn 1 ảnh.',
             'avatar.max' => 'Ảnh phải_nhỏ 2048kb.',
-            'content.required' => 'Nội dung là trường bắt buộc.',
+            'position.required' => 'Chức vụ là trường bắt buộc.',
         ];
     }
 }

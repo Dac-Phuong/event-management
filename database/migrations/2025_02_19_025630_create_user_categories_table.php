@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('user_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->index('status')->default(0);
-            $table->index('is_pin')->default(0);
+            $table->integer('status')->default(0);
+            $table->integer('is_pin')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();
         });

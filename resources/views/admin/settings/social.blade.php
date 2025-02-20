@@ -1,4 +1,4 @@
-<div class="row col-6">
+<div class="row col-12 col-md-6">
     <form class="add-new-user pt-0" id="addNewSocail">
         <div class="mb-3">
             <label class="form-label" for="social_fanpage">Fanpage</label>

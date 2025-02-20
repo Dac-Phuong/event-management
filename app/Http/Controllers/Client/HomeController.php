@@ -18,7 +18,8 @@ class HomeController extends Controller
     {
         $banner = json_decode(Configs::get_config('base_banner'), true);
         $services = \App\Models\Service::where('status', 1)->limit(6)->get();
-        return view('client.home.index', compact('banner','services'));
+        $introduce = Configs::whereIn('key', ['introduce_image', 'introduce_content', 'introduce_youtube_id'])->pluck('value', 'key')->toArray();
+        return view('client.home.index', compact('banner','services','introduce'));
     }
     public function sendContact(Store $request)
     {

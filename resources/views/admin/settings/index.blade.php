@@ -101,6 +101,10 @@
                         $("#social_zalo").val(data.social_zalo);
                         $("#social_tiktok").val(data.social_tiktok);
                         $("#social_telegram").val(data.social_telegram);
+                        // introduce
+                        $("#introduce_youtube_id").val(data.introduce_youtube_id);
+                        editor.setData(data.introduce_content || "")
+
                     } else {
                         toastr.error("Đã có lỗi xảy ra, thử lại sau");
                     }

@@ -49,7 +49,7 @@
                         <ul class="list-group list-group-flush border-bottom">
                             @foreach ($categories as $item)
                                 <li class="list-group-item">
-                                    <a href="{{ $item->slug }}" class="text-list text-hover">{{ $item->name }}</a>
+                                    <a href="{{ url('blog/'.$item->slug) }}" class="text-list text-hover">{{ $item->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -63,7 +63,7 @@
                         <div class="list-group">
                             @if (isset($feature) && count($feature) > 0)
                                 @foreach ($feature as $item)
-                                    <a href="{{ 'blog/' . $item->category->slug . '/' . $item->slug }}"
+                                    <a href="{{ url('blog/' . $item->category->slug . '/' . $item->slug) }}"
                                         class="text-decoration-none mb-2">
                                         <div class="d-flex w-100 justify-content-between">
                                             <img class="card-img " height="70" width="50"
