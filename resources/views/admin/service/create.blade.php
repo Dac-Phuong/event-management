@@ -13,7 +13,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="service-youtube">ID Youtube</label>
-                        <input type="text" class="form-control" name="name" id="service-youtube" name="url">
+                        <input type="text" class="form-control" name="url" id="service-youtube" name="url">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>

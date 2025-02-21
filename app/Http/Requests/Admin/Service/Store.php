@@ -36,7 +36,7 @@ class Store extends FormRequest
     public function messages(): array
     {
         return [
-            "name.required" => "Tiêu đề không được để trống",
+            "name.required" => "Tên dịch vụ không được để trống",
             "content.required" => "Nội dung không được để trống",
             "status.required" => "Trạng thái không được để trống",
             "thumbnail.required" => "Vui lòng chọn 1 ảnh",
