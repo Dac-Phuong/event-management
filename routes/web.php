@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('login', [AuthController::class, 'post_login'])->name('post_login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     });
-    Route::group(['middleware' => ['auth']], function () {
+    // Route::group(['middleware' => ['auth']], function () {
         Route::get('', [DashboardController::class, 'index'])->name('statistical');
         // Setting
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
@@ -164,5 +164,5 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update/content', [RecruitmentController::class, 'content'])->name('recruitment.update.content');
             Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('recruitment.delete');
         });
-    });
+    // });
 });
