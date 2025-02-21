@@ -33,7 +33,6 @@ class Update extends FormRequest
             'zalo' => 'nullable|url',
             'password' => 'nullable|min:6',
             'status' => 'required',
-            'role' => 'required'
         ];
     }
     public function messages()
@@ -45,7 +44,6 @@ class Update extends FormRequest
             'name.required' => 'Tên là trường bắt buộc.',
             'phone.required' => 'Số điện thoại là trường bắt buộc.',
             'phone.numeric' => 'Số điện thoại phải là số.',
-            'role.required' => 'Vai trò là trường bắt buộc.',
             'status.required' => 'Trạng thái là trường bắt buộc.',
             'phone.unique' => 'Số điện thoại đã tồn tại.',
         ];

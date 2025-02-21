@@ -60,14 +60,6 @@
                                 <input type="text" id="basic-icon-default-zalo" name="zalo" class="form-control"
                                     placeholder="">
                             </div>
-                            <div class="col-md-4 mb-2 user_plan w-100">
-                                <label class="form-label" for="multicol-password">Vai trò</label>
-                                <select id="UserPlan" name="role" class="form-select text-capitalize">
-                                    <option value="" disabled>---Chọn vai trò---</option>
-                                    <option value="100">Admin</option>
-                                    <option value="0" selected>Member</option>
-                                </select>
-                            </div>
                             <div class="col-md-4 user_plan w-100">
                                 <label class="form-label" for="multicol-password">Cho phép đăng nhập</label>
                                 <select id="UserPlan" name="status" class="form-select text-capitalize">

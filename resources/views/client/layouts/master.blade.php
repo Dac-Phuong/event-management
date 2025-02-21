@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/cards-advance.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
+    <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ '/css/style.css' }}" />
     <!-- Helpers -->
@@ -77,13 +78,19 @@
     <script src="{{ '/assets/vendor/js/bootstrap.js' }}"></script>
     <script src="{{ '/assets/vendor/js/aos.js' }}"></script>
     <script src="{{ '/assets/vendor/js/dropdown-hover.js' }}"></script>
+    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.js' }}"></script>
     <!-- Main JS -->
     <script src="{{ '/assets/js/main.js' }}"></script>
     <!-- Page JS -->
     <script src="{{ '/assets/js/dashboards-analytics.js' }}"></script>
     <script src="{{ '/assets/js/tables-datatables-advanced.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
+    <script src="{{ '/assets/js/three.min.js' }}"></script>
+    <script src="{{ '/assets/js/compatibility.js' }}"></script>
+    <script src="{{ '/assets/js/mockup.min.js' }}"></script>
+    <script src="{{ '/assets/js/pdf.min.js' }}"></script>
+    <script src="{{ '/assets/js/pdf.worker.min.js' }}"></script>
+    <script src="{{ '/assets/js/dflip.min.js' }}"></script>
     <script>
         AOS.init();
         const formatDateTime = (dateTime) => {

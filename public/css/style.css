@@ -545,22 +545,6 @@
   bottom: 0;
 }
 
-.introduce .lookback {
-  text-align: center;
-  padding-top: 20px;
-  position: relative;
-  background: url("https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/bg-lich-su-hinh-thanh2.png?v=2") no-repeat bottom center;
-  padding-bottom: 220px;
-  height: 960px;
-  background-repeat: no-repeat;
-}
-
-.introduce .lookback h2 {
-  font-size: 40px;
-  font-weight: bold;
-  line-height: 1.866;
-}
-
 .text-content {
   width: 60%;
   text-align: center;

@@ -113,7 +113,6 @@ Route::group(['prefix' => 'admin'], function () {
         // news
         Route::group(['prefix' => 'news'], function () {
             Route::get('/', [NewsController::class, 'index'])->name('news.index');
-            Route::get('/create', [NewsController::class, 'create'])->name('news.create');
             Route::post('/store', [NewsController::class, 'store'])->name('news.store');
             Route::post('/datatable', [NewsController::class, 'filterDataTable'])->name('news.datatable');
             Route::get('/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
@@ -125,7 +124,8 @@ Route::group(['prefix' => 'admin'], function () {
         // Service
         Route::group(['prefix' => 'service'], function () {
             Route::get('/', [ServiceController::class, 'index'])->name('service.index');
-            Route::get('/create', [ServiceController::class, 'create'])->name('service.create');
+            Route::post('/create/image', [ServiceController::class, 'createImage'])->name('service.create.image');
+            Route::get('/delete/image/{id}', [ServiceController::class, 'deleteImage'])->name('service.delete.image');
             Route::post('/store', [ServiceController::class, 'store'])->name('service.store');
             Route::post('/datatable', [ServiceController::class, 'filterDataTable'])->name('service.datatable');
             Route::get('/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');

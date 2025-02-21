@@ -96,7 +96,7 @@ class UserCategoryService extends BaseService
     }
     function getConfig(){
         try {
-            $settings = Configs::whereIn('key', ['introduce_image_2', 'introduce_content', 'introduce_youtube_id'])->pluck('value', 'key')->toArray();
+            $settings = Configs::whereIn('key', ['introduce_image_2', 'introduce_content', 'introduce_youtube_id','introduce_pdf'])->pluck('value', 'key')->toArray();
             return $settings;
         } catch (\Throwable $th) {
            return null;

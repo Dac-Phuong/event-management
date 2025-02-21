@@ -13,9 +13,13 @@ class Service extends Model
         "name",
         "status",
         "content",
+        "url",
         "thumbnail",
         "description",
         'slug',
     ];
-
+    public function images()
+    {
+        return $this->hasMany(ServiceImage::class, 'service_id', 'id');
+    }
 }

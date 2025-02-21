@@ -5,12 +5,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label" for="service-name">Tên dịch vụ</label>
-                        <input type="text" class="form-control" name="name" id="service-name" placeholder=""
-                            autofocus name="name">
+                        <input type="text" class="form-control" name="name" id="service-name" name="name">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Mô tả ngắn</label>
-                        <textarea id="basic-default-message" class="form-control" placeholder="" name="description"></textarea>
+                        <textarea id="basic-default-message" class="form-control" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="service-youtube">ID Youtube</label>
+                        <input type="text" class="form-control" name="name" id="service-youtube" name="url">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>

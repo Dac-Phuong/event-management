@@ -1,6 +1,6 @@
   <section id="landingContact" class="section-py landing-contact">
       <div class="container">
-          <div data-aos="zoom-out">
+          <div >
               <div class="text-center mb-4">
                   <span class="badge bg-label-primary">Liên hệ với chúng tôi</span>
               </div>
@@ -13,7 +13,7 @@
                   tin nhắn</p>
           </div>
           <div class="row g-6">
-              <div class="col-lg-5 mt-2" data-aos="zoom-in">
+              <div class="col-lg-5 mt-2" >
                   <div class="contact-img-box position-relative border p-2 h-100">
                       <img src="../../assets/img/front-pages/icons/contact-border.png" alt="contact border"
                           class="contact-border-img position-absolute d-none d-lg-block scaleX-n1-rtl">
@@ -50,7 +50,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-lg-7 mt-2" data-aos="zoom-in">
+              <div class="col-lg-7 mt-2" >
                   <div class="card h-100">
                       <div class="card-body">
                           <h4 class="mb-2">Gửi tin nhắn</h4>
@@ -120,7 +120,7 @@
                               toastr.success('Vui lòng chờ phản hồi sau ít phút','Gửi yêu cầu thành công!');
                               $("#contact-form")[0].reset();
                           } else {
-                              toastr.error(res.message);
+                              toastr.error(res.data);
                           }
                       }
                   });

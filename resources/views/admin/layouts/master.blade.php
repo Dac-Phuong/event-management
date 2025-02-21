@@ -6,7 +6,8 @@
 <head>
     <title>{{ $title ?? 'Admin page' }}</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon/favicon.ico' }}" />
@@ -46,7 +47,8 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/dropzone/dropzone.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/flatpickr/flatpickr.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/tagify/tagify.css' }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/upload-image.css' }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/sweetalert.css' }}" />
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/cards-advance.css' }}" />
@@ -58,7 +60,7 @@
     <script src="{{ '/assets/vendor/js/template-customizer.js' }}"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ '/assets/js/config.js' }}"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="{{ '/assets/js/ckeditor.js' }}"></script>
 </head>
 
 <body>
@@ -118,15 +120,16 @@
     <script src="{{ '/assets/vendor/libs/jquery-repeater/jquery-repeater.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/flatpickr/flatpickr.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/tagify/tagify.js' }}"></script>
+    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
 
     <!-- Main JS -->
     <script src="{{ '/assets/js/main.js' }}"></script>
+    <script src="{{ '/assets/js/upload-image.js' }}"></script>
     <script src="{{ '/assets/js/app-ecommerce-product-add.js' }}"></script>
     <!-- Page JS -->
     <script src="{{ '/assets/js/dashboards-analytics.js' }}"></script>
+    <script src="{{ '/assets/js/sweetalert.js' }}"></script>
     <script src="{{ '/assets/js/tables-datatables-advanced.js' }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
-    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     @yield('script_page')
     <script>
         const formatDateTime = (dateTime) => {

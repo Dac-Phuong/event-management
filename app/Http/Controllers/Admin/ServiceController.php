@@ -27,8 +27,8 @@ class ServiceController extends Controller
     public function store(Store $request)
     {
         $data = $request->validated();
-        $news = $this->service()->create($data);
-        if ($news) {
+        $service = $this->service()->create($data);
+        if ($service) {
             return jsonResponse(0);
         }
         return jsonResponse(1);
@@ -36,8 +36,17 @@ class ServiceController extends Controller
     public function update(Update $request)
     {
         $data = $request->validated();
-        $news = $this->service()->update($data['id'], $data);
-        if ($news) {
+        $service = $this->service()->update($data['id'], $data);
+        if ($service) {
+            return jsonResponse(0);
+        }
+        return jsonResponse(1);
+    }
+    public function createImage(Request $request)
+    {
+        $data = $request->all();
+        $service = $this->service()->createImage($data['id'], $data);
+        if ($service) {
             return jsonResponse(0);
         }
         return jsonResponse(1);
@@ -51,8 +60,17 @@ class ServiceController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-        $news = $this->service()->delete($id);
-        if ($news) {
+        $service = $this->service()->delete($id);
+        if ($service) {
+            return jsonResponse(0);
+        }
+        return jsonResponse(1);
+    }
+    public function deleteImage(Request $request)
+    {
+        $id = $request->id;
+        $service = $this->service()->deleteImage($id);
+        if ($service) {
             return jsonResponse(0);
         }
         return jsonResponse(1);

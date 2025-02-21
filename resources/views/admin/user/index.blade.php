@@ -21,7 +21,6 @@
                         <tr>
                             <th>Họ và tên</th>
                             <th>Địa chỉ Email</th>
-                            <th>Vai trò</th>
                             <th>Đăng nhập</th>
                             <th>Ngày tạo</th>
                             <th>Hành động</th>
@@ -139,9 +138,6 @@
                                 data: 'email'
                             },
                             {
-                                data: 'role'
-                            },
-                            {
                                 data: 'status'
                             },
                             {
@@ -160,17 +156,11 @@
                             {
                                 targets: 2,
                                 render: function(data, type, row) {
-                                    return `<badge class="bg-label-${data ==  '100' ? 'primary' : 'secondary'} badge">${data ==  '100' ? 'Admin' : 'Member'} </bad>`;
-                                }
-                            },
-                            {
-                                targets: 3,
-                                render: function(data, type, row) {
                                     return `<badge class="bg-label-${data ==  '1' ? 'primary' : 'danger'} badge">${data ==  '1' ? 'Có' : 'Không'} </bad>`;
                                 }
                             },
                             {
-                                targets: 4,
+                                targets: 3,
                                 render: function(data, type, row) {
                                     return `<span>${formatDateTime(data)} </span>`;
                                 }

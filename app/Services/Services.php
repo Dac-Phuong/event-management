@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Service;
+use App\Models\ServiceImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -29,6 +30,35 @@ class Services extends BaseService
             return false;
         }
     }
+    function createImage(string $id, array $data)
+    {
+        try {
+            DB::beginTransaction();
+            $service = $this->model::find($id);
+            if (!$service) {
+                DB::rollBack();
+                return false;
+            }
+
+            if (!empty($data['images'])) { 
+                foreach ($data['images'] as $image) {
+                    $path = parent::uploadImage($image);
+                    $service->images()->create([ 
+                        'service_id' => $id,
+                        'image' => $path
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+
     public function filterDataTable($data)
     {
         // Page Length
@@ -59,7 +89,7 @@ class Services extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->skip($skip)->take($pageLength)->get(['id', 'name','status','description', 'content', 'created_at', 'thumbnail']);
+        $service = $query->with('images')->skip($skip)->take($pageLength)->get(['id', 'name', 'status', 'description', 'content', 'created_at', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -120,6 +150,24 @@ class Services extends BaseService
         try {
             DB::beginTransaction();
             $model = $this->model::find($id);
+            if (!$model) {
+                DB::rollBack();
+                return false;
+            }
+            $model->delete();
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+    public function deleteImage(int $id)
+    {
+        try {
+            DB::beginTransaction();
+            $model = ServiceImage::find($id);
             if (!$model) {
                 DB::rollBack();
                 return false;

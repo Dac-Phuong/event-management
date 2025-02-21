@@ -1,14 +1,14 @@
 <div class="mission">
     <div class="container">
         <div class="block-title">
-            <h2 class="text-primary fw-bold" data-aos="fade-up" style="font-size: 40px">
+            <h2 class="text-primary fw-bold" style="font-size: 40px">
                 Tầm nhìn và sứ mệnh
             </h2>
         </div>
-        <div class="block-group">
+        <div class="block-group" >
             <div class="row align-items-center position-relative our-mission">
                 <!-- Image Column -->
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                     <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-1.png?v=2"
                         alt="Business meeting" class="img-fluid rounded">
                 </div>
@@ -52,7 +52,7 @@
             <div class="row align-items-center position-relative our-mission">
                 <!-- Content Column -->
                 <div class="col-lg-6 position-absolute bg-white p-5  content-overlay"
-                    style="left: 70px; border-radius: 12px; z-index: 1;">
+                    style="left: 70px; border-radius: 12px; z-index: 1;" >
                     <h5 class="text-muted mb-3">Tầm nhìn của chúng tôi:</h5>
 
                     <h2 class="h3 mb-4 text-primary fw-bold">"Trở thành đối tác tin cậy trong lĩnh vực truyền thông và sự
@@ -80,9 +80,8 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Image Column -->
-                <div class="col-lg-6 ms-auto">
+                <div class="col-lg-6 ms-auto"  >
                     <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-2.png?v=2"
                         alt="Business vision" class="img-fluid rounded">
                 </div>

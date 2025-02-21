@@ -34,6 +34,7 @@
         </div>
         @include('admin.service.create')
         @include('admin.service.edit')
+        @include('admin.service.add-image')
     </div>
 @endsection
 
@@ -83,6 +84,15 @@
 
                             }
                         });
+                    })
+                    $(document).on('click', '.btn-add', function() {
+                        $('.input-images').empty();
+                        const data = getRowData($(this).closest('tr'));
+                        $('#addImage input[name="id"]').val(data.id);
+                        $('.input-images').imageUploader({
+                            preloaded: data.images
+                        });
+                        $('#modal-add-image').modal('show');
                     })
                     $(document).on('click', '.btn-edit', function() {
                         const data = getRowData($(this).closest('tr'));
@@ -166,6 +176,7 @@
                                 <div class="dropdown">
                                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
                                   <div class="dropdown-menu">
+                                    <a class="dropdown-item btn-add" href="javascript:void(0);"><i class="ti ti-plus me-2"></i>Thêm sản phẩm</a>
                                     <a class="dropdown-item btn-edit" href="javascript:void(0);"><i class="ti ti-pencil me-2"></i>Sửa thông tin</a>
                                     <a class="dropdown-item btn-delete" href="javascript:void(0);"><i class="ti ti-trash me-2"></i>Xóa dịch vụ</a>
                                   </div>

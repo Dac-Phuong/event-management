@@ -30,7 +30,6 @@ class Store extends FormRequest
             'facebook' => 'nullable|url',
             'zalo' => 'nullable|url',
             'password' => 'required|min:6',
-            'role' => 'required',
             'status' => 'required|in:1,0',
         ];
     }
@@ -49,7 +48,6 @@ class Store extends FormRequest
             'password.min' => 'Mật khẩu có độ dài ít nhất 6 ký tự.',
             'status.required' => 'Trạng thái là trường bắt buộc.',
             'status.in' => 'Trạng thái không hợp lệ.',
-            'role.required' => 'Vai trò là trường bắt buộc.',
         ];
     }
 }

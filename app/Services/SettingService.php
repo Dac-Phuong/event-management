@@ -39,6 +39,7 @@ class SettingService extends BaseService
             'introduce_youtube_id',
             'introduce_image',
             'introduce_image_2',
+            'introduce_pdf',
             'introduce_content',
         ];
 

@@ -6,7 +6,7 @@
             'title' => 'Dịch vụ',
             'subtitle' => $service->name,
             'name' => 'Dịch vụ',
-            'url' => url('service', $service->slug),
+            'url' => url('dich-vu', $service->slug),
         ])
         <div class="container py-5 ">
             <div class="row">
