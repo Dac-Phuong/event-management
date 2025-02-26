@@ -89,7 +89,7 @@ class Services extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->with('images')->skip($skip)->take($pageLength)->get(['id', 'name', 'status', 'description', 'content', 'created_at', 'thumbnail']);
+        $service = $query->with('images')->skip($skip)->take($pageLength)->get(['id','url', 'name', 'status', 'description', 'content', 'created_at', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -179,6 +179,23 @@ class Services extends BaseService
             DB::rollBack();
             Log::error($e->getMessage());
             return false;
+        }
+    }
+    public function getImage(string $slug)
+    {
+        try {
+            $service = $this->model::where('slug', $slug)->first();
+            if (!$service) {
+                return [];
+            }
+            $model = ServiceImage::where('service_id', $service->id)->get();
+            if (!$model) {
+                return [];
+            }
+            return $model;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return [];
         }
     }
 }

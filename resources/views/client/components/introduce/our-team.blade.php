@@ -2,7 +2,7 @@
      <div class="container py-5">
          @foreach ($our_team as $team)
              <div class="block-title">
-                 <h2 class="text-primary fw-bold" style="font-size: 40px">
+                 <h2 class="text-primary fs-1 fw-bold" style="font-size: 40px">
                      {{ $team->name }}
                  </h2>
                  <p class="mb-3 text-content">

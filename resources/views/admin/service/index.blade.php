@@ -98,6 +98,7 @@
                         const data = getRowData($(this).closest('tr'));
                         $('#editService input[name="id"]').val(data.id);
                         $('#editService input[name="name"]').val(data.name);
+                        $('#editService input[name="url"]').val(data.url);
                         $('#editService textarea[name="description"]').val(data.description);
                         $('#editService select[name="status"]').val(data.status);
                         edit_editor.setData(data.content)

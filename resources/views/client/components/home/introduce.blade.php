@@ -20,17 +20,17 @@
                         </div>
                     </div>
                     <!-- Content Column -->
-                    <div class="col-lg-6 bg-white p-3 p-md-5 mt-3 mt-md-0 content-overlay"
+                    <div class="col-lg-6 card-col p-3 p-md-5 mt-3 mt-md-0 content-overlay"
                         style="right: 120px; border-radius: 12px;" data-aos="fade-left">
                         <h1 class=" fw-bold fs-2 text-primary mb-2">GIỚI THIỆU VỀ TẬP ĐOÀN ANH SƠN</h1>
                         <hr class="hr-title mt-0 mb-4">
                         <p class="mb-2">
                             {!! isset($introduce['introduce_content']) ? $introduce['introduce_content'] : '' !!}
                         </p>
-                        <div class="d-flex flex-warp align-items-center mt-4">
-                            <a href="{{ url('/gioi-thieu') }}" class="btn btn-primary rounded-pill me-4">Xem thêm <i
-                                    class="ti ti-arrow-right" style="margin-left: 5px"></i></a>
-                            <a href="javascript:void(0);" class="btn btn-primary rounded-pill scrollToContact"><i
+                        <div class="d-flex flex-warp align-items-center flex-column flex-md-row mt-4">
+                            <a href="{{ url('/gioi-thieu') }}" class="btn btn-primary rounded-pill w-100 w-md-auto me-0 me-md-4 mb-2 mb-md-0">Xem thêm <i
+                                    class="ti ti-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-primary rounded-pill w-100 w-md-auto scrollToContact"><i
                                     class="ti ti-mail-share me-2"></i> Yêu cầu tư vấn</a>
                         </div>
                     </div>

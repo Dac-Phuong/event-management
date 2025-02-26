@@ -16,18 +16,14 @@
                             fill="#7367F0" />
                     </svg>
                 </span>
-                <span class="app-brand-text demo menu-text fw-bold">Media Center</span>
+                <span class="app-brand-text demo menu-text fw-bold">AnhSonGroup</span>
             </a>
-
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
                 <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
                 <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
             </a>
         </div>
         <div class="menu-inner-shadow"></div>
-        {{-- <button class="btn btn-primary waves-effect waves-light mx-3">
-                <i class="ti ti-home me-1 ti-xs"></i>Trang chủ</button> --}}
-
         <ul class="menu-inner py-1">
             <li class="menu-item {{ request()->routeIs('statistical') ? 'active' : '' }}">
                 <a href="{{ url('admin') }}" class="menu-link">

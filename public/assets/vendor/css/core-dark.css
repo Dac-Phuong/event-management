@@ -10175,11 +10175,11 @@ form select.selectpicker.is-invalid ~ .btn {
 
 .breadcrumb-item,
 .breadcrumb-item a {
-  color: #7367f0;
+  color: #1C7CBE;
 }
 
 .breadcrumb-item.active a:hover, .breadcrumb-item.active a:focus {
-  color: #7367f0;
+  color: #1C7CBE;
 }
 .breadcrumb-item.active a:not(:hover, :focus) {
   color: #8692d0;

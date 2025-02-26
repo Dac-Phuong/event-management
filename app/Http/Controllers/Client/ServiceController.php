@@ -12,7 +12,8 @@ class ServiceController extends Controller
     {
         $slug = $request->route('slug');
         $service = $this->service()->getBySlug($slug);
-        return view('client.service.index',compact('service'));
+        $images = $this->service()->getImage($slug);
+        return view('client.service.index',compact('service','images'));
     }
     public function service()
     {

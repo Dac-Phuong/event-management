@@ -14,6 +14,10 @@
                         <textarea id="basic-default-message" class="form-control" placeholder="" name="description"></textarea>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label" for="service-youtube">ID Youtube</label>
+                        <input type="text" class="form-control" name="url" id="service-youtube" name="url">
+                    </div>
+                    <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
                         <input type="file" id="image" class="form-control" name="thumbnail">
                     </div>

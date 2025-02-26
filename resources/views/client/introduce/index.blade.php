@@ -6,7 +6,7 @@
         @include('client.components.introduce.index')
         @include('client.components.introduce.our-team')
         @include('client.components.introduce.our-mission')
+        @include('client.components.introduce.core-values')
         @include('client.components.home.contact')
     </div>
-    
 @endsection

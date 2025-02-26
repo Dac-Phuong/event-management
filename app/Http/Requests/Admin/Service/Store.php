@@ -27,6 +27,7 @@ class Store extends FormRequest
             "name" => "required",
             "content" => "required",
             "slug" => "required",
+            "url" => "nullable",
             "description" => "required|max:255",
             "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "status" => "required|in:0,1",

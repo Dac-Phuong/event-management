@@ -158,17 +158,19 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom py-3">
-            <div
-                class="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
-                <div class="mb-2 mb-md-0 m-auto">
-                    <span class="footer-bottom-text">©
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                    </span>
-                    <span class="footer-bottom-text text-white">Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh
-                        Sơn.</span>
+        <div class="container">
+            <div class="footer-bottom py-3">
+                <div
+                    class="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
+                    <div class="mb-2 mb-md-0 m-auto">
+                        <span class="footer-bottom-text">©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                        </span>
+                        <span class="footer-bottom-text text-white">Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh
+                            Sơn.</span>
+                    </div>
                 </div>
             </div>
         </div>

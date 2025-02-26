@@ -1,6 +1,7 @@
 @extends('client.layouts.master')
 @section('title', 'Dịch vụ - ' . $service->name)
 @section('content')
+
     <div class="position-relative">
         @include('client.components.breadcrumb', [
             'title' => 'Dịch vụ',
@@ -9,17 +10,152 @@
             'url' => url('dich-vu', $service->slug),
         ])
         <div class="container py-5 ">
-            <div class="row">
-                <div class="col-lg-8" data-aos="fade-right">
-                    <h1 class=" fw-bold fs-1 text-primary mb-1 text-uppercase">{{ $service->name }}</h1>
-                    <hr class="hr-title mt-0 mb-4">
-                    {!! $service->content !!}
-                    <div class="d-flex align-items-center mt-5">
-                        <button class="btn btn-primary rounded-pill scrollToContact"><i class="ti ti-mail-share me-2"></i> Yêu
-                            cầu tư vấn</button>
+            <section>
+                <div class="row">
+                    <div class="col-lg-8" data-aos="fade-right">
+                        <h1 class=" fw-bold fs-1 text-primary mb-1">{{ $service->name }}</h1>
+                        <hr class="hr-title mt-0 mb-4">
+                        {!! $service->content !!}
+                        <div class="d-flex align-items-center my-4">
+                            <button class="btn btn-primary rounded-pill scrollToContact"><i class="ti ti-mail-share me-2"></i>
+                                Yêu
+                                cầu tư vấn</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-left">
+                        <div class="position-relative service-right">
+                            <img src="{{ asset($service->thumbnail) }}" class="service-img" alt="" width="100%"
+                                height="100%">
+                            <div class="overlay"></div>
+                            <div class="play-yt-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        </section>
+        <section class="py-5">
+            <div class="mb-4 d-flex flex-column align-items-center">
+                <h1 class="fw-bold fs-1 text-primary " data-aos="fade-up">Quy trình làm việc</h1>
+                <p class="text-center text-muted" data-aos="fade-up">Khám phá cách chúng tôi hợp tác với bạn để biến ý tưởng
+                    thành hiện
+                    thực một cách hiệu quả và sáng tạo.</p>
+            </div>
+            <div class="workflow" id="workflow" data-aos="fade-up">
+                <div class="step" id="step1">
+                    <i class="fas fa-search icon"></i>
+                    <h4 class="step-title text-white">Bước 1</h4>
+                    <p class="description">Thu thập yêu cầu từ khách hàng.</p>
+                </div>
+                <div class="arrow fs-1 d-none d-md-block">&#x2192;</div>
+                <div class="step" id="step2">
+                    <i class="fas fa-chart-line icon"></i>
+                    <h4 class="step-title text-white">Bước 2</h4>
+                    <p class="description">Phân tích thông tin & hình thành ý tưởng.</p>
+                </div>
+                <div class="arrow fs-1 d-none d-md-block">&#x2192;</div>
+                <div class="step" id="step3">
+                    <i class="fas fa-pencil-ruler icon"></i>
+                    <h4 class="step-title text-white">Bước 3</h4>
+                    <p class="description">Xây dựng nội dung & kế hoạch chi tiết.</p>
+                </div>
+                <div class="arrow fs-1 d-none d-md-block">&#x2192;</div>
+                <div class="step" id="step4">
+                    <i class="fas fa-cogs icon"></i>
+                    <h4 class="step-title text-white">Bước 4</h4>
+                    <p class="description">Kiểm thử & triển khai.</p>
+                </div>
+                <div class="arrow fs-1 d-none d-md-block">&#x2192;</div>
+                <div class="step" id="step5">
+                    <i class="fas fa-headset icon"></i>
+                    <h4 class="step-title text-white">Bước 5</h4>
+                    <p class="description">Kết thúc & tổng kết dự án.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row" data-aos="fade-up">
+                    @if (isset($images) && count($images) > 0)
+                        <div class="mb-4 d-flex flex-column align-items-center">
+                            <h1 class="text-center fw-bold fs-1 text-primary mb-1">Sản phẩm của chúng tôi
+                            </h1>
+                            <p class="text-center text-muted">Chúng tôi luôn nỗ lực mang lại cho khách hàng những sản phẩm
+                                tốt
+                                nhất, hiệu quả nhất</p>
+                        </div>
+                        <div id="lightgallery" class="owl-carousel owl-theme">
+                            @foreach ($images as $key => $image)
+                                <a href="{{ asset($image->image) }}" data-src="{{ asset($image->image) }}" >
+                                    <img src="{{ asset($image->image) }}" class="img-fluid" alt="Sản phẩm {{ ++$key }}" style="height: 300px" />
+                                </a>
+                            @endforeach
+
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header p-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="z-index: 1"></button>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="videoFrame" src="https://www.youtube.com/embed/{{ $service->url }}?autoplay=1"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </div>
-        @include('client.components.home.contact')
-    @endsection
+    </div>
+    @include('client.components.home.contact')
+@endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $("#lightgallery").owlCarousel({
+                loop: true,
+                margin: 10,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                nav: false,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    },
+                },
+            });
+
+            lightGallery(document.getElementById("lightgallery"), {
+                selector: "a",
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var videoSrc = $("#videoFrame").attr("src");
+            $("#videoModal").on("hidden.bs.modal", function() {
+                $("#videoFrame").attr("src", "");
+            });
+            $("#videoModal").on("shown.bs.modal", function() {
+                $("#videoFrame").attr("src", videoSrc);
+            });
+        });
+    </script>
+@endpush

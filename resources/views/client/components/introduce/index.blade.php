@@ -4,7 +4,7 @@
              <div class="row" data-aos="fade-up">
                  <div class="col-lg-6">
                      <div class="block-content">
-                         <h2 class="text-primary fw-bold">Giới thiệu về chúng tôi!</h2>
+                         <h2 class="text-primary fs-1 fw-bold">Giới thiệu về chúng tôi!</h2>
                          <div class="">
                              <p class="mb-2">
                                  {!! isset($settings['introduce_content']) ? $settings['introduce_content'] : '' !!}

@@ -726,7 +726,8 @@ span.df-share-title {
     margin: 0 auto;
     display: table;
     display: flex;
-    border-radius: 5px
+    border-radius: 5px;
+    z-index: 1;
 }
 
 .df-floating.df-controls-top .df-ui-controls {

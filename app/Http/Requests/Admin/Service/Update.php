@@ -29,6 +29,7 @@ class Update extends FormRequest
             "content" => "required",
             "description" => "required|max:255",
             "slug" => "required",
+            "url" => "nullable",
             "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "status" => "required|in:0,1",
         ];
@@ -39,7 +40,7 @@ class Update extends FormRequest
         return [
             "id.required" => "ID bài viết không được bỏ trống",
             "id.exists" => "ID bài viết không tồn tại",
-            "name.required" => "Tiêu đề không được để trống",
+            "name.required" => "Tên dịch vụ không được để trống",
             "content.required" => "Nội dung không được để trống",
             "status.required" => "Trạng thái không được để trống",
             'thumbnail.image' => "Vui lòng chọn 1 ảnh",

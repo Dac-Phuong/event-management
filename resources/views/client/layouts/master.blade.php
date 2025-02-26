@@ -37,17 +37,19 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/toastr/toastr.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/animate-css/animate.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.css' }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/lightgallery-bundle.min.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/cards-advance.css' }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/owl.carousel.min.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
     <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
+
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ '/css/style.css' }}" />
     <!-- Helpers -->
     <script src="{{ '/assets/vendor/js/helpers.js' }}"></script>
     <script src="{{ '/assets/vendor/js/template-customizer.js' }}"></script>
     <script src="{{ '/assets/js/config.js' }}"></script>
-
 </head>
 @php
     $services = \App\Models\Service::where('status', 1)->get();
@@ -55,6 +57,7 @@
     $projects = \App\Models\ProjectCategory::where('status', 1)->get();
     $config = \App\Models\Configs::where('key', 'base_logo')->first();
 @endphp
+
 <body>
     <!-- Layout wrapper -->
     <div>
@@ -71,6 +74,7 @@
     <!-- / Layout wrapper -->
     <!-- Core JS -->
     <!-- Vendors JS -->
+
     <script src="{{ '/assets/vendor/libs/jquery/jquery.js' }}"></script>
     <script src="{{ '/assets/js/gg-map.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
@@ -80,6 +84,7 @@
     <script src="{{ '/assets/vendor/js/dropdown-hover.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.js' }}"></script>
+
     <!-- Main JS -->
     <script src="{{ '/assets/js/main.js' }}"></script>
     <!-- Page JS -->
@@ -91,12 +96,18 @@
     <script src="{{ '/assets/js/pdf.min.js' }}"></script>
     <script src="{{ '/assets/js/pdf.worker.min.js' }}"></script>
     <script src="{{ '/assets/js/dflip.min.js' }}"></script>
+    <script src="{{ '/assets/js/lightgallery.js' }}"></script>
+    <script src="{{ '/assets/js/owl.carousel.min.js' }}"></script>
+
+
     <script>
         AOS.init();
         const formatDateTime = (dateTime) => {
             const date = new Date(dateTime);
             const day = date.getDate().toString().padStart(2, '0');
-            const month = date.toLocaleString('vi-VN', {month: 'short'}).replace('.', '');
+            const month = date.toLocaleString('vi-VN', {
+                month: 'short'
+            }).replace('.', '');
             const year = date.getFullYear();
             const hours = date.getHours().toString().padStart(2, '0');
             const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -111,19 +122,29 @@
                     method: 'GET',
                     success: function(res) {
                         if (res.error_code == 0) {
-                            $('.contact-phone').text(res.data.contact_phone).attr('href',`tel:${res.data.contact_phone || '0913588534'}`)
-                            $('#contact-phone').attr('href', `tel:${res.data.contact_phone || '0913588534'}`)
-                            $('.base-name').text(res.data.base_name || 'Công ty Cổ Phần Tập đoàn Anh Sơn')
-                            $('.contact-address').text(res.data.contact_address || 'Số 27 phố Mai Phúc, phường Phúc Đồng, quận Long Biên, Hà Nội')
+                            $('.contact-phone').text(res.data.contact_phone).attr('href',
+                                `tel:${res.data.contact_phone || '0913588534'}`)
+                            $('#contact-phone').attr('href',
+                                `tel:${res.data.contact_phone || '0913588534'}`)
+                            $('.base-name').text(res.data.base_name ||
+                                'Công ty Cổ Phần Tập đoàn Anh Sơn')
+                            $('.contact-address').text(res.data.contact_address ||
+                                'Số 27 phố Mai Phúc, phường Phúc Đồng, quận Long Biên, Hà Nội')
                             $('.social-zalo').attr('href', `${res.data.social_zalo || '#'}`)
                             $('.social-fanpage').attr('href', `${res.data.social_fanpage || '#'}`)
                             $('.social-telegram').attr('href', `${res.data.social_telegram || '#'}`)
                             $('.social-youtube').attr('href', `${res.data.social_youtube || '#'}`)
-                            $('#contact-email').text(res.data.contact_email).attr('href',`mailto:${res.data.contact_email || 'pro@anhsongroup.com'}`)
+                            $('#contact-email').text(res.data.contact_email).attr('href',
+                                `mailto:${res.data.contact_email || 'pro@anhsongroup.com'}`)
                             $('.contact-email').text(res.data.contact_email || 'pro@anhsongroup.com')
-                            $('#contact-form-service').html(JSON.parse(res.data.contact_services || '[]').map(service => `<option value="${service.email}">${service.name}</option>`).join(''))
+                            $('#contact-form-service').html(JSON.parse(res.data.contact_services ||
+                                    '[]').map(service =>
+                                    `<option value="${service.email}">${service.name}</option>`)
+                                .join(''))
                             $('#logo').attr('src', res.data.base_logo)
-                            $('#map-iframe').attr('src', `https://www.google.com/maps/d/embed?mid=${res.data.base_map_id}&z=5&center=14.0583,108.2772`);
+                            $('#map-iframe').attr('src',
+                                `https://www.google.com/maps/d/embed?mid=${res.data.base_map_id}&z=5&center=14.0583,108.2772`
+                            );
                         } else {
                             console.log(res.data);
                         }
