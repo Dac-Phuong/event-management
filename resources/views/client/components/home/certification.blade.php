@@ -75,41 +75,41 @@
             </div>
             <div class="position-relative">
                 <div id="certification" class="owl-carousel owl-theme">
-                    <div class="item" data-img="{{ asset('assets/files/certification/1.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/1.jpg') }}" alt="Ảnh 1">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/1.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/1.jpg') }}" alt="Ảnh 1">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/2.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/2.jpg') }}" alt="Ảnh 2">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/2.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/2.jpg') }}" alt="Ảnh 2">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/3.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/3.jpg') }}" alt="Ảnh 3">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/3.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/3.jpg') }}" alt="Ảnh 3">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/4.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/4.jpg') }}" alt="Ảnh 4">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/4.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/4.jpg') }}" alt="Ảnh 4">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/5.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/5.jpg') }}" alt="Ảnh 5">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/5.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/5.jpg') }}" alt="Ảnh 5">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/6.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/6.jpg') }}" alt="Ảnh 6">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/6.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/6.jpg') }}" alt="Ảnh 6">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/7.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/7.jpg') }}" alt="Ảnh 7">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/7.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/7.jpg') }}" alt="Ảnh 7">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/8.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/8.jpg') }}" alt="Ảnh 8">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/8.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/8.jpg') }}" alt="Ảnh 8">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/9.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/9.jpg') }}" alt="Ảnh 9">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/9.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/9.jpg') }}" alt="Ảnh 9">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/10.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/10.jpg') }}" alt="Ảnh 10">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/10.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/10.jpg') }}" alt="Ảnh 10">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/11.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/11.jpg') }}" alt="Ảnh 11">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/11.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/11.jpg') }}" alt="Ảnh 11">
                     </div>
-                    <div class="item" data-img="{{ asset('assets/files/certification/12.jpg') }}">
-                        <img src="{{ asset('assets/files/certification/12.jpg') }}" alt="Ảnh 12">
+                    <div class="item" data-img="{{ asset('/assets/files/certification/12.jpg') }}">
+                        <img src="{{ asset('/assets/files/certification/12.jpg') }}" alt="Ảnh 12">
                     </div>
                 </div>
                 <!-- Nút Next / Prev -->

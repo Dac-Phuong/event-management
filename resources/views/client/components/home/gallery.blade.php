@@ -9,39 +9,39 @@
             </div>
             <div class="position-relative" data-aos="fade-up">
                 <div id="lightgallery" class="owl-carousel owl-theme">
-                    <a href="{{ asset('assets/files/gallery/1.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/1.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/1.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/1.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/1.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/1.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 1" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/2.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/2.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/2.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/2.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/2.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/2.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 2" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/3.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/3.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/3.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/3.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/3.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/3.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 3" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/4.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/4.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/4.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/4.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/4.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/4.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 4" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/5.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/5.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/5.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/5.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/5.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/5.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 5" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/6.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/6.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/6.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/6.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/6.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/6.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 6" />
                     </a>
-                    <a href="{{ asset('assets/files/gallery/7.JPG') }}"
-                        data-src="{{ asset('assets/files/gallery/7.JPG') }}">
-                        <img src="{{ asset('assets/files/gallery/7.JPG') }}" class="img-fluid"
+                    <a href="{{ asset('/assets/files/gallery/7.JPG') }}"
+                        data-src="{{ asset('/assets/files/gallery/7.JPG') }}">
+                        <img src="{{ asset('/assets/files/gallery/7.JPG') }}" class="img-fluid"
                             style="height: 400px; border-radius: 12px;" alt="Slide 7" />
                     </a>
                 </div>
