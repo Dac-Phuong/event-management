@@ -84,7 +84,6 @@
     <script src="{{ '/assets/vendor/js/dropdown-hover.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.js' }}"></script>
-
     <!-- Main JS -->
     <script src="{{ '/assets/js/main.js' }}"></script>
     <!-- Page JS -->

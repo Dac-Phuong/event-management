@@ -1,7 +1,7 @@
 <div class="container pb-5">
-    <h2 class="text-primary fw-bold text-center mb-1 text-uppercase">Dịch vụ của chúng tôi</h2>
+    <h2 class="text-primary fw-bold text-center mb-1 text-uppercase" data-aos="fade-up">Dịch vụ của chúng tôi</h2>
     <hr class="hr-title mt-0 mb-4 mx-auto">
-    <div class="row row-cols-1 row-cols-md-3 g-6 mb-12 mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-6 mb-12 mt-5"  data-aos="fade-up">
         @foreach ($services as $service)
             <div class="col mb-3">
                 <div class="card h-100 card-hover">

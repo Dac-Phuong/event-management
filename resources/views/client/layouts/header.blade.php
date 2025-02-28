@@ -94,7 +94,7 @@
                     <a class="nav-link color fs-5" href="{{ url('gioi-thieu') }}">Giới thiệu</a>
                 </li>
                 <li class="nav-item dropdown {{ request()->is('dich-vu/*') ? 'active' : '' }}">
-                    <a class="nav-link color dropdown-toggle fs-5">Dịch vụ</a>
+                    <a href="javascript:void(0);" class="nav-link color dropdown-toggle fs-5">Dịch vụ</a>
                     <ul class="dropdown-menu">
                         @foreach ($services as $service)
                             <li><a class="dropdown-item"
@@ -103,7 +103,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown {{ request()->is('du-an/*') ? 'active' : '' }}">
-                    <a class="nav-link color dropdown-toggle fs-5">Dự án</a>
+                    <a href="javascript:void(0);" class="nav-link color dropdown-toggle fs-5">Dự án</a>
                     <ul class="dropdown-menu">
                         @foreach ($projects as $project)
                             <li><a class="dropdown-item"
@@ -112,7 +112,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown {{ request()->is('blog/*') ? 'active' : '' }}">
-                    <a class="nav-link color dropdown-toggle fs-5">Blog</a>
+                    <a href="javascript:void(0);" class="nav-link color dropdown-toggle fs-5">Blog</a>
                     <ul class="dropdown-menu">
                         @foreach ($news as $new)
                             <li><a class="dropdown-item" href="{{ url('blog', $new->slug) }}">{{ $new->name }}</a>
@@ -176,7 +176,7 @@
                 <a class="nav-link m-0 color fs-5" href="{{ url('gioi-thieu') }}">Giới thiệu</a>
             </li>
             <li class="nav-item dropdown {{ request()->is('dich-vu/*') ? 'active' : '' }}">
-                <a class="nav-link m-0 color dropdown-toggle fs-5">Dịch vụ</a>
+                <a href="javascript:void(0);" class="nav-link m-0 color dropdown-toggle fs-5">Dịch vụ</a>
                 <ul class="dropdown-menu">
                     @foreach ($services as $service)
                         <li><a class="dropdown-item"
@@ -185,7 +185,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown {{ request()->is('du-an/*') ? 'active' : '' }}">
-                <a class="nav-link m-0 color dropdown-toggle fs-5">Dự án</a>
+                <a href="javascript:void(0);" class="nav-link m-0 color dropdown-toggle fs-5">Dự án</a>
                 <ul class="dropdown-menu">
                     @foreach ($projects as $project)
                         <li><a class="dropdown-item"
@@ -194,7 +194,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown {{ request()->is('blog/*') ? 'active' : '' }}">
-                <a class="nav-link m-0 color dropdown-toggle fs-5">Blog</a>
+                <a href="javascript:void(0);"s class="nav-link m-0 color dropdown-toggle fs-5">Blog</a>
                 <ul class="dropdown-menu">
                     @foreach ($news as $new)
                         <li><a class="dropdown-item" href="{{ url('blog', $new->slug) }}">{{ $new->name }}</a>

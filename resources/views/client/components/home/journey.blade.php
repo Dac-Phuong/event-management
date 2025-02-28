@@ -3,10 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="text-primary mb-1 fw-bold fs-2 text-uppercase" data-aos="fade-up">
-                        Với gần 20 năm chinh phục những con số ấn tượng
-                    </h2>
-                    <hr class="hr-title mt-0 mb-4" data-aos="fade-up">
+                    <div data-aos="fade-up">
+                        <h2 class="text-primary mb-1 fw-bold fs-2 text-uppercase">
+                            Với gần 20 năm chinh phục những con số ấn tượng
+                        </h2>
+                        <hr class="hr-title mt-0 mb-4 m-auto m-md-0">
+                    </div>
                     <div class="statistics">
                         <div class="card card-border-shadow-primary h-100" data-aos="fade-up">
                             <div class="card-body">
@@ -96,7 +98,7 @@
                     $this.text(formatNumber(Math.floor(value)) + "+");
                     if (loopCount >= loops) {
                         clearInterval(interval);
-                        $this.text(formatNumber(settings.to) + "+"); 
+                        $this.text(formatNumber(settings.to) + "+");
                     }
                 }, settings.refreshInterval);
             });
@@ -112,7 +114,7 @@
                     $(".count").each(function() {
                         $(this).countTo();
                     });
-                    observer.disconnect(); 
+                    observer.disconnect();
                 }
             }, {
                 rootMargin: '0px 0px -200px 0px'
@@ -122,4 +124,3 @@
         });
     </script>
 @endpush
-
