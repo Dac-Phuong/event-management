@@ -79,8 +79,8 @@
     <div class="container">
 
         <a href="{{ url('/') }}" class="app-brand-link">
-            @if (isset($config->value))
-                <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value) }}"
+            @if (!empty($config->value))
+                <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value ?? '') }}"
                     alt="Logo">
             @endif
         </a>
