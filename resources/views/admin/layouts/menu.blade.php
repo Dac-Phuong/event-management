@@ -131,7 +131,12 @@
                 <ul class="menu-sub">
                     <li class="menu-item {{ request()->routeIs('settings.*') ? 'active' : '' }}">
                         <a href="{{ url('admin/settings/introduce') }}" class="menu-link">
-                            <div>Giới thiệu</div>
+                            <div>Bằng khen</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs('settings.*') ? 'active' : '' }}">
+                        <a href="{{ url('admin/gallery') }}" class="menu-link">
+                            <div>Thiết kế ấn tượng</div>
                         </a>
                     </li>
                    

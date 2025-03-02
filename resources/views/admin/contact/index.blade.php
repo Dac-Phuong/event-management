@@ -12,10 +12,10 @@
                 <table class="table dataTable" id="Datatable">
                     <thead>
                         <tr>
-                            <th>Họ và tên</th>
+                            <th>Tên khách hàng</th>
                             <th>Địa chỉ Email</th>
                             <th>Số điện thoại</th>
-                            <th>Tên doanh nghiệp</th>
+                            <th>Gửi đến Email</th>
                             <th>Ngày gửi</th>
                         </tr>
                     </thead>
@@ -73,7 +73,7 @@
                                 data: 'phone'
                             },
                             {
-                                data: 'business_name'
+                                data: 'service_email'
                             },
                             {
                                 data: 'created_at'

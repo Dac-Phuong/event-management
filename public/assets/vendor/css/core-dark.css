@@ -110,8 +110,8 @@
   --bs-focus-ring-width: 0.15rem;
   --bs-focus-ring-opacity: 0.75;
   --bs-focus-ring-color: rgba(0, 0, 0, 0.75);
-  --bs-form-valid-color: #28c76f;
-  --bs-form-valid-border-color: #28c76f;
+  --bs-form-valid-color: #1C7CBE;
+  --bs-form-valid-border-color: #1C7CBE;
   --bs-form-invalid-color: #ea5455;
   --bs-form-invalid-border-color: #ea5455;
 }

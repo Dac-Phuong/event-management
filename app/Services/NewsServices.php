@@ -2,9 +2,10 @@
 
 namespace App\Services;
 use App\Models\News;
-use Gate;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class NewsServices extends BaseService
 {
@@ -12,7 +13,7 @@ class NewsServices extends BaseService
   {
     $this->model = new News();
   }
-  function create(array $data)
+  public function create(array $data)
   {
     $data['author_id'] = auth()->user()->id;
     try {
@@ -21,8 +22,23 @@ class NewsServices extends BaseService
         $path = parent::uploadImage($data['thumbnail']);
         $data['thumbnail'] = $path;
       }
+      $tagsId = [];
+
       $data['is_pin'] = isset($data['is_pin']) ? true : false;
-      parent::create($data);
+      $news = $this->model::create($data);
+      if (!empty($data['tags'])) {
+        $tagsArray = collect(json_decode($data['tags'], true))->pluck('value')->toArray();
+        foreach ($tagsArray as $tagName) {
+          $tag = Tag::firstOrCreate(
+            ['name' => $tagName],
+            ['slug' => Str::slug($tagName)]
+          );
+          $tagsId[] = $tag->id;
+        }
+        if (!empty($tagsId)) {
+          $news->tags()->sync($tagsId);
+        }
+      }
       DB::commit();
       return true;
     } catch (\Exception $e) {
@@ -62,7 +78,7 @@ class NewsServices extends BaseService
     }
     $query = $query->orderBy($orderByName, $orderBy);
     $recordsFiltered = $recordsTotal = $query->count();
-    $news = $query->with('category', 'author')->skip($skip)->take($pageLength)->get(['id', 'title', 'views', 'is_show', 'is_pin', 'content', 'created_at', 'new_category_id', 'author_id']);
+    $news = $query->with('category', 'author', 'tags')->skip($skip)->take($pageLength)->get(['id', 'title', 'views', 'is_show', 'is_pin', 'is_gallery', 'is_certification', 'created_at', 'new_category_id', 'author_id', 'content']);
     return [
       "draw" => $data['draw'],
       "recordsTotal" => $recordsTotal,
@@ -73,19 +89,33 @@ class NewsServices extends BaseService
   public function update(int $id, array $data)
   {
     try {
-      DB::beginTransaction();
       $news = $this->model::find($id);
-      if (!$news) {
-        DB::rollBack();
+      if (is_null($news)) {
         return false;
       }
-      if (isset($data['thumbnail']) && $data['thumbnail']) {
+      DB::beginTransaction();
+      if (!empty($data['thumbnail'])) {
         $path = parent::uploadImage($data['thumbnail']);
-        $data['thumbnail'] = $path;
+        if ($path) {
+          $data['thumbnail'] = $path;
+        }
       }
-      $data['is_pin'] = isset($data['is_pin']) ? true : false;
-      $result = parent::update($id, $data);
-      if ($result == false) {
+      if (!empty($data['tags'])) {
+        $tagsArray = collect(json_decode($data['tags'], true))->pluck('value')->toArray();
+        $tagsId = [];
+        foreach ($tagsArray as $tagName) {
+          $tag = Tag::firstOrCreate(
+            ['name' => $tagName],
+            ['slug' => Str::slug($tagName)]
+          );
+          $tagsId[] = $tag->id;
+        }
+        if (!empty($tagsId)) {
+          $news->tags()->sync($tagsId);
+        }
+      }
+      $data['is_pin'] = !empty($data['is_pin']);
+      if (!$news->update($data)) {
         DB::rollBack();
         return false;
       }
@@ -93,7 +123,7 @@ class NewsServices extends BaseService
       return true;
     } catch (\Exception $e) {
       DB::rollBack();
-      Log::error($e->getMessage());
+      Log::error('Lỗi cập nhật bài viết: ' . $e->getMessage());
       return false;
     }
   }
@@ -145,23 +175,54 @@ class NewsServices extends BaseService
       }
       $query = $this->model::query();
       $query->where('title', 'LIKE', "%{$search}%");
-      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug','thumbnail', 'new_category_id']);
+      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug', 'thumbnail', 'new_category_id']);
     } catch (\Throwable $th) {
       Log::error('Search News Error: ' . $th->getMessage());
       return [];
     }
   }
-    public function getFeature()
+  public function getFeature()
   {
     try {
       $feature = $this->getModel()
         ->with('category:id,slug')
-        ->select(['id', 'title', 'slug', 'thumbnail', 'views', 'created_at','new_category_id'])
+        ->select(['id', 'title', 'slug', 'thumbnail', 'views', 'created_at', 'new_category_id'])
         ->where('is_pin', 1)
         ->latest()
         ->limit(5)
         ->get();
       return $feature;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
+  public function getTags()
+  {
+    try {
+      $tags = Tag::all()->pluck('name')->toArray();
+      return $tags;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return [];
+    }
+  }
+  public function getTag($slug)
+  {
+    try {
+      $tags = Tag::where('slug', $slug)->first();
+      return $tags;
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return [];
+    }
+  }
+  public function getNewsByTag($slug)
+  {
+    try {
+      $news = $this->getModel()->with('author', 'category','tags')->whereHas('tags', function ($query) use ($slug)
+       { $query->where('slug', $slug);})->paginate(10);
+      return $news;
     } catch (\Throwable $th) {
       $this->handleException($th);
       return null;

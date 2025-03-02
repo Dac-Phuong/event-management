@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\News;
 use App\Models\NewsCategory;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -79,14 +80,10 @@ class NewsCategoryService extends BaseService
     }
   }
 
-  public function getBySlugWithFeature($slug)
+  public function getNewsFeature()
   {
     try {
-      $category = $this->getModel()->where('slug', $slug)->first();
-      if (!$category)
-        return null;
-      $feature = $category->news()
-        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+      $feature = News::with('category')->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at','new_category_id'])
         ->where('is_pin', 1)
         ->latest()
         ->limit(5)
@@ -106,7 +103,7 @@ class NewsCategoryService extends BaseService
         return null;
       }
       $news = $category->news()
-        ->with(['author:id,name,email'])
+        ->with('author', 'tags')
         ->where('slug', $newsSlug)
         ->orderBy('is_pin', 'desc')
         ->latest()
@@ -123,6 +120,7 @@ class NewsCategoryService extends BaseService
       return null;
     }
   }
+  
   public function delete(int $id)
   {
     try {

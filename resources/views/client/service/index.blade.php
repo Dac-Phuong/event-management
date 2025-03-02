@@ -1,7 +1,60 @@
 @extends('client.layouts.master')
 @section('title', 'Dịch vụ - ' . $service->name)
 @section('content')
+    <style>
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
 
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            border-radius: 0px !important;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .overlay .btn {
+            transition: 0.3s;
+        }
+
+        .overlay .btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
     <div class="position-relative">
         @include('client.components.breadcrumb', [
             'title' => 'Dịch vụ',
@@ -9,8 +62,8 @@
             'name' => 'Dịch vụ',
             'url' => url('dich-vu', $service->slug),
         ])
-        <div class="container py-5 ">
-            <section>
+        <section>
+            <div class="container py-5 ">
                 <div class="row">
                     <div class="col-lg-8" data-aos="fade-right">
                         <h1 class=" fw-bold fs-1 text-primary mb-1">{{ $service->name }}</h1>
@@ -34,7 +87,7 @@
 
                     </div>
                 </div>
-        </div>
+            </div>
         </section>
         <section class="py-5">
             <div class="mb-4 d-flex flex-column align-items-center">
@@ -87,12 +140,22 @@
                                 nhất, hiệu quả nhất</p>
                         </div>
                         <div id="lightgallery" class="owl-carousel owl-theme">
-                            @foreach ($images as $key => $image)
-                                <a href="{{ asset($image->image) }}" data-src="{{ asset($image->image) }}" >
-                                    <img src="{{ asset($image->image) }}" class="img-fluid" alt="Sản phẩm {{ ++$key }}" style="height: 300px" />
-                                </a>
+                            @foreach ($images as $image)
+                                <div class="gallery-item">
+                                    <a href="{{ asset($image->image) }}" data-src="{{ asset($image->image) }}" data-sub-html="<h4>{{ $image->name }}</h4>">
+                                        <img src="{{ asset($image->image) }}" class="img-fluid" alt="Sản phẩm" />
+                                    </a>
+                                    <div class="overlay">
+                                        <h4 class="text-white">Sản phẩm nổi bật</h4>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="btn btn-primary btn-sm rounded-pill"><i
+                                            class="ti ti-scan-eye me-2"></i>Xem bài viết</a>
+                                            <a href="{{ asset($image->image) }}" class="rounded-pill btn btn-light btn-sm view-image"><i
+                                            class="ti ti-zoom-pan me-2"></i>Xem ảnh</a>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
-
                         </div>
                     @endif
                 </div>
@@ -120,15 +183,16 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $("#lightgallery").owlCarousel({
+            var owl = $("#lightgallery");
+
+            owl.owlCarousel({
                 loop: true,
                 margin: 10,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
                 nav: false,
                 dots: false,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
                 responsive: {
                     0: {
                         items: 1
@@ -139,11 +203,23 @@
                     1000: {
                         items: 3
                     },
-                },
+                }
             });
 
             lightGallery(document.getElementById("lightgallery"), {
-                selector: "a",
+                selector: ".view-image",
+                zoom: false,
+                fullScreen: false,
+                showInlineComments:false,
+                showComments: false,
+                share: false,
+                counter: false,
+                download: false,
+                rotate: false,
+                flipHorizontal: false,
+                flipVertical: false,
+                toggleThumb: false,
+                thumbnail: true,
             });
         });
     </script>
@@ -159,3 +235,4 @@
         });
     </script>
 @endpush
+

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\IntroduceController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
@@ -51,7 +52,7 @@ Route::get('/dich-vu/{slug}', [ClientServiceController::class, 'index'])->name('
 Route::get('/blog/{slug}', [ClientNewsController::class, 'index'])->name('news');
 Route::get('/blog/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
 Route::post('/news/search', [ClientNewsController::class, 'searchNews'])->name('news.search');
-
+Route::get('/tag/{slug}', [ClientNewsController::class, 'tag'])->name('tag');
 Route::get('/tuyen-dung', [ClientRecruitmentController::class, 'index'])->name('recruitment');
 Route::get('/tuyen-dung/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
 Route::get('/du-an/{slug}', [ClientProjectController::class, 'index'])->name('project');
@@ -120,6 +121,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/get/content', [NewsController::class, 'getContent'])->name('news.get.content');
             Route::post('/update/content', [NewsController::class, 'content'])->name('news.update.content');
             Route::post('/delete', [NewsController::class, 'destroy'])->name('news.delete');
+            Route::get('/get/tags', [NewsController::class, 'tags'])->name('news.get.tags');
         });
         // Service
         Route::group(['prefix' => 'service'], function () {

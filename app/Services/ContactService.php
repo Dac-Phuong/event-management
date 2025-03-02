@@ -43,7 +43,7 @@ class ContactService extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->skip($skip)->take($pageLength)->get(['id', 'fullname', 'business_name', 'email', 'created_at', 'phone', 'message']);
+        $service = $query->skip($skip)->take($pageLength)->get(['id', 'fullname', 'service_email', 'email', 'created_at', 'phone', 'message']);
 
         return [
             "draw" => $data['draw'],

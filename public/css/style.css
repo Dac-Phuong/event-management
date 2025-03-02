@@ -543,13 +543,19 @@
 }
 
 .text-hover:hover {
-  color: #7367F0 !important;
+  color: #166CB0 !important;
 }
 
 #phone-vr .phone-vr-circle-fill {
   box-shadow: 0 0 0 0 #e60808;
   background-color: #e60808a1;
 }
+
+#youtube-vr .phone-vr-circle-fill {
+  box-shadow: 0 0 0 0 #e60808;
+  background-color: #e60808a1;
+}
+
 
 #phone-vr .phone-vr-img-circle img {
   filter: brightness(0) invert(1) !important;

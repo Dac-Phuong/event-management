@@ -84,4 +84,9 @@ class NewsController extends Controller
     }
     return jsonResponse(1);
   }
+  public function tags(Request $request)
+  {
+    $tags = $this->newsService()->getTags();
+    return jsonResponse(0, $tags);
+  }
 }

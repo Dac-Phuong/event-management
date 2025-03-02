@@ -131,8 +131,8 @@
                                         resultsContainer.append(
                                             `<li class="list-group-item result-item p-2"> 
                                                 <a href="${item.category.slug}/${item.slug}" class="text-decoration-none d-flex align-items-center">
-                                                    <div class="avatar me-2" style="width: 50px; height: 30px;">
-                                                        <img src="${item.thumbnail}" width="100%" alt="Avatar" class="rounded-circle">
+                                                    <div class="avatar me-2" >
+                                                        <img src="${item.thumbnail}" style="width: 30px; height: 30px;" alt="Avatar" class="rounded-circle">
                                                     </div>
                                                     <span class="text-uppercase text-list text-hover">${item.title}</span>
                                                 </a>

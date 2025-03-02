@@ -240,6 +240,17 @@
                     </div>
                 </div>
             </div>
+             <div id="youtube-vr" class="button-contact">
+                <div class="phone-vr">
+                    <div class="phone-vr-circle-fill"></div>
+                    <div class="phone-vr-img-circle" >
+                        <a target="_blank" href="#" class="social-youtube">
+                             <img src="{{ asset('assets/files/icons/icon-youtube.webp') }}" width="25" height="25" class="lazyloading"
+                                data-was-processed="true">
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div id="button-scroll-to-top" class="position-fixed"
                 style="display: none; bottom: 90px; right: 23px; z-index: 9999;">
                 <div class="avatar avatar-md me-2" id="scroll-to-top">

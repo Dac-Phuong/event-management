@@ -5,19 +5,15 @@
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
-            border: 1px solid #ccc;
+            margin: 5px;
         }
 
         .owl-carousel .item img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
             padding: 10px;
             transition: transform 0.3s ease-in-out;
-        }
-
-        .owl-carousel .item:hover img {
-            transform: scale(1.05);
         }
 
         .owl-dots {
@@ -47,11 +43,8 @@
             justify-content: center;
             cursor: pointer;
             pointer-events: all;
+            margin-right: 20px;
             transition: background 0.3s ease-in-out;
-        }
-
-        .custom-nav button:hover {
-            background: black;
         }
 
         .modal-img {
@@ -64,6 +57,21 @@
             box-shadow: none !important;
             position: absolute;
         }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+            padding: 10px;
+        }
     </style>
     <div class="container pb-5">
         <div class="row" data-aos="fade-up">
@@ -74,47 +82,23 @@
                 <hr class="hr-title mt-0 mb-4">
             </div>
             <div class="position-relative">
-                <div id="certification" class="owl-carousel owl-theme">
-                    <div class="item" data-img="{{ asset('/assets/files/certification/1.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/1.jpg') }}" alt="Ảnh 1">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/2.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/2.jpg') }}" alt="Ảnh 2">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/3.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/3.jpg') }}" alt="Ảnh 3">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/4.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/4.jpg') }}" alt="Ảnh 4">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/5.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/5.jpg') }}" alt="Ảnh 5">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/6.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/6.jpg') }}" alt="Ảnh 6">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/7.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/7.jpg') }}" alt="Ảnh 7">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/8.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/8.jpg') }}" alt="Ảnh 8">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/9.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/9.jpg') }}" alt="Ảnh 9">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/10.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/10.jpg') }}" alt="Ảnh 10">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/11.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/11.jpg') }}" alt="Ảnh 11">
-                    </div>
-                    <div class="item" data-img="{{ asset('/assets/files/certification/12.jpg') }}">
-                        <img src="{{ asset('/assets/files/certification/12.jpg') }}" alt="Ảnh 12">
-                    </div>
+                <div id="certification" class="owl-carousel owl-theme p-3">
+                    @foreach ($certification as $item)
+                        <div class="item gallery-item rounded shadow-sm card my-2">
+                            <div class="show-image" data-img="{{ asset($item->thumbnail) }}">
+                                <img src="{{ asset($item->thumbnail) }}" alt="Ảnh " class="img-fluid ">
+                            </div>
+                            <div class="px-2">
+                                <a href="{{ asset('blog/'. $item->category->slug . '/' . $item->slug) }}" class="text-decoration-none">
+                                    <h4 class="fs-6 text-hover text-center">{{ $item->title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <!-- Nút Next / Prev -->
                 <div class="custom-nav">
-                    <button id="prevBtn" class="bg-primary" style="margin-left: -15px"><i
+                    <button id="prevBtn" class="bg-primary"><i
                             class="ti ti-chevron-left fs-3"></i></button>
                     <button id="nextBtn" class="bg-primary"><i class="ti ti-chevron-right fs-3"></i></button>
                 </div>
@@ -147,33 +131,37 @@
                 nav: false,
                 dots: false,
                 autoplay: true,
-                autoplayTimeout: 1000,
+                autoplayTimeout: 3000, 
                 autoplayHoverPause: true,
                 responsive: {
                     0: {
-                        items: 2
+                        items: 1
                     },
                     600: {
                         items: 3
                     },
                     1000: {
                         items: 5
-                    }
+                    },
                 }
             });
 
+            // Nút điều khiển thủ công
             $("#prevBtn").click(function() {
                 owl.trigger("prev.owl.carousel");
             });
             $("#nextBtn").click(function() {
                 owl.trigger("next.owl.carousel");
             });
-            $(".owl-carousel .item").click(function(event) {
+
+            $(".show-image").click(function(event) {
                 event.preventDefault();
                 var imgSrc = $(this).attr("data-img");
                 $("#modalImage").attr("src", imgSrc);
                 $("#imageModal").modal("show");
             });
+
         });
     </script>
 @endpush
+

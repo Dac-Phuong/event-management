@@ -24,10 +24,13 @@ class StoreNewsRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "new_category_id" => "required|exists:news_categories,id",
             "title" => "required",
             "content" => "required",
-            "new_category_id" => "required|exists:news_categories,id",
             "is_pin" => "nullable",
+            "is_gallery" => "nullable",
+            "is_certification" => "nullable",
+            "tags" => "nullable",
             "slug" => "required",
             "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "is_show" => "required",

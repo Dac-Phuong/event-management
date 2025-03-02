@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('slug')->nullable();
             $table->integer('is_show')->default(0);
+            $table->integer('is_gallery')->default(0);
+            $table->integer('is_certification')->default(0);
             $table->unsignedBigInteger('author_id');
             $table->boolean('is_pin')->default(false);
             $table->timestamps();

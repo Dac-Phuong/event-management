@@ -92,7 +92,7 @@
   --bs-link-color: #7367f0;
   --bs-link-color-rgb: 115, 103, 240;
   --bs-link-decoration: none;
-  --bs-link-hover-color: #685dd8;
+  --bs-link-hover-color: #166CB0;
   --bs-link-hover-color-rgb: 104, 93, 216;
   --bs-code-color: #e83e8c;
   --bs-highlight-color: #6f6b7d;
@@ -115,8 +115,8 @@
   --bs-focus-ring-width: 0.15rem;
   --bs-focus-ring-opacity: 0.75;
   --bs-focus-ring-color: rgba(75, 70, 92, 0.75);
-  --bs-form-valid-color: #28c76f;
-  --bs-form-valid-border-color: #28c76f;
+  --bs-form-valid-color: #1C7CBE;
+  --bs-form-valid-border-color: #1C7CBE;
   --bs-form-invalid-color: #ea5455;
   --bs-form-invalid-border-color: #ea5455;
 }

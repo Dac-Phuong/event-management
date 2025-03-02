@@ -31,7 +31,16 @@
                         </div>
                     </div>
                     <div class="news-content">{!! $data['news']->description !!}</div>
-                </div>
+                    <div class="d-flex align-items-center mb-3">
+                        @if (!empty($data['news']->tags))
+                            <p class="mb-0"><i class="ti ti-tag me-1"></i>Tags:
+                                @foreach ($data['news']->tags as $tag)
+                                    <a href="{{ url('tag/' . $tag->slug) }}" class="badge bg-label-primary rounded-pill me-2 fw-bold">{{ $tag->name }}</a>
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                </div>  
                 <div class="col-md-3" data-aos="fade-left">
                     <div class="card">
                         <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png"
@@ -49,7 +58,8 @@
                             <ul class="list-group list-group-flush border-bottom">
                                 @foreach ($data['categories'] as $item)
                                     <li class="list-group-item">
-                                        <a href="{{ url('blog/'.$item->slug) }}" class="text-list text-hover">{{ $item->name }}</a>
+                                        <a href="{{ url('blog/' . $item->slug) }}"
+                                            class="text-list text-hover">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -63,7 +73,8 @@
                             <div class="list-group">
                                 @if (count($data['feature']) > 0)
                                     @foreach ($data['feature'] as $item)
-                                        <a href="{{url( 'blog/' . $data['category']->slug . '/' . $item->slug) }}" class="text-decoration-none mb-2">
+                                        <a href="{{ url('blog/' . $item['category']->slug . '/' . $item->slug) }}"
+                                            class="text-decoration-none mb-2">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <img class="card-img " height="70" width="50"
                                                     src="{{ asset($item->thumbnail) }}" alt="Card image"
@@ -132,8 +143,8 @@
                                         resultsContainer.append(
                                             `<li class="list-group-item result-item p-2"> 
                                                 <a href="${item.category.slug}/${item.slug}" class="text-decoration-none d-flex align-items-center">
-                                                    <div class="avatar me-2" style="width: 50px; height: 30px;">
-                                                        <img src="${item.thumbnail}" width="100%" alt="Avatar" class="rounded-circle">
+                                                    <div class="avatar me-2">
+                                                        <img src="${item.thumbnail}" style="width: 30px; height: 30px;" alt="Avatar" class="rounded-circle">
                                                     </div>
                                                     <span class="text-uppercase text-list text-hover">${item.title}</span>
                                                 </a>

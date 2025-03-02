@@ -142,7 +142,7 @@ abstract class BaseService
     }
   }
 
-  public function uploadImage(UploadedFile $file)
+  public function uploadImage(UploadedFile $file, $folder = null)
   {
     try {
       $filename = 'image-' . uniqid() . '.' . $file->getClientOriginalExtension();

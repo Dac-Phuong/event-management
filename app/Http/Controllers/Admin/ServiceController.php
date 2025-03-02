@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Service\Store;
 use App\Http\Requests\Admin\Service\Update;
+use App\Models\News;
 use App\Services\Services;
 class ServiceController extends Controller
 {
     public function index()
     {
-        return view("admin.service.index");
+        $news = News::where('is_show',1)->get();
+        return view("admin.service.index",compact('news'));
     }
     public function service()
     {

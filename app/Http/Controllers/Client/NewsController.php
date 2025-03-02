@@ -14,7 +14,7 @@ class NewsController extends Controller
     {
         $slug = $request->route('slug');
         $data = $this->newsCategoryService()->getBySlug($slug);
-        $feature = $this->newsCategoryService()->getBySlugWithFeature($slug);
+        $feature = $this->newsCategoryService()->getNewsFeature();
         $data['categories'] = $this->newsCategoryService()->getAll();
         $data['feature'] = $feature;
         return view('client.news.index', compact('data'));
@@ -22,7 +22,7 @@ class NewsController extends Controller
     public function detail($categorySlug, $newsSlug)
     {
         $data = $this->newsCategoryService()->getBySlugDetail($categorySlug, $newsSlug);
-        $feature = $this->newsCategoryService()->getBySlugWithFeature($categorySlug);
+        $feature = $this->newsCategoryService()->getNewsFeature();
         $data['categories'] = $this->newsCategoryService()->getAll();
         $data['feature'] = $feature;
         return view('client.news.detail', compact('data'));
@@ -32,6 +32,15 @@ class NewsController extends Controller
         $data = $request->validated();
         $result = $this->newsService()->searchNews($data);
         return jsonResponse(0, $result);
+    }
+    public function tag(Request $request)
+    {
+        $slug = $request->route('slug');
+        $data = $this->newsService()->getNewsByTag($slug);
+        $categories = $this->newsCategoryService()->getAll();
+        $feature = $this->newsCategoryService()->getNewsFeature();
+        $tag = $this->newsService()->getTag($slug);
+        return view('client.news.tag', compact('data', 'categories', 'feature','tag'));
     }
     public function newsService()
     {

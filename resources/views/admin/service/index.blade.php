@@ -34,7 +34,7 @@
         </div>
         @include('admin.service.create')
         @include('admin.service.edit')
-        @include('admin.service.add-image')
+        @include('admin.service.add-news')
     </div>
 @endsection
 
@@ -89,9 +89,7 @@
                         $('.input-images').empty();
                         const data = getRowData($(this).closest('tr'));
                         $('#addImage input[name="id"]').val(data.id);
-                        $('.input-images').imageUploader({
-                            preloaded: data.images
-                        });
+                        
                         $('#modal-add-image').modal('show');
                     })
                     $(document).on('click', '.btn-edit', function() {

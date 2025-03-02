@@ -93,8 +93,45 @@
                         $('#editNews input[name="title"]').val(data.title);
                         $('#editNews select[name="status"]').val(data.status);
                         $('#editNews input[name="is_pin"]').prop('checked', data.is_pin == 1);
+                        $('#gallery1').prop('checked', data.is_gallery == 1);
+                        $('#certification1').prop('checked', data.is_certification == 1);
                         $('#editNews select[name="new_category_id"]').val(data.new_category_id);
                         $('#editNews textarea[name="content"]').html(data.content);
+                        $.ajax({
+                            url: "{{ route('news.get.tags') }}",
+                            type: "GET",
+                            dataType: 'json',
+                            success: function(res) {
+                                if (res.error_code == -1) {
+                                    let error = res.data;
+                                    toastr.error(error);
+                                } else if (res.error_code == 0) {
+                                    if (!$('#TagifyCustomInlineSuggestion1').data('tagifyInstance')) {
+                                        const tagifyEl = document.querySelector("#TagifyCustomInlineSuggestion1");
+                                        let tagifyInstance = new Tagify(tagifyEl, {
+                                            whitelist: res?.data,
+                                            maxTags: 5,
+                                            dropdown: {
+                                                maxItems: 20,
+                                                enabled: 0,
+                                                classname: "tags-inline",
+                                                closeOnSelect: false
+                                            }
+                                        });
+                                        tagifyInstance.addTags(data.tags.map(t => t.name));
+                                        $('#TagifyCustomInlineSuggestion1').data('tagifyInstance',
+                                            tagifyInstance);
+                                    } else {
+                                        let tagifyInstance = $('#TagifyCustomInlineSuggestion1').data(
+                                            'tagifyInstance');
+                                        tagifyInstance.removeAllTags();
+                                        tagifyInstance.addTags(data.tags.map(t => t.name));
+                                    }
+                                } else {
+                                    console.log(res);
+                                }
+                            }
+                        })
                         $('#modal-news-edit').modal('show');
                     })
                     $(document).on('click', '.btn-content', function() {

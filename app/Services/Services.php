@@ -39,7 +39,6 @@ class Services extends BaseService
                 DB::rollBack();
                 return false;
             }
-
             if (!empty($data['images'])) { 
                 foreach ($data['images'] as $image) {
                     $path = parent::uploadImage($image);

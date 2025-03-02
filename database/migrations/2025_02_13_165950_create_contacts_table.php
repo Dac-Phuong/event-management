@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('email');
             $table->string('phone');
             $table->string('business_name')->nullable();
+            $table->string('service_email')->nullable();
             $table->integer('status')->default(0);
             $table->text('message')->nullable();
             $table->timestamps();

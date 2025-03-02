@@ -13,12 +13,14 @@ class News extends Model
     protected $fillable = [
         "title",
         "content",
-        "is_show",
-        "is_pin",
         "new_category_id",
         "description",
         "thumbnail",
         "views",
+        "is_show",
+        "is_pin",
+        "is_gallery",
+        "is_certification",
         'author_id',
         'slug',
     ];
@@ -30,5 +32,9 @@ class News extends Model
     public function category()
     {
         return $this->belongsTo(NewsCategory::class, 'new_category_id');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'news_tags');
     }
 }
