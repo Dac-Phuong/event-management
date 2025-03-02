@@ -165,8 +165,10 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
     <div class="offcanvas-header pb-2">
         <a href="{{ url('/') }}" class="app-brand-link">
-            <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value) }}"
-                alt="Logo">
+              @if (!empty($config->value))
+                <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value ?? '') }}"
+                    alt="Logo">
+            @endif
         </a>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
