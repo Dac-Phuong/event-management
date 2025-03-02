@@ -79,7 +79,10 @@
     <div class="container">
 
         <a href="{{ url('/') }}" class="app-brand-link">
-            <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value) }}" alt="Logo">
+            @if (isset($config->value))
+                <img width="60" height="60" style="object-fit: contain" src="{{ asset($config->value) }}"
+                    alt="Logo">
+            @endif
         </a>
         <button class="navbar-toggler mobile-menu" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#mobileMenu">
