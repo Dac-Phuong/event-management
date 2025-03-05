@@ -44,10 +44,10 @@ class ServiceController extends Controller
         }
         return jsonResponse(1);
     }
-    public function createImage(Request $request)
+    public function addNews(Request $request)
     {
         $data = $request->all();
-        $service = $this->service()->createImage($data['id'], $data);
+        $service = $this->service()->addNews($data['id'], $data);
         if ($service) {
             return jsonResponse(0);
         }

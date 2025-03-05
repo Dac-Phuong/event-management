@@ -126,8 +126,7 @@ Route::group(['prefix' => 'admin'], function () {
         // Service
         Route::group(['prefix' => 'service'], function () {
             Route::get('/', [ServiceController::class, 'index'])->name('service.index');
-            Route::post('/create/image', [ServiceController::class, 'createImage'])->name('service.create.image');
-            Route::get('/delete/image/{id}', [ServiceController::class, 'deleteImage'])->name('service.delete.image');
+            Route::post('/add/news', [ServiceController::class, 'addNews'])->name('service.add.news');
             Route::post('/store', [ServiceController::class, 'store'])->name('service.store');
             Route::post('/datatable', [ServiceController::class, 'filterDataTable'])->name('service.datatable');
             Route::get('/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');

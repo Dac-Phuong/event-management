@@ -86,12 +86,20 @@
                         });
                     })
                     $(document).on('click', '.btn-add', function() {
-                        $('.input-images').empty();
                         const data = getRowData($(this).closest('tr'));
-                        $('#addImage input[name="id"]').val(data.id);
-                        
-                        $('#modal-add-image').modal('show');
-                    })
+                        $('#addNews input[name="id"]').val(data.id);
+                        let $select = $('#select2Multiple');
+                        $select.val(null).trigger('change');
+                        if (Array.isArray(data?.news_many)) {
+                            let selectedNewsIds = data.news_many.map(item => item.pivot.news_id);
+                            $select.val(selectedNewsIds).trigger('change'); 
+                        }
+
+                        $('#modal-add-news').modal('show');
+                    });
+
+
+
                     $(document).on('click', '.btn-edit', function() {
                         const data = getRowData($(this).closest('tr'));
                         $('#editService input[name="id"]').val(data.id);
@@ -175,7 +183,7 @@
                                 <div class="dropdown">
                                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item btn-add" href="javascript:void(0);"><i class="ti ti-plus me-2"></i>Thêm sản phẩm</a>
+                                    <a class="dropdown-item btn-add" href="javascript:void(0);"><i class="ti ti-plus me-2"></i>Thêm bài viết</a>
                                     <a class="dropdown-item btn-edit" href="javascript:void(0);"><i class="ti ti-pencil me-2"></i>Sửa thông tin</a>
                                     <a class="dropdown-item btn-delete" href="javascript:void(0);"><i class="ti ti-trash me-2"></i>Xóa dịch vụ</a>
                                   </div>

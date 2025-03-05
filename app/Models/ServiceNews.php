@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Introduce extends Model
+class ServiceNews extends Model
 {
     use HasFactory;
-    protected $table = "introduces";
+
+    protected $table = 'service_news';
+
     protected $fillable = [
-        "content",
+        'service_id',
+        'news_id',
     ];
 }

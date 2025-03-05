@@ -18,8 +18,8 @@ class Service extends Model
         "description",
         'slug',
     ];
-    public function images()
+    public function newsMany()
     {
-        return $this->hasMany(ServiceImage::class, 'service_id', 'id');
+        return $this->belongsToMany(News::class, 'service_news');
     }
 }

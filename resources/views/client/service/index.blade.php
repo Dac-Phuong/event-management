@@ -131,7 +131,7 @@
         <section>
             <div class="container">
                 <div class="row" data-aos="fade-up">
-                    @if (isset($images) && count($images) > 0)
+                    @if (isset($service->newsMany) && count($service->newsMany) > 0)
                         <div class="mb-4 d-flex flex-column align-items-center">
                             <h1 class="text-center fw-bold fs-1 text-primary mb-1">Sản phẩm của chúng tôi
                             </h1>
@@ -140,17 +140,17 @@
                                 nhất, hiệu quả nhất</p>
                         </div>
                         <div id="lightgallery" class="owl-carousel owl-theme">
-                            @foreach ($images as $image)
+                            @foreach ($service->newsMany as $news)
                                 <div class="gallery-item">
-                                    <a href="{{ asset($image->image) }}" data-src="{{ asset($image->image) }}" data-sub-html="<h4>{{ $image->name }}</h4>">
-                                        <img src="{{ asset($image->image) }}" class="img-fluid" alt="Sản phẩm" />
+                                    <a href="{{ asset($news->thumbnail) }}" data-src="{{ asset($news->thumbnail) }}" data-sub-html="<h4>{{ $news->title }}</h4>">
+                                        <img src="{{ asset($news->thumbnail) }}" class="img-fluid" alt="Sản phẩm" />
                                     </a>
                                     <div class="overlay">
-                                        <h4 class="text-white">Sản phẩm nổi bật</h4>
+                                        <h4 class="text-white">{{$news->title}}</h4>
                                         <div class="d-flex gap-2">
-                                            <a href="#" class="btn btn-primary btn-sm rounded-pill"><i
+                                            <a href="{{ asset('blog/'. $news->category->slug . '/' . $news->slug) }}" class="btn btn-primary btn-sm rounded-pill"><i
                                             class="ti ti-scan-eye me-2"></i>Xem bài viết</a>
-                                            <a href="{{ asset($image->image) }}" class="rounded-pill btn btn-light btn-sm view-image"><i
+                                            <a href="{{ asset($news->thumbnail) }}" class="rounded-pill btn btn-light btn-sm view-image"><i
                                             class="ti ti-zoom-pan me-2"></i>Xem ảnh</a>
                                         </div>
                                     </div>

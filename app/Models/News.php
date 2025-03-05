@@ -37,4 +37,8 @@ class News extends Model
     {
         return $this->belongsToMany(Tag::class, 'news_tags');
     }
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_news');
+    }
 }

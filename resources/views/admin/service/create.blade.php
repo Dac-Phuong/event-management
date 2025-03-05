@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
-                        <input type="file" id="image" class="form-control" name="thumbnail" >
+                        <input type="file" id="image" class="form-control" name="thumbnail">
                     </div>
                     <div class="mb-3">
                         <label for="datetime" class="form-label">Trạng thái</label>

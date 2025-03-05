@@ -25,13 +25,12 @@
         </div>
         <div class="menu-inner-shadow"></div>
         <ul class="menu-inner py-1">
-            <li class="menu-item {{ request()->routeIs('statistical') ? 'active' : '' }}">
+            {{-- <li class="menu-item {{ request()->routeIs('statistical') ? 'active' : '' }}">
                 <a href="{{ url('admin') }}" class="menu-link">
                     <i class="menu-icon ti ti-layout-dashboard"></i>
                     <div>Thống kê</div>
                 </a>
-            </li>
-
+            </li> --}}
             <li class="menu-item {{ request()->routeIs('settings') ? 'active' : '' }}">
                 <a href="{{ url('admin/settings') }}" class="menu-link">
                     <i class="menu-icon ti ti-settings"></i>

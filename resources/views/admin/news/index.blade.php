@@ -106,8 +106,10 @@
                                     let error = res.data;
                                     toastr.error(error);
                                 } else if (res.error_code == 0) {
-                                    if (!$('#TagifyCustomInlineSuggestion1').data('tagifyInstance')) {
-                                        const tagifyEl = document.querySelector("#TagifyCustomInlineSuggestion1");
+                                    if (!$('#TagifyCustomInlineSuggestion1').data(
+                                            'tagifyInstance')) {
+                                        const tagifyEl = document.querySelector(
+                                            "#TagifyCustomInlineSuggestion1");
                                         let tagifyInstance = new Tagify(tagifyEl, {
                                             whitelist: res?.data,
                                             maxTags: 5,
@@ -119,10 +121,12 @@
                                             }
                                         });
                                         tagifyInstance.addTags(data.tags.map(t => t.name));
-                                        $('#TagifyCustomInlineSuggestion1').data('tagifyInstance',
+                                        $('#TagifyCustomInlineSuggestion1').data(
+                                            'tagifyInstance',
                                             tagifyInstance);
                                     } else {
-                                        let tagifyInstance = $('#TagifyCustomInlineSuggestion1').data(
+                                        let tagifyInstance = $(
+                                            '#TagifyCustomInlineSuggestion1').data(
                                             'tagifyInstance');
                                         tagifyInstance.removeAllTags();
                                         tagifyInstance.addTags(data.tags.map(t => t.name));

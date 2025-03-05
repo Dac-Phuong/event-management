@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Service;
-use App\Models\ServiceImage;
+use App\Models\ServiceNews;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -39,10 +39,10 @@ class Services extends BaseService
                 DB::rollBack();
                 return false;
             }
-            if (!empty($data['images'])) { 
+            if (!empty($data['images'])) {
                 foreach ($data['images'] as $image) {
                     $path = parent::uploadImage($image);
-                    $service->images()->create([ 
+                    $service->images()->create([
                         'service_id' => $id,
                         'image' => $path
                     ]);
@@ -88,7 +88,7 @@ class Services extends BaseService
         }
         $query = $query->orderBy($orderByName, $orderBy);
         $recordsFiltered = $recordsTotal = $query->count();
-        $service = $query->with('images')->skip($skip)->take($pageLength)->get(['id','url', 'name', 'status', 'description', 'content', 'created_at', 'thumbnail']);
+        $service = $query->with(['newsMany:id,title'])->skip($skip)->take($pageLength)->get(['id', 'url', 'name', 'status', 'description', 'content', 'created_at', 'thumbnail']);
 
         return [
             "draw" => $data['draw'],
@@ -124,26 +124,22 @@ class Services extends BaseService
         }
     }
 
-    public function content(int $id, array $data)
+    public function getBySlug(string $slug)
     {
         try {
-            DB::beginTransaction();
-            $model = $this->model::find($id);
-            if (!$model) {
-                DB::rollBack();
-                return false;
-            }
-            $model->description = $data['content'];
-            $model->save();
-
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error($e->getMessage());
+            return $this->getModel()
+                ->with([
+                    'newsMany:id,title,thumbnail,new_category_id,slug',
+                    'newsMany.category:id,slug', 
+                ])
+                ->where('slug', $slug)
+                ->first();
+        } catch (\Throwable $th) {
+            $this->handleException($th);
             return false;
         }
     }
+
     public function delete(int $id)
     {
         try {
@@ -162,39 +158,33 @@ class Services extends BaseService
             return false;
         }
     }
-    public function deleteImage(int $id)
+
+    public function addNews(string $id, array $data)
     {
         try {
-            DB::beginTransaction();
-            $model = ServiceImage::find($id);
-            if (!$model) {
-                DB::rollBack();
-                return false;
-            }
-            $model->delete();
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error($e->getMessage());
-            return false;
-        }
-    }
-    public function getImage(string $slug)
-    {
-        try {
-            $service = $this->model::where('slug', $slug)->first();
+            $service = $this->model::find($id);
             if (!$service) {
                 return [];
             }
-            $model = ServiceImage::where('service_id', $service->id)->get();
-            if (!$model) {
-                return [];
+            $existingNewsIds = ServiceNews::where('service_id', $service->id)->pluck('news_id')->toArray();
+            $newNewsIds = $data['news_id'];
+
+            $newsToDelete = array_diff($existingNewsIds, $newNewsIds);
+            if (!empty($newsToDelete)) {
+                ServiceNews::where('service_id', $service->id)
+                    ->whereIn('news_id', $newsToDelete)
+                    ->delete();
             }
-            return $model;
+            $newsToAdd = array_diff($newNewsIds, $existingNewsIds);
+            foreach ($newsToAdd as $newsId) {
+                ServiceNews::create(['service_id' => $service->id, 'news_id' => $newsId]);
+            }
+
+            return $service;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return [];
         }
     }
+
 }

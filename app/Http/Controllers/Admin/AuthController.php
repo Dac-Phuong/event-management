@@ -31,9 +31,9 @@ class AuthController extends Controller
                 return redirect()->back()->with('error', 'Tài khoản hoặc mật khẩu không chính xác');
             }
             if (Auth::user()->status !== 1) {
-                return redirect()->back()->with('error', 'Tài khoản của bạn đã bị khóa');
+                return redirect()->back()->with('error', 'Bạn không có quyền đăng nhập vào hệ thống quản lý');
             }
-            return redirect('admin');
+            return redirect('admin/settings');
         }
     }
     public function logout()

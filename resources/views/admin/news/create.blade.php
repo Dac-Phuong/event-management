@@ -22,9 +22,10 @@
                         <textarea id="basic-default-message" class="form-control" placeholder="" name="content"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="TagifyCustomInlineSuggestion" class="form-label">Tag (mỗi thẻ tag cách nhau bằng dấu phẩy ",")</label>
-                        <input id="TagifyCustomInlineSuggestion" name="tags"
-                            class="form-control" placeholder="Thẻ tags">
+                        <label for="TagifyCustomInlineSuggestion" class="form-label">Tag (mỗi thẻ tag cách nhau bằng dấu
+                            phẩy ",")</label>
+                        <input id="TagifyCustomInlineSuggestion" name="tags" class="form-control"
+                            placeholder="Thẻ tags">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Ảnh</label>
@@ -74,69 +75,81 @@
 </div>
 @push('scripts')
     <script>
-         $(".select2").select2();
-        $(".close-modal").click(function() {
-            $('#modal-news').modal('hide');
-            $('#addNews input[name="switches-stacked-radio"]').prop('checked', false);
-        });
-        $("#addNews").submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData($("#addNews")[0]);
-            const slug = $("#news-title").val();
-            const is_gallery = $("#gallery").is(':checked') ? 1 : 0;
-            const is_certification = $("#certification").is(':checked') ? 1 : 0;
-            formData.append("is_gallery", is_gallery);
-            formData.append("is_certification", is_certification);
-            formData.append("slug", toSlug(slug));
-            formData.append("_token", "{{ csrf_token() }}");
-            $.ajax({
-                url: "{{ route('news.store') }}",
-                type: "POST",
-                data: formData,
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                success: function(res) {
-                    if (res.error_code == -1) {
-                        let error = res.data;
-                        toastr.error(error);
-                    } else if (res.error_code == 0) {
-                        toastr.success("Thêm thành công");
-                        $("#addNews")[0].reset();
-                        $('#modal-news').modal('hide');
-                        $('#DatatableNews').DataTable().ajax.reload();
-                    } else {
-                        toastr.error("Thêm thất bại, thử lại sau");
-                    }
-                }
-            })
-        });
-    </script>
-    <script>
-        const TagifyCustomInlineSuggestionEl = document.querySelector("#TagifyCustomInlineSuggestion");
-        $.ajax({
-            url: "{{ route('news.get.tags') }}",
-            type: "GET",
-            dataType: 'json',
-            success: function(res) {
-                if (res.error_code == -1) {
-                    let error = res.data;
-                    toastr.error(error);
-                } else if (res.error_code == 0) {
-                    let TagifyBasic = new Tagify(TagifyCustomInlineSuggestionEl, {
-                        whitelist: res.data,
-                        maxTags: 5, 
-                        dropdown: {
-                            maxItems: 20,
-                            classname: "tags-inline", 
-                            enabled: 0,
-                            closeOnSelect: false
+        $(document).ready(function () {
+            const TagifyCustomInlineSuggestionEl = document.querySelector("#TagifyCustomInlineSuggestion");
+            let TagifyBasic;
+            function getTags() {
+                $.ajax({
+                    url: "{{ route('news.get.tags') }}?t=" + new Date().getTime(), 
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.error_code == -1) {
+                            toastr.error(res.data);
+                        } else if (res.error_code == 0) {
+                            if (TagifyBasic) {
+                                TagifyBasic.destroy();
+                            }
+                            TagifyBasic = new Tagify(TagifyCustomInlineSuggestionEl, {
+                                whitelist: res.data,
+                                maxTags: 5,
+                                dropdown: {
+                                    maxItems: 20,
+                                    classname: "tags-inline",
+                                    enabled: 0,
+                                    closeOnSelect: false
+                                }
+                            });
+                            TagifyBasic.removeAllTags();
+                        } else {
+                            console.log(res);
                         }
-                    });
-                } else {
-                    console.log(res);
-                }
+                    }
+                });
             }
-        })
+
+            getTags();
+
+            $(".close-modal").click(function () {
+                $('input[name="switches-stacked-radio"]').prop('checked', false);
+                $('#modal-news').modal('hide');
+            });
+
+            $("#addNews").submit(function (e) {
+                e.preventDefault();
+                let formData = new FormData($("#addNews")[0]);
+                const slug = $("#news-title").val();
+                const is_gallery = $("#gallery").is(':checked') ? 1 : 0;
+                const is_certification = $("#certification").is(':checked') ? 1 : 0;
+                formData.append("is_gallery", is_gallery);
+                formData.append("is_certification", is_certification);
+                formData.append("slug", toSlug(slug));
+                formData.append("_token", "{{ csrf_token() }}");
+                $.ajax({
+                    url: "{{ route('news.store') }}",
+                    type: "POST",
+                    data: formData,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.error_code == -1) {
+                            toastr.error(res.data);
+                        } else if (res.error_code == 0) {
+                            toastr.success("Thêm thành công");
+                            $("#addNews")[0].reset();
+                            $('#modal-news').modal('hide');
+                            $('#DatatableNews').DataTable().ajax.reload();
+                            setTimeout(() => {
+                                getTags(); 
+                            }, 500);
+                        } else {
+                            toastr.error("Thêm thất bại, thử lại sau");
+                        }
+                    }
+                });
+            });
+
+        });
     </script>
 @endpush
