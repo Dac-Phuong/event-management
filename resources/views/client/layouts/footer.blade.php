@@ -56,7 +56,7 @@
             justify-content: center;
             font-size: 24px;
             cursor: pointer;
-            right: 33px;
+            right: 30px;
             bottom: 20px;
             transition: transform 0.3sease;
         }
@@ -344,7 +344,7 @@
                 </div>
             </div>
             <div id="button-scroll-to-top" class="button-contact">
-                <div class="avatar avatar-md me-2" id="scroll-to-top">
+                <div class="avatar avatar-md" id="scroll-to-top">
                     <span class="avatar-initial rounded-circle bg-primary"> <i
                             class="ti ti-square-rounded-arrow-up fs-3 text-white"></i></span>
                 </div>
