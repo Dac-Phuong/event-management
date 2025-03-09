@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
     <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
-
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ '/css/style.css' }}" />
     <!-- Helpers -->
@@ -59,7 +58,6 @@
 @endphp
 
 <body>
-    <!-- Layout wrapper -->
     <div>
         <header>
             @include('client.layouts.header')
@@ -71,10 +69,6 @@
             @include('client.layouts.footer')
         </footer>
     </div>
-    <!-- / Layout wrapper -->
-    <!-- Core JS -->
-    <!-- Vendors JS -->
-
     <script src="{{ '/assets/vendor/libs/jquery/jquery.js' }}"></script>
     <script src="{{ '/assets/js/gg-map.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
@@ -84,9 +78,7 @@
     <script src="{{ '/assets/vendor/js/dropdown-hover.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.js' }}"></script>
-    <!-- Main JS -->
     <script src="{{ '/assets/js/main.js' }}"></script>
-    <!-- Page JS -->
     <script src="{{ '/assets/js/dashboards-analytics.js' }}"></script>
     <script src="{{ '/assets/js/tables-datatables-advanced.js' }}"></script>
     <script src="{{ '/assets/js/three.min.js' }}"></script>
@@ -97,8 +89,6 @@
     <script src="{{ '/assets/js/dflip.min.js' }}"></script>
     <script src="{{ '/assets/js/lightgallery.js' }}"></script>
     <script src="{{ '/assets/js/owl.carousel.min.js' }}"></script>
-
-
     <script>
         AOS.init();
         const formatDateTime = (dateTime) => {
@@ -116,6 +106,7 @@
     <script>
         $(document).ready(function() {
             function getConfig() {
+                $('#map-loading').show();
                 $.ajax({
                     url: '/get-config',
                     method: 'GET',
@@ -144,12 +135,18 @@
                             $('#map-iframe').attr('src',
                                 `https://www.google.com/maps/d/embed?mid=${res.data.base_map_id}&z=5&center=14.0583,108.2772`
                             );
+                            $('#map-iframe').on('load', function() {
+                                $('#map-loading').addClass('d-none');
+                                 $(this).show();
+                            })
                         } else {
                             console.log(res.data);
                         }
+                        $('.loading').removeClass('d-block')
                     },
                     error: function(error) {
                         console.log(error);
+                        $('.loading').removeClass('d-block')
                     }
 
                 })

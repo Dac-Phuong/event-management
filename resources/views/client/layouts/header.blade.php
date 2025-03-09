@@ -127,7 +127,6 @@
                         href="{{ url('tuyen-dung') }}">Tuyển dụng</a></li>
             </ul>
             <ul class="navbar-nav flex-row align-items-center ms-auto">
-
                 <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-1">
                     <a class="nav-link color dropdown-toggle hide-arrow" style="cursor: pointer;">
                         <i class="ti ti-lg ti-sun"></i>

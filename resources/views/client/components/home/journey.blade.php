@@ -78,9 +78,14 @@
                      </div>
                  </div>
                  <div class="col-md-6 mt-3 mt-md-0">
-                     <div class="card w-100 h-100 p-2" data-aos="fade-up">
+                     <div class="card w-100 h-100 p-2" data-aos="fade-up" style="z-index: 1">
+                         <div id="map-loading" class="d-flex justify-content-center align-items-center w-100 h-100" style="border-radius: 12px; min-height: 500px;">
+                             <div class="spinner-border text-primary" role="status">
+                                 <span class="visually-hidden">Loading...</span>
+                             </div>
+                         </div>
                          <iframe src="https://www.google.com/maps/" id="map-iframe" frameborder="0"
-                             style="border-radius: 12px; z-index: 1; min-height: 500px ;" width="100%" height="100%">
+                             style="border-radius: 12px; z-index: 1; min-height: 500px ; display: none;" width="100%" height="100%">
                          </iframe>
                      </div>
                  </div>

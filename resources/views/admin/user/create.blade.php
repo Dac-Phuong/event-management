@@ -108,7 +108,8 @@
                         toastr.error(error);
                     } else if (res.error_code == 0) {
                         toastr.success("Thêm thành công!");
-                        $('#kt_modal_add').modal('hide');
+                         $("#kt_modal_add_user")[0].reset();
+                        $('#kt_modal_add_user').modal('hide');
                         $('#userDatatable').DataTable().ajax.reload();
                     } else if (res.error_code == 1) {
                         toastr.error(res.error);

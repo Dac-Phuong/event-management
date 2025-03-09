@@ -57,7 +57,7 @@
     </style>
 
     <section class="core-values py-5">
-        <div class="mb-4">
+        <div class="container mb-4">
             <h2 class="text-primary text-center fw-bold fs-1 mb-1">Giá trị cốt lõi </h2>
             <p class="text-center">Những nguyên tắc cốt lõi giúp chúng tôi phát triển và mang lại giá trị bền vững.</p>
         </div>

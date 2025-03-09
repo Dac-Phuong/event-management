@@ -35,12 +35,13 @@
                         @if (!empty($data['news']->tags))
                             <p class="mb-0"><i class="ti ti-tag me-1"></i>Tags:
                                 @foreach ($data['news']->tags as $tag)
-                                    <a href="{{ url('tag/' . $tag->slug) }}" class="badge bg-label-primary rounded-pill me-2 fw-bold">{{ $tag->name }}</a>
+                                    <a href="{{ url('tag/' . $tag->slug) }}"
+                                        class="badge bg-label-primary rounded-pill me-2 fw-bold">{{ $tag->name }}</a>
                                 @endforeach
                             </p>
                         @endif
                     </div>
-                </div>  
+                </div>
                 <div class="col-md-3" data-aos="fade-left">
                     <div class="card">
                         <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png"
@@ -65,37 +66,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card mt-4">
-                        <div class="card-header pb-0">
-                            <h5 class="card-title text-uppercase">Tin tức nổi bật</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="list-group">
-                                @if (count($data['feature']) > 0)
-                                    @foreach ($data['feature'] as $item)
-                                        <a href="{{ url('blog/' . $item['category']->slug . '/' . $item->slug) }}"
-                                            class="text-decoration-none mb-2">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <img class="card-img " height="70" width="50"
-                                                    src="{{ asset($item->thumbnail) }}" alt="Card image"
-                                                    style="width: 80px; ">
-                                                <div style="margin-left: 10px">
-                                                    <h5 class="card-title fs-6 text-uppercase m-0"
-                                                        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ $item->title }}</h5>
-                                                    <p class="card-text"><small class="text-muted"><i
-                                                                class="ti ti-calendar-stats me-2"></i>
-                                                            {{ $item->created_at }}</small></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                @else
-                                    <p class="text-primary">Chưa có tin nổi bật</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    @include('client.components.outstanding', ['feature' => $data['feature']])
                 </div>
             </div>
         </div>

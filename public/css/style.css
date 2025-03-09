@@ -291,7 +291,6 @@
 .landing-header {
   min-height: 550px;
   position: relative;
-  background-image: url(../assets/files/banners/bg_header.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -360,6 +359,7 @@
   background: linear-gradient(135deg, #1D66A7, #00d4ff);
 
 }
+
 .bg_abouts_right {
   position: absolute;
   right: 0;
@@ -1072,9 +1072,16 @@ ul {
 @media screen and (max-width: 768px) {
 
   .text-description,
-  .text-content {
+  .text-content,
+  .our-mission.position-relative {
     width: 100% !important;
   }
+
+  .our-mission.position-relative {
+    margin: auto;
+  }
+
+ 
 
   .card-introduce h2 {
     font-size: 28px;

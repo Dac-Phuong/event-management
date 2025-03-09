@@ -1,4 +1,4 @@
-<div class="landing-header">
+<div class="landing-header" style="background-image: url('{{ asset('assets/files/banners/bg_header.jpg') }}');">
     <div class="breadcrumb-content">
         <h1 class="entry-title mb-0 text-white text-center text-uppercase">{{ $title }}</h1>
         <ol class="breadcrumb mb-0 justify-center w-full" style="justify-content: center">

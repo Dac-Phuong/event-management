@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th>Họ và tên</th>
+                            <th>Số điện thoại</th>
                             <th>Địa chỉ Email</th>
                             <th>Đăng nhập</th>
                             <th>Ngày tạo</th>
@@ -135,6 +136,9 @@
                                 data: 'name'
                             },
                             {
+                                data: 'phone'
+                            },
+                            {
                                 data: 'email'
                             },
                             {
@@ -154,13 +158,13 @@
                                 }
                             },
                             {
-                                targets: 2,
+                                targets: 3,
                                 render: function(data, type, row) {
                                     return `<badge class="bg-label-${data ==  '1' ? 'primary' : 'danger'} badge">${data ==  '1' ? 'Có' : 'Không'} </bad>`;
                                 }
                             },
                             {
-                                targets: 3,
+                                targets: 4,
                                 render: function(data, type, row) {
                                     return `<span>${formatDateTime(data)} </span>`;
                                 }

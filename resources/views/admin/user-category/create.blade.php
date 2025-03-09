@@ -87,6 +87,7 @@
                         toastr.error(error);
                     } else if (res.error_code == 0) {
                         toastr.success("Thêm thành công!");
+                        $("#modal_add")[0].reset();
                         $('#kt_modal_add').modal('hide');
                         $('#Datatable').DataTable().ajax.reload();
                     } else if (res.error_code == 1) {

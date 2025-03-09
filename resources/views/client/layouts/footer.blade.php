@@ -1,3 +1,94 @@
+<style>
+    #button-scroll-to-top {
+        position: fixed;
+        display: none;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    #button-scroll-to-top .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+
+    #button-scroll-to-top:hover .avatar {
+        transform: scale(1.1);
+        /* Hiệu ứng hover */
+    }
+
+    @media (max-width: 768px) {
+        #button-contact-vr {
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            z-index: 999;
+        }
+
+        #button-scroll-to-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-contact {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #toggle-button {
+            width: 50px;
+            height: 50px;
+            background-color: #166CB0;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            right: 33px;
+            bottom: 20px;
+            transition: transform 0.3sease;
+        }
+
+        #button-contact-vr.active .button-contact {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Xoay nút toggle khi mở */
+        #button-contact-vr.active #toggle-button {
+            transform: rotate(45deg);
+        }
+
+        /* Hiệu ứng từng button xuất hiện */
+        #button-contact-vr.active .button-contact:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        #button-contact-vr.active .button-contact:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        #button-contact-vr.active .button-contact:nth-child(4) {
+            transition-delay: 0.3s;
+        }
+
+        #button-contact-vr.active .button-contact:nth-child(5) {
+            transition-delay: 0.4s;
+        }
+    }
+</style>
 <footer class="landing-footer bg-body footer-text">
     <div class="footer-top position-relative overflow-hidden z-1 pb-0">
         <div class="container pb-5">
@@ -153,7 +244,6 @@
                                 <div class="tooltip">Youtube</div>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -174,8 +264,10 @@
                 </div>
             </div>
         </div>
-        {{-- button contact --}}
         <div id="button-contact-vr">
+            <div id="toggle-button" class="shadow d-block d-md-none d-flex justify-content-center align-items-center">
+                <i class="ti ti-plus"></i>
+            </div>
             <div id="popup-vr" class="button-contact">
                 <div class="phone-vr">
                     <div class="phone-vr-circle-fill"></div>
@@ -240,43 +332,42 @@
                     </div>
                 </div>
             </div>
-             <div id="youtube-vr" class="button-contact">
+            <div id="youtube-vr" class="button-contact">
                 <div class="phone-vr">
                     <div class="phone-vr-circle-fill"></div>
-                    <div class="phone-vr-img-circle" >
+                    <div class="phone-vr-img-circle">
                         <a target="_blank" href="#" class="social-youtube">
-                             <img src="{{ asset('assets/files/icons/icon-youtube.webp') }}" width="25" height="25" class="lazyloading"
-                                data-was-processed="true">
+                            <img src="{{ asset('assets/files/icons/icon-youtube.webp') }}" width="25"
+                                height="25" class="lazyloading" data-was-processed="true">
                         </a>
                     </div>
                 </div>
             </div>
-            <div id="button-scroll-to-top" class="position-fixed"
-                style="display: none; bottom: 90px; right: 23px; z-index: 9999;">
+            <div id="button-scroll-to-top" class="button-contact">
                 <div class="avatar avatar-md me-2" id="scroll-to-top">
-                    <span class="avatar-initial rounded-circle"> <i
+                    <span class="avatar-initial rounded-circle bg-primary"> <i
                             class="ti ti-square-rounded-arrow-up fs-3 text-white"></i></span>
                 </div>
             </div>
-
         </div>
 </footer>
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 400) {
-                    $('#button-scroll-to-top').fadeIn();
-                } else {
-                    $('#button-scroll-to-top').fadeOut();
-                }
-            });
             $("#scroll-to-top").click(function() {
                 $('html, body').animate({
                     scrollTop: 0
                 }, 600);
                 return false;
             });
+            $("#toggle-button").click(function() {
+                if ($("#button-contact-vr").hasClass("active")) {
+                    $("#button-contact-vr").removeClass("active");
+                } else {
+                    $("#button-contact-vr").addClass("active");
+                }
+            });
+
         });
     </script>
 @endpush

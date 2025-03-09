@@ -23,10 +23,22 @@
                     <input type="text" name="id" hidden>
                     <!--begin::Input group-->
                     <div class="mb-4">
-                        <div class="card-body">
-                          
+                        <div class="">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ tên</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Dịa chỉ Email</th>
+                                            <th>Ngày tạo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0" id="show-user">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <!--end::Input group-->
                     </div>
                     <!--end::Scroll-->
                     <!--begin::Actions-->

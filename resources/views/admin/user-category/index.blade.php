@@ -57,12 +57,27 @@
                         $('#kt_modal_update').modal('show');
                     })
                     $(document).on('click', '.btn-show', function() {
+                        $("#show-user").empty();
                         const data = getRowData($(this).closest('tr'));
-                        $('#kt_modal_update input[name="id"]').val(data.id);
-                        $('#kt_modal_update input[name="name"]').val(data.name);
-                        $('#kt_modal_update input[name="is_pin"]').prop('checked', data.is_pin == 1);
-                        $('#kt_modal_update textarea[name="description"]').val(data.description);
-                        $('#kt_modal_update select[name="status"]').val(data.status);
+                        if (data.user_profile.length > 0) {
+                            data.user_profile.map((item, index) => {
+                                $("#show-user").append(`
+                                <tr>
+                                    <td>${item.user.name}</td>
+                                    <td>${item.user.phone}</td>
+                                    <td>${item.user.email}</td>
+                                    <td>${formatDateTime(item.user.created_at)}</td>
+                                </tr>
+                            `);
+                            })
+                        } else {
+                            $("#show-user").append(`
+                                <tr>
+                                    <td colspan="4" class="text-center">Chưa có thành viên</td>
+                                </tr>
+                            `);
+                        }
+
                         $('#kt_modal_show').modal('show');
                     })
                     $(document).on('click', '.btn-delete', function() {
@@ -160,21 +175,21 @@
                             },
                             {
                                 targets: 2,
-                                 orderable: false,
+                                orderable: false,
                                 render: function(data, type, row) {
                                     return `<div>${data.length}</div>`;
                                 }
                             },
                             {
                                 targets: 3,
-                                 orderable: false,
+                                orderable: false,
                                 render: function(data, type, row) {
                                     return `<badge class="bg-label-${data ==  '1' ? 'primary' : 'danger'} badge">${data ==  '1' ? 'có' : 'Không'} </badge>`;
                                 }
                             },
                             {
                                 targets: 4,
-                                 orderable: false,
+                                orderable: false,
                                 render: function(data, type, row) {
                                     return `<badge class="bg-label-${data ==  '1' ? 'success' : 'danger'} badge">${data ==  '1' ? 'Hiển thị' : 'Ẩn'} </badge>`;
                                 }

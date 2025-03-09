@@ -6,14 +6,14 @@
             </h2>
         </div>
         <div class="block-group" >
-            <div class="row align-items-center position-relative our-mission">
+            <div class="row align-items-center our-mission position-relative">
                 <!-- Image Column -->
-                <div class="col-lg-6" >
+                <div class="col-lg-6 p-0">
                     <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-1.png?v=2"
                         alt="Business meeting" class="img-fluid rounded">
                 </div>
                 <!-- Content Column -->
-                <div class="col-lg-6 p-2 p-md-5 mt-3 mt-md-0 card-col content-overlay"
+                <div class="col-lg-6 p-3 p-md-5 mt-3 mt-md-0 card-col content-overlay "
                     style="right: 120px; border-radius: 12px;">
                     <h5 class="text-muted mb-3 mt-3 mt-md-0">Sứ mệnh của chúng tôi:</h5>
 
@@ -34,9 +34,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center position-relative our-mission">
+            <div class="row align-items-center our-mission position-relative">
                 <!-- Content Column -->
-                <div class="col-lg-6 content-overlay card-col p-2 p-md-5 mt-3 mt-md-0"
+                <div class="col-lg-6 content-overlay card-col p-3 p-md-5 mt-3 mt-md-0"
                     style="left: 70px; border-radius: 12px; z-index: 1;" >
                     <h5 class="text-muted mb-3 mt-3 mt-md-0">Tầm nhìn của chúng tôi:</h5>
                     <h2 class="h3 mb-4 text-primary fw-bold">"Lan Tỏa Văn Hóa Việt, Vươn Tầm Thế Giới"</h2>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <!-- Image Column -->
-                <div class="col-lg-6 ms-auto mt-3 mt-md-0"  >
+                <div class="col-lg-6 ms-auto mt-3 mt-md-0 p-0"  >
                     <img src="https://www.sapo.vn/Themes/Portal/Default/Images/aboutus/img-su-menh-2.png?v=2"
                         alt="Business vision" class="img-fluid rounded">
                 </div>

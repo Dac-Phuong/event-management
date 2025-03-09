@@ -15,7 +15,7 @@ class UserCategoryService extends BaseService
     public function getUserCategory()
     {
         try {
-            return $this->model->with('userProfile.user')->get();
+            return $this->model->with('userProfile.user')->orderBy('is_pin', 'desc')->where('status', 1)->orderByDesc('updated_at')->get();
         } catch (\Throwable $th) {
             $this->handleException($th);
             return false;
@@ -83,8 +83,7 @@ class UserCategoryService extends BaseService
         }
 
         $recordsFiltered = $query->count();
-        $result = $query->with('userProfile')->skip($skip)->take($pageLength)->get();
-
+        $result = $query->with('userProfile.user')->skip($skip)->take($pageLength)->get();
         $recordsTotal = $this->model->count();
 
         return [
