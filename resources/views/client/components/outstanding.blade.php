@@ -6,7 +6,7 @@
          <div class="list-group">
              @if (isset($feature) && count($feature) > 0)
                  @foreach ($feature as $item)
-                     <a href="{{ 'blog/' . $item->category->slug . '/' . $item->slug }}"
+                     <a href="{{ url('blog/' . $item->category->slug . '/' . $item->slug) }}"
                          class="text-decoration-none mb-2">
                          <div class="d-flex w-100">
                              <img class="card-img " height="70" width="50" src="{{ asset($item->thumbnail) }}"

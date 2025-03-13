@@ -37,25 +37,7 @@
                     <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png" width="100%"
                         alt="" srcset="">
                 </div>
-                <div class="card mt-4">
-                    <div class="card-header pb-2">
-                        <div class="position-relative">
-                            <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <ul id="search-results" class="list-group list-group-flush" style="display: none;"></ul>
-                    <div class="card-body pt-2">
-                        <ul class="list-group list-group-flush border-bottom">
-                            @foreach ($categories as $item)
-                                <li class="list-group-item">
-                                    <a href="{{ url('blog/' . $item->slug) }}"
-                                        class="text-list text-hover">{{ $item->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                @include('client.components.category', ['categories' => $categories])
                 @include('client.components.outstanding', ['feature' => $feature])
             </div>
         </div>
