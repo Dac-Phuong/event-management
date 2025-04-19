@@ -98,8 +98,6 @@
                         $('#modal-add-news').modal('show');
                     });
 
-
-
                     $(document).on('click', '.btn-edit', function() {
                         const data = getRowData($(this).closest('tr'));
                         $('#editService input[name="id"]').val(data.id);

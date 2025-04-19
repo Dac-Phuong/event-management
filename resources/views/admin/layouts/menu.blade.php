@@ -50,6 +50,18 @@
                     <div>Dịch vụ</div>
                 </a>
             </li>
+            <li class="menu-item {{ request()->routeIs('locations.*') ? 'active' : '' }}">
+                <a href="{{ url('admin/locations') }}" class="menu-link">
+                    <i class="menu-icon ti ti-map-pin"></i>
+                    <div>Bản đồ</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('gallery.*') ? 'active' : '' }}">
+                <a href="{{ url('admin/gallery') }}" class="menu-link">
+                    <i class="menu-icon ti ti-photo-plus"></i>
+                    <div>Thư viện ảnh</div>
+                </a>
+            </li>
             <li class="menu-item {{ request()->is('admin/users*') || request()->is('admin/users-category*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon ti ti-users"></i>

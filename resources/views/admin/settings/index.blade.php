@@ -27,7 +27,6 @@
                             data-bs-toggle="tab" data-bs-target="#navs-top-introduce" aria-controls="navs-top-introduce"
                             aria-selected="false" tabindex="-1">Giới thiệu</button>
                     </li>
-
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="navs-top-base" role="tabpanel">

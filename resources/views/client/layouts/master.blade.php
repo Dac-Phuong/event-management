@@ -8,57 +8,67 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
     <meta name="description" content="" />
+    <meta name="keywords" content="Anhsongroup" />
+    <meta name="geo.region" content="VN" />
+    <meta property="og:url" content="https://anhsongroup.com/" />
+    <meta property="og:title" content="Anhsongroup" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="Anhsongroup" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Công ty tổ chức sự kiện tại Hà Nội" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon/favicon.ico' }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 
     <!-- Icons -->
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/fontawesome.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/tabler-icons.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/flag-icons.css' }}" />
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/demo.css' }}" />
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/rtl/core.css' }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/rtl/theme-default.css' }}"
-        class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/front-page.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/front-page-landing.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/swiper/swiper.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/toastr/toastr.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/libs/animate-css/animate.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/lightgallery-bundle.min.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/css/pages/cards-advance.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/owl.carousel.min.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
     <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="{{ '/css/style.css' }}" />
-    <!-- Helpers -->
-    <script src="{{ '/assets/vendor/js/helpers.js' }}"></script>
-    <script src="{{ '/assets/vendor/js/template-customizer.js' }}"></script>
-    <script src="{{ '/assets/js/config.js' }}"></script>
+
+    <link href="{{ '/assets/css/bootstrap.min.css' }}" rel="stylesheet" type="text/css" />
+    <link href="{{ '/assets/css/fonts.min.css' }}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-2.3.4.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-theme-2.3.4.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/animate.min.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/font-awesome.min.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/settings.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/layers.min.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/jquery.mmenu.all.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/jquery.fancybox.min.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/pnotify.custom.min.css' }}" />
+
+    <link href="{{ '/assets/css/style.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/frontend-lite.min.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/post-2354.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/post-2627.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/post-4363.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/custom.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/core.min.css' }}" rel="stylesheet" type="text/css" />
+    <link href="{{ '/assets/css/style.min.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/style.scss' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/setting.css' }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/style(1).css' }}" rel="stylesheet" />
 </head>
 @php
     $services = \App\Models\Service::where('status', 1)->get();
-    $news = \App\Models\NewsCategory::where('status', 1)->get();
-    $projects = \App\Models\ProjectCategory::where('status', 1)->get();
     $config = \App\Models\Configs::where('key', 'base_logo')->first();
 @endphp
 
 <body>
-    <div>
+    <div style="overflow: hidden">
         <header>
             @include('client.layouts.header')
         </header>
@@ -69,98 +79,25 @@
             @include('client.layouts.footer')
         </footer>
     </div>
-    <script src="{{ '/assets/vendor/libs/jquery/jquery.js' }}"></script>
-    <script src="{{ '/assets/js/gg-map.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/dropzone/dropzone.js' }}"></script>
-    <script src="{{ '/assets/vendor/js/bootstrap.js' }}"></script>
-    <script src="{{ '/assets/vendor/js/aos.js' }}"></script>
-    <script src="{{ '/assets/vendor/js/dropdown-hover.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}"></script>
-    <script src="{{ '/assets/vendor/libs/animate-on-scroll/animate-on-scroll.js' }}"></script>
-    <script src="{{ '/assets/js/main.js' }}"></script>
-    <script src="{{ '/assets/js/dashboards-analytics.js' }}"></script>
-    <script src="{{ '/assets/js/tables-datatables-advanced.js' }}"></script>
-    <script src="{{ '/assets/js/three.min.js' }}"></script>
-    <script src="{{ '/assets/js/compatibility.js' }}"></script>
-    <script src="{{ '/assets/js/mockup.min.js' }}"></script>
-    <script src="{{ '/assets/js/pdf.min.js' }}"></script>
-    <script src="{{ '/assets/js/pdf.worker.min.js' }}"></script>
-    <script src="{{ '/assets/js/dflip.min.js' }}"></script>
-    <script src="{{ '/assets/js/lightgallery.js' }}"></script>
-    <script src="{{ '/assets/js/owl.carousel.min.js' }}"></script>
-    <script>
-        AOS.init();
-        const formatDateTime = (dateTime) => {
-            const date = new Date(dateTime);
-            const day = date.getDate().toString().padStart(2, '0');
-            const month = date.toLocaleString('vi-VN', {
-                month: 'short'
-            }).replace('.', '');
-            const year = date.getFullYear();
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-            return `${day} ${month} ${year} lúc ${hours}:${minutes}`;
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            function getConfig() {
-                $('#map-loading').show();
-                $.ajax({
-                    url: '/get-config',
-                    method: 'GET',
-                    success: function(res) {
-                        if (res.error_code == 0) {
-                            $('.contact-phone').text(res.data.contact_phone).attr('href',
-                                `tel:${res.data.contact_phone || '0913588534'}`)
-                            $('#contact-phone').attr('href',
-                                `tel:${res.data.contact_phone || '0913588534'}`)
-                            $('.base-name').text(res.data.base_name ||
-                                'Công ty Cổ Phần Tập đoàn Anh Sơn')
-                            $('.contact-address').text(res.data.contact_address ||
-                                'Số 27 phố Mai Phúc, phường Phúc Đồng, quận Long Biên, Hà Nội')
-                            $('.social-zalo').attr('href', `${res.data.social_zalo || '#'}`)
-                            $('.social-fanpage').attr('href', `${res.data.social_fanpage || '#'}`)
-                            $('.social-telegram').attr('href', `${res.data.social_telegram || '#'}`)
-                            $('.social-youtube').attr('href', `${res.data.social_youtube || '#'}`)
-                            $('#contact-email').text(res.data.contact_email).attr('href',
-                                `mailto:${res.data.contact_email || 'pro@anhsongroup.com'}`)
-                            $('.contact-email').text(res.data.contact_email || 'pro@anhsongroup.com')
-                            $('#contact-form-service').html(JSON.parse(res.data.contact_services ||
-                                    '[]').map(service =>
-                                    `<option value="${service.email}">${service.name}</option>`)
-                                .join(''))
-                            $('#logo').attr('src', res.data.base_logo)
-                            $('#map-iframe').attr('src',
-                                `https://www.google.com/maps/d/embed?mid=${res.data.base_map_id}&z=5&center=14.0583,108.2772`
-                            );
-                            $('#map-iframe').on('load', function() {
-                                $('#map-loading').addClass('d-none');
-                                 $(this).show();
-                            })
-                        } else {
-                            console.log(res.data);
-                        }
-                        $('.loading').removeClass('d-block')
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        $('.loading').removeClass('d-block')
-                    }
+    <script src="{{ '/assets/js/jquery.min.js' }}" ></script>
+    <script src="{{ '/assets/js/three.min.js' }}" async></script>
+    <script src="{{ '/assets/vendor/js/aos.js' }}" async></script>
+    <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}" async></script>
+    <script src="{{ '/assets/js/compatibility.js' }}" async></script>
+    <script src="{{ '/assets/js/mockup.min.js' }}" async></script>
+    <script src="{{ '/assets/js/pdf.min.js' }}" async></script>
+    <script src="{{ '/assets/js/pdf.worker.min.js' }}" async></script>
+    <script src="{{ '/assets/js/dflip.min.js' }}" async></script>
 
-                })
-            }
-            getConfig()
-        })
-        $(document).ready(function() {
-            $(".scrollToContact").click(function() {
-                $("html, body").animate({
-                    scrollTop: $("#landingContact").offset().top
-                }, 200);
-            });
-        });
-    </script>
+    <script src="{{ '/assets/js/scroll.to.top.js' }}" async></script>
+    <script src="{{ '/assets/vendor/js/bootstrap.js' }}" async></script>
+    <script src="{{ '/assets/js/mouse-cursor-point.js' }}" async></script>
+    <script src="{{ '/assets/js/lodash.min.js' }}" async></script>
+    <script src="{{ '/assets/js/menu.min.js' }}" async></script>
+    <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}" ></script>
+    <script src="{{ '/assets/js/lozad.min.js' }}" async></script>
+    <script src="{{ '/assets/js/custom.js' }}" ></script>
+    <script src="{{ '/assets/js/client.js' }}" async></script>
     @stack('scripts')
 </body>
 

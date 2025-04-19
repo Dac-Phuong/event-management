@@ -3,7 +3,11 @@
 namespace App\Services;
 
 use App\Models\Configs;
+use App\Models\LocationMap;
+use App\Models\LocationNews;
+use App\Models\News;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class SettingService extends BaseService
@@ -110,6 +114,7 @@ class SettingService extends BaseService
             return false;
         }
     }
+  
     public function update(int $id, array $data)
     {
         try {

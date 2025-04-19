@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Project;
 use App\Models\ProjectCategory;
 
 class ProjectCategoryService extends BaseService
@@ -53,7 +54,7 @@ class ProjectCategoryService extends BaseService
             'data' => $studentProfiles,
         ];
     }
-    public function getBySlug($slug, $perPage = 5)
+    public function getBySlug($slug, $perPage = 6)
     {
         try {
             $category = $this->getModel()->where('slug', $slug)->first();
@@ -75,19 +76,28 @@ class ProjectCategoryService extends BaseService
             return null;
         }
     }
-
-    public function getBySlugWithFeature($slug)
+    public function getCategory(){
+        try {
+            $category = $this->getModel()->where('status', 1)->get();
+            $projects = Project::with('category:id,name,slug', 'author:id,name,email')->where('is_show', 1)->select('id', 'category_id', 'author_id', 'title', 'slug', 'thumbnail', 'is_pin', 'created_at')->paginate(6);
+            return [
+                'category' => $category,
+                'projects' => $projects
+            ];
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+            return null;
+        }
+    }
+    public function getBySlugWithFeature()
     {
         try {
-            $category = $this->getModel()->where('slug', $slug)->first();
-            if (!$category)
-                return null;
-            $feature = $category->project()
-                ->with(['author:id,name,email'])
-                ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+            $feature = Project::with(['author:id,name,email'], ['category:id,name,slug'])
+                ->with(['category:id,name,slug'])
+                ->select(['id', 'title','category_id','slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
                 ->where('is_pin', 1)
                 ->latest()
-                ->limit(5)
+                ->limit(6)
                 ->get();
             return $feature;
         } catch (\Throwable $th) {

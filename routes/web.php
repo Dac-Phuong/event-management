@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\IntroduceController;
+use App\Http\Controllers\Admin\LocationsControler;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
@@ -35,7 +36,7 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 Route::fallback(function () {
-    return view('errors.404');
+    return back();
 });
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -49,13 +50,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/gioi-thieu', [ClientIntroduceController::class, 'index']);
 Route::get('/get-config', [ConfigController::class, 'getConfig'])->name('configs');
 Route::get('/dich-vu/{slug}', [ClientServiceController::class, 'index'])->name('service');
+Route::get('/blog', [ClientNewsController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [ClientNewsController::class, 'index'])->name('news');
 Route::get('/blog/{categorySlug}/{newsSlug}', [ClientNewsController::class, 'detail'])->name('news.detail');
 Route::post('/news/search', [ClientNewsController::class, 'searchNews'])->name('news.search');
 Route::get('/tag/{slug}', [ClientNewsController::class, 'tag'])->name('tag');
 Route::get('/tuyen-dung', [ClientRecruitmentController::class, 'index'])->name('recruitment');
 Route::get('/tuyen-dung/{slug}', [ClientRecruitmentController::class, 'detail'])->name('recruitment.detail');
+Route::get('/du-an', [ClientProjectController::class, 'category'])->name('project.category');
 Route::get('/du-an/{slug}', [ClientProjectController::class, 'index'])->name('project');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/du-an/{categorySlug}/{newsSlug}', [ClientProjectController::class, 'detail'])->name('project.detail');
 Route::post('/contact/send', [HomeController::class, 'sendContact'])->name('send.contact');
 
@@ -76,8 +80,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('settings/banner/store', [SettingController::class, 'store'])->name('settings.banner.store');
         Route::post('settings/banner/delete', [SettingController::class, 'destroy'])->name('settings.banner.delete');
         Route::post('settings/banner/update', [SettingController::class, 'update'])->name('settings.banner.update');
+
         // Setting introduce
         Route::post('settings/introduce/update', [SettingController::class, 'update'])->name('settings.introduce.update');
+        // location
+        Route::get('locations', [LocationsControler::class, 'index'])->name('locations');
+        Route::post('locations/datatable', [LocationsControler::class, 'filterDataTable'])->name('locations.datatable');
+        Route::post('locations/create', [LocationsControler::class, 'create'])->name('locations.create');
+        Route::post('locations/update', [LocationsControler::class, 'update'])->name('locations.update');
+        Route::post('locations/delete', [LocationsControler::class, 'delete'])->name('locations.delete');
         // User Category
         Route::group(['prefix' => 'users-category'], function () {
             Route::get('/', [UserCategoryController::class, 'index'])->name('users-category');
@@ -95,7 +106,6 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/delete', [UserController::class, 'destroy'])->name('user.delete');
             Route::post('/datatable', [UserController::class, 'filterDataTable'])->name('user.datatable');
         });
-
         // Introduce
         Route::get('introduce', [IntroduceController::class, 'index'])->name('introduce');
         // Contact

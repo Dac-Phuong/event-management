@@ -79,11 +79,63 @@ class NewsCategoryService extends BaseService
       return null;
     }
   }
+  public function getBlog()
+  {
+    try {
+      $news = News::with('category:id,name,slug')
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at', 'new_category_id'])
+        ->latest()
+        ->take(5)
+        ->get();
+
+      $categories = NewsCategory::select('news_categories.id', 'news_categories.name', 'news_categories.slug')
+        ->join('news', 'news.new_category_id', '=', 'news_categories.id')
+        ->selectRaw('news.id as news_id, news.title, news.slug as news_slug, news.content, news.thumbnail')
+        ->where('news.is_show', 1)
+        ->orderBy('news.created_at', 'desc')
+        ->groupBy('news_categories.id', 'news.id')
+        ->limit(3)
+        ->get();
+
+
+      return [
+        'category' => $categories,
+        'news' => $news
+      ];
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
+  public function getNewsSidebar()
+  {
+    try {
+      $new = News::with('category:id,name,slug')
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at', 'new_category_id'])
+        ->latest()
+        ->take(3)
+        ->get();
+      $featured = News::with('category:id,name,slug')
+        ->where('is_pin', 1)
+        ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at', 'new_category_id'])
+        ->latest()
+        ->take(5)
+        ->get();
+
+      return [
+        'featured' => $featured,
+        'new' => $new
+      ];
+    } catch (\Throwable $th) {
+      $this->handleException($th);
+      return null;
+    }
+  }
 
   public function getNewsFeature()
   {
     try {
-      $feature = News::with('category')->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at','new_category_id'])
+      $feature = News::with('category')->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at', 'new_category_id'])
         ->where('is_pin', 1)
         ->latest()
         ->limit(5)
@@ -108,7 +160,8 @@ class NewsCategoryService extends BaseService
         ->orderBy('is_pin', 'desc')
         ->latest()
         ->firstOrFail();
-      if (!$news) return null;
+      if (!$news)
+        return null;
       $news->views += 1;
       $news->save();
       return [
@@ -120,7 +173,7 @@ class NewsCategoryService extends BaseService
       return null;
     }
   }
-  
+
   public function delete(int $id)
   {
     try {

@@ -220,8 +220,14 @@ class NewsServices extends BaseService
   public function getNewsByTag($slug)
   {
     try {
-      $news = $this->getModel()->with('author', 'category','tags')->whereHas('tags', function ($query) use ($slug)
-       { $query->where('slug', $slug);})->paginate(10);
+      $news = $this->getModel()
+        ->with('author', 'category', 'tags')
+        ->whereHas('tags', function ($query) use ($slug) {
+          $query->where('slug', $slug);
+        })
+        ->select(['id', 'title', 'slug', 'thumbnail', 'views', 'created_at', 'new_category_id'])
+        ->latest()
+        ->paginate(6);
       return $news;
     } catch (\Throwable $th) {
       $this->handleException($th);

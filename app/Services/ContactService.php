@@ -61,5 +61,4 @@ class ContactService extends BaseService
             return false;
         }
     }
-
 }

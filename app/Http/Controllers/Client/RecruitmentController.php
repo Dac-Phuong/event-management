@@ -19,16 +19,14 @@ class RecruitmentController extends Controller
     public function index()
     {
         $recruitment = $this->recruitment->getAllData();
-        $feature = $this->newsService()->getFeature();
-        $categories = $this->newsCategoryService()->getAll();
-        return view('client.recruitment.index', compact('recruitment','categories', 'feature'));
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
+        return view('client.recruitment.index', compact('recruitment', 'data'));
     }
     public function detail($slug)
     {
-        $feature = $this->newsService()->getFeature();
-        $categories = $this->newsCategoryService()->getAll();
         $recruitment = $this->recruitment->getBySlug($slug);
-        return view('client.recruitment.detail', compact('recruitment','feature','categories'));
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
+        return view('client.recruitment.detail', compact('recruitment', 'data'));
     }
 
     public function newsService()

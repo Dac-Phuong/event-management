@@ -3,26 +3,34 @@
 @section('title', $recruitment->title)
 
 @section('content')
-    @include('client.components.breadcrumb', [
-        'title' => 'Tuyển dụng',
-        'subtitle' => $recruitment->title,
-        'name' => 'Tuyển dụng',
-        'url' => url('tuyen-dung'),
-    ])
-    <div class="container py-5">
-        <div class="row ">
-            <div class="col-md-9" data-aos="fade-right">
-                <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px">
+    <section class="post-wrapper-top jt-shadow heading-top clearfix" style="">
+        <div class="container-fluid" style="padding: 10px 5%;">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>{{$recruitment->title}}</h1>
+                    <ul class="breadcrumb">
+                        <span><a class="link" href="/">Trang Chủ</a></span>
+                        <span class="dark">/</span>
+                        <li class="active">{{$recruitment->title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px;background: rgba(30, 30, 30, 0.7);">
                     <img src="{{ $recruitment->thumbnail }}" width="100%" height="83%" style="border-radius:12px"
                         alt="">
                     <h4 class="card-title mt-3 mb-1">{{ $recruitment->title }}</h4>
                     <div class="d-flex flex-wrap">
-                        <p class="card-text me-3"><small class="text-muted">Người viết:
+                        <p class="me-3"><small class="text-secondary">Người viết:
                                 {{ $recruitment->author->name ?? 'Admin' }} </small></p>
-                        <p class="card-text d-flex align-items-center me-3"><small class="text-muted"><i
+                        <p class="d-flex align-items-center me-3"><small class="text-secondary"><i
                                     class="ti ti-clock-hour-9 me-1"></i>
                                 {{ \Carbon\Carbon::parse($recruitment->created_at)->format('d/m/Y') }}</small></p>
-                        <p class="d-flex align-items-center"><small class="text-muted"><i class="ti ti-eye me-1"></i>
+                        <p class="d-flex align-items-center"><small class="text-secondary"><i class="ti ti-eye me-1"></i>
                                 {{ number_format($recruitment->views) }} Lượt xem</small></p>
                     </div>
                 </div>
@@ -32,80 +40,7 @@
                             class="ti ti-share-3 me-2"></i>Ứng tuyển ngay</a>
                 @endif
             </div>
-            <div class="col-md-3" data-aos="fade-left">
-                <div class="card">
-                    <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png" width="100%"
-                        alt="" srcset="">
-                </div>
-                @include('client.components.category', ['categories' => $categories])
-                @include('client.components.outstanding', ['feature' => $feature])
-            </div>
+            @include('client.components.sidebar', ['data' => $data['sidebar']])
         </div>
     </div>
-    @include('client.components.home.contact')
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            var timeout = null;
-            var resultsContainer = $("#search-results");
-            $("#search-input").on("input", function() {
-                clearTimeout(timeout);
-                var query = $(this).val().trim();
-                if (!query.length) return resultsContainer.hide().empty();
-                $("#search-input").removeClass("is-invalid").parent().find(".invalid-feedback").text("");
-                resultsContainer.empty().show().append(`
-                    <li class="list-group-item result-item d-flex justify-content-center">
-                        <div class="spinner-border spinner-border-sm text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </li>
-                `);
-                timeout = setTimeout(function() {
-                    $.ajax({
-                        url: "{{ route('news.search') }}",
-                        method: "POST",
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                            keyword: query
-                        },
-                        success: function(res) {
-                            resultsContainer.empty();
-                            if (res.error_code == -1) {
-                                $("#search-input").addClass("is-invalid");
-                                $("#search-input").parent().find(".invalid-feedback")
-                                    .text(res.data);
-                            } else if (res.error_code == 0) {
-                                if (res.data.length == 0) {
-                                    resultsContainer.append(
-                                        `<li class="list-group-item result-item">Không tìm thấy kết quả</li>`
-                                    );
-                                } else {
-                                    res.data.forEach(item => {
-                                        resultsContainer.append(
-                                            `<li class="list-group-item result-item p-2"> 
-                                                <a href="${item.category.slug}/${item.slug}" class="text-decoration-none d-flex align-items-center">
-                                                    <div class="avatar me-2" >
-                                                        <img src="${item.thumbnail}" style="width: 30px; height: 30px;" alt="Avatar" class="rounded-circle">
-                                                    </div>
-                                                    <span class="text-uppercase text-list text-hover">${item.title}</span>
-                                                </a>
-                                            </li>`
-                                        );
-                                    });
-                                }
-                                resultsContainer.show();
-                            }
-                        },
-                        error: function() {
-                            console.error("Lỗi khi gọi API tìm kiếm");
-                            resultsContainer.empty().append(
-                                `<li class="list-group-item result-item">Lỗi khi tải dữ liệu</li>`
-                            );
-                        }
-                    });
-                }, 500);
-            });
-        });
-    </script>
-@endpush

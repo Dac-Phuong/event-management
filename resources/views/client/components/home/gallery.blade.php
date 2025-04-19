@@ -1,117 +1,132 @@
+@php
+    $images = [
+        'a-20.jpg',
+        'a-21.jpg',
+        'a-5.jpg',
+        'a-4.jpg',
+        'cheese-coffee-1.jpg',
+        'a-13.jpg',
+        'a-17.jpg',
+        'a-18.jpg',
+        'a-19.jpg',
+        'a-9.jpg',
+        'a-6.jpg',
+        'a-11.jpg',
+        'a-12.jpg',
+        'a-15.jpg',
+        'a-16.jpg',
+    ];
+@endphp
+<style>
+    #carousel .image-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #carousel .image-wrapper img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    #carousel .image-wrapper:hover img {
+        transform: scale(1.05);
+    }
+
+    #carousel .image-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 10px 15px;
+        font-size: 16px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: all 0.3s ease;
+        display: none;
+    }
+
+    #carousel .image-wrapper:hover .image-title {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
 <section>
-    <style>
-        .gallery-items {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .gallery-items img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .gallery-items:hover img {
-            transform: scale(1.1);
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .gallery-items:hover .overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .overlay h4 {
-            margin-bottom: 10px;
-        }
-
-        .overlay .btn {
-            transition: 0.3s;
-        }
-
-        .overlay .btn:hover {
-            transform: scale(1.05);
-        }
-    </style>
-    <div class="pb-5">
-        <div class="row m-0" data-aos="fade-up">
-            <div class="mb-4 d-flex flex-column align-items-center">
-                <h1 class="text-center fw-bold fs-2 text-primary mb-1 text-uppercase">
-                    Thiết kế ấn tượng
-                </h1>
-                <hr class="hr-title mt-0 mb-4">
+    <div id="carousel">
+        @foreach ($images as $index => $img)
+            <div class="{{ $index === 4 ? 'selected' : 'hideRight' }} position-relative image-wrapper">
+                <img src="{{ asset('assets/files/default/' . $img) }}" alt="Ảnh {{ $index + 1 }}" />
             </div>
-            <div class="position-relative" data-aos="fade-up">
-                <div id="lightgallery" class="owl-carousel owl-theme">
-                    @foreach ($gallery as $item)
-                        <div class="gallery-items">
-                            <img src="{{ asset($item->thumbnail) }}" class="img-fluid"
-                                alt="Slider"/>
-                            <div class="overlay">
-                                <h4 class="text-white px-3">{{$item->title}}</h4>
-                                <div class="d-flex gap-2">
-                                    <a href="{{ asset('blog/'. $item->category->slug . '/' . $item->slug) }}" class="btn btn-primary btn-sm shadow-sm rounded-pill"><i
-                                            class="ti ti-scan-eye me-2"></i>Xem bài viết</a>
-                                    <a href="{{ asset($item->thumbnail) }}"
-                                        class="btn btn-light btn-sm shadow-sm view-image rounded-pill"><i
-                                            class="ti ti-zoom-pan me-2"></i>Xem ảnh</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
-
 </section>
 
 @push('scripts')
     <script>
+        var autoplay = false;
+
         $(document).ready(function() {
-            var owl = $("#lightgallery");
-            owl.owlCarousel({
-                loop: true,
-                margin: 10,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true, 
-                nav: false,
-                dots: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 4
-                    },
-                },
+            setupCarousel();
+
+            $('#carousel div').on('click', function() {
+                moveToSelected($(this));
             });
-            lightGallery(document.getElementById("lightgallery"), {
-                thumbnail: true,
-                selector: ".view-image",
-            });
+
+            let dir = "next";
+            setInterval(() => {
+                if (autoplay) {
+                    const res = moveToSelected(dir);
+                    dir = (dir === "next" && !res) ? "prev" : (dir === "prev" && !res) ? "next" : dir;
+                }
+            }, 5000);
         });
+
+        function moveToSelected(element) {
+            let selected;
+
+            if (element === "next") {
+                selected = $(".selected").next();
+            } else if (element === "prev") {
+                selected = $(".selected").prev();
+            } else {
+                selected = $(element);
+            }
+
+            if (!selected.length) return false;
+
+            $("#carousel div").removeClass();
+
+            selected.addClass("selected");
+
+            const prev = selected.prev();
+            const next = selected.next();
+            const prevSecond = prev.prev();
+            const nextSecond = next.next();
+
+            prev.addClass("prev");
+            next.addClass("next");
+            prevSecond.addClass("prevLeftSecond");
+            nextSecond.addClass("nextRightSecond");
+
+            // Các ảnh phía trước prevSecond
+            prevSecond.prevAll().addClass("hideLeft");
+
+            // Các ảnh phía sau nextSecond
+            nextSecond.nextAll().addClass("hideRight");
+
+            return true;
+        }
+
+        function setupCarousel() {
+            const selected = $(".selected");
+
+            if (!selected.length) return;
+
+            moveToSelected(selected);
+        }
     </script>
 @endpush

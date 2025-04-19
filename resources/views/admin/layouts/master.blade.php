@@ -32,16 +32,13 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/node-waves/node-waves.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/typeahead-js/typeahead.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/libs/apex-charts/apex-charts.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/swiper/swiper.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/@form-validation/umd/styles/index.min.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/toastr/toastr.css' }}" />
-    <link rel="stylesheet" href="{{ '/assets/vendor/libs/quill/katex.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/quill/editor.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/select2/select2.css' }}">
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/dropzone/dropzone.css' }}">
@@ -98,7 +95,6 @@
     <!-- / Layout wrapper -->
     <!-- Core JS -->
     <!-- build:js /assets/vendor/js/core.js -->
-
     <script src="{{ '/assets/vendor/libs/jquery/jquery.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/popper/popper.js' }}"></script>
     <script src="{{ '/assets/vendor/js/bootstrap.js' }}"></script>
@@ -108,7 +104,6 @@
     <script src="{{ '/assets/vendor/libs/i18n/i18n.js' }}"></script>
     <script src="{{ '/assets/vendor/libs/typeahead-js/typeahead.js' }}"></script>
     <script src="{{ '/assets/vendor/js/menu.js' }}"></script>
-
     <!-- endbuild -->
     <!-- Vendors JS -->
     <script src="{{ '/assets/vendor/libs/apex-charts/apexcharts.js' }}"></script>

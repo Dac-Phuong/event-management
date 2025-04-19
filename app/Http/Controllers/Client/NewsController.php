@@ -10,21 +10,22 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    public function blog(){
+        $data = $this->newsCategoryService()->getBlog();
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
+        return view('client.news.blog', compact('data'));
+    }
     public function index(Request $request)
     {
         $slug = $request->route('slug');
         $data = $this->newsCategoryService()->getBySlug($slug);
-        $feature = $this->newsCategoryService()->getNewsFeature();
-        $data['categories'] = $this->newsCategoryService()->getAll();
-        $data['feature'] = $feature;
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
         return view('client.news.index', compact('data'));
     }
     public function detail($categorySlug, $newsSlug)
     {
         $data = $this->newsCategoryService()->getBySlugDetail($categorySlug, $newsSlug);
-        $feature = $this->newsCategoryService()->getNewsFeature();
-        $data['categories'] = $this->newsCategoryService()->getAll();
-        $data['feature'] = $feature;
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
         return view('client.news.detail', compact('data'));
     }
     public function searchNews(SearchRequest $request)
@@ -37,10 +38,9 @@ class NewsController extends Controller
     {
         $slug = $request->route('slug');
         $data = $this->newsService()->getNewsByTag($slug);
-        $categories = $this->newsCategoryService()->getAll();
-        $feature = $this->newsCategoryService()->getNewsFeature();
+        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
         $tag = $this->newsService()->getTag($slug);
-        return view('client.news.tag', compact('data', 'categories', 'feature','tag'));
+        return view('client.news.tag', compact('data', 'tag'));
     }
     public function newsService()
     {

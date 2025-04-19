@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
-use App\Mail\MailRecover;
 use App\Mail\SendMail;
 use App\Models\Configs;
 use Illuminate\Support\Facades\Mail;
 use App\Models\News;
+use App\Models\Project;
 use App\Models\Service;
 use App\Services\ContactService;
+use App\Services\UserCategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,11 +28,11 @@ class HomeController extends Controller
         $introduce = Configs::whereIn('key', ['introduce_image', 'introduce_content', 'introduce_youtube_id'])->pluck('value', 'key')->toArray();
         $certification = News::where('is_certification', 1)->select('id', 'title', 'thumbnail', 'new_category_id', 'slug')->with('category:id,slug')->get();
         $gallery = News::where('is_gallery', 1)->select('id', 'title', 'thumbnail', 'new_category_id', 'slug')->with('category:id,slug')->get();
-        return view('client.home.index', compact('banner', 'services', 'introduce', 'gallery', 'certification'));
+        $projects = Project::select('id', 'title', 'thumbnail', 'category_id', 'slug', 'content')->with('category:id,slug,name')->orderByDesc('id')->limit(9)->get();
+        return view('client.home.index', compact('banner', 'services', 'introduce', 'gallery', 'certification', 'projects'));
     }
     public function sendContact(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             "fullname" => "required|max:40",
             "phone" => "required|numeric|digits_between:10,11",
@@ -59,6 +60,15 @@ class HomeController extends Controller
         $result = $this->contactService->sendContact($request->all());
         Mail::to($request->service_email)->send(new SendMail($request->all()));
         return jsonResponse($result ? 0 : 1);
+    }
+    public function profile()
+    {
+        $settings = $this->userCategoryService()->getConfig();
+        return view('client.profile.index', compact('settings'));
+    }
+    public function userCategoryService()
+    {
+        return app(UserCategoryService::class);
     }
 }
 

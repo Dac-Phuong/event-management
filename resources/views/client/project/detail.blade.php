@@ -2,80 +2,103 @@
 @section('title', $data['project']->title)
 @section('content')
     <div>
-        @include('client.components.breadcrumb', [
-            'title' => 'Dự án',
-            'url' => url('du-an/' . $data['category']->slug),
-            'name' => $data['category']->name,
-            'subtitle' => $data['project']->title,
-        ])
-        <div class="container py-5">
-            <div class="row ">
-                <div class="col-md-9" data-aos="fade-right">
-                    <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px">
-                        <div class="position-relative card-img" style="height: 83%">
-                            <img src="{{ $data['project']->thumbnail }}" width="100%" height="100%"
-                                style="border-radius:12px" alt="">
-                            <div class="position-absolute top-0 start-0 bg-primary text-white px-2 py-1"
-                                style="border-radius: 12px 0 12px 0; z-index: 1;">
-                                {{ $data['category']->name }}
-                            </div>
-                            <div class="overlay"></div>
-                            <div class="play-yt-icon cursor-pointer" data-bs-toggle="modal" data-bs-target="#videoModal">
-                                <i class="fas fa-play"></i>
-                            </div>
+        <div class="row pt-5">
+            <div class="col-md-7" style="max-height: 700px">
+                <div class="mb-5">
+                    <div class="position-relative card-img">
+                        <div id="thumbnail">
+                            <img src="{{ $data['project']->thumbnail }}" width="100%" height="100%" alt="">
+                            <a href="javascript:void(0)" id="play-button" data-video-id="{{ $data['project']->url }}">
+                                <div class="play-button" data-video-id="DnKJ1NCxi5s" style="opacity: 1 !important;">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </a>
+
                         </div>
-                        <h4 class="card-title mt-3 mb-1">{{ $data['project']->title }}</h4>
-                        <div class="d-flex flex-wrap">
-                            <p class="card-text me-3"><small class="text-muted">Người viết:
-                                    {{ $data['project']->author->name ?? 'Admin' }} </small></p>
-                            <p class="card-text d-flex align-items-center me-3"><small class="text-muted"><i
-                                        class="ti ti-clock-hour-9 me-1"></i>
-                                    {{ \Carbon\Carbon::parse($data['project']->created_at)->format('d/m/Y') }}</small></p>
-                            <p class="d-flex align-items-center"><small class="text-muted"><i class="ti ti-eye me-1"></i>
-                                    {{ number_format($data['project']->views) }} Lượt xem</small></p>
-                        </div>
-                    </div>
-                    <div class="news-content">{!! $data['project']->description !!}</div>
-                </div>
-                <div class="col-md-3" data-aos="fade-left">
-                    <div class="card">
-                        <img src="https://bizmanmedia.vn/wp-content/uploads/2024/05/banner-doc-web-01-01-1.png"
-                            width="100%" alt="" srcset="">
-                    </div>
-                    <div class="card mt-4">
-                        <div class="card-header pb-0">
-                            <h5 class="card-title text-uppercase">Dự án nổi bật</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="list-group">
-                                @if (count($data['feature']) > 0)
-                                    @foreach ($data['feature'] as $item)
-                                        <a href="{{ $item->slug }}" class="text-decoration-none mb-2">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <img class="card-img " height="70" width="50"
-                                                    src="{{ asset($item->thumbnail) }}" alt="Card image"
-                                                    style="width: 80px; ">
-                                                <div style="margin-left: 10px">
-                                                    <h5 class="card-title fs-6 text-uppercase m-0"
-                                                        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ $item->title }}</h5>
-                                                    <p class="card-text"><small class="text-muted"><i
-                                                                class="ti ti-calendar-stats me-2"></i>
-                                                            {{ $item->created_at }}</small></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                @else
-                                    <p class="text-primary">Chưa có tin nổi bật</p>
-                                @endif
-                            </div>
+                        <div id="video-wrapper" class="w-100 h-100 video-wrapper" style="display: none;">
+                            <iframe src="" frameborder="0" width="100%" height="100%"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-5 container-left">
+                <div class="left-content">
+                    <div class="portforlio-heading">
+                        <h1>{{ $data['project']->title }}</h1>
+                        <div class="feature-block">
+                            <span style="color:#DD6325">Tác giả</span> :
+                            <span>{{ $data['project']->author->name ?? 'Admin' }}</span> <br>
+                            <span style="color:#DD6325">Ngày viết</span> :
+                            <span>{{ \Carbon\Carbon::parse($data['project']->created_at)->format('d/m/Y') }}</span> <br>
+                        </div>
+                    </div>
+                    <div class="detail_box wrap article" style="">
+                        <div class="news-content">{!! $data['project']->description !!}</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        @include('client.project.modal')
-        @include('client.components.home.contact')
+        <div class="container service-cate-page related top30 bottom30">
+            <h2 class="service-cate-title"
+                style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 24px;color:#DD6325">Dự án nổi
+                bật</h2>
+            <div class="service_cate_carousel owl-carousel owl-theme owl-loaded owl-drag">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage"
+                        style="width: 4700px; transform: translate3d(-1175px, 0px, 0px); transition: all;">
+                        @foreach ($data['feature'] as $item)
+                            <div class="owl-item cloned" style="width: 258.75px; margin-right: 35px;">
+                                <div class="service">
+                                    <a href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}"><img
+                                            data-src="{{ $item->thumbnail }}" src="{{ $item->thumbnail }}"
+                                            alt="Video Giới Thiệu Doanh Nghiệp Nam Thuận Phát" class="service-img lozad"
+                                            data-loaded="true"></a>
+                                    <div class="service-overlay">
+                                        <div class="blog-carousel-content">
+                                            <h3 class="blog-cate-title"><a
+                                                    href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}">{{ $item->title }}</a>
+                                            </h3>
+                                            <p class="blog-cate-brief">{{ $item->content }}</p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $('#play-button').click(function() {
+            const videoId = $(this).attr('data-video-id');
+            if (!videoId) {
+                alert('Chưa có video của dịch vụ!');
+                return
+            }
+            $('.video-wrapper iframe').attr('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+            $('#thumbnail').hide();
+            $(this).hide();
+            $('#video-wrapper').show();
+        });
+    </script>
+@endpush
+<style>
+    .container-left {
+        max-height: 700px;
+        overflow-y: scroll;
+    }
+
+    @media (max-width: 768px) {
+        .container-left {
+            max-height: unset;
+            overflow-y: unset;
+            padding: 20px !important;
+        }
+    }
+</style>
