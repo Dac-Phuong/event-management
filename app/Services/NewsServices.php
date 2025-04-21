@@ -175,7 +175,7 @@ class NewsServices extends BaseService
       }
       $query = $this->model::query();
       $query->where('title', 'LIKE', "%{$search}%");
-      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug', 'thumbnail', 'new_category_id']);
+      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug', 'thumbnail', 'new_category_id',"created_at"]);
     } catch (\Throwable $th) {
       Log::error('Search News Error: ' . $th->getMessage());
       return [];

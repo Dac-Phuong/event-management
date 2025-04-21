@@ -139,7 +139,7 @@
             $("#contactForm").submit(function(e) {
                 e.preventDefault();
                 let formData = new FormData($("#contactForm")[0]);
-                formData.append('service_name', $("#contactForm-service option:selected").text());
+                formData.append('service_name', $("#contactForm option:selected").text());
                 formData.append('_token', '{{ csrf_token() }}');
                 const submitButton = $("#submit-button");
                 submitButton.prop("disabled", true).html(

@@ -242,14 +242,15 @@
                     <div class="media-highlight">
                         <i class="fas fa-play-circle me-2"></i> Media Production
                     </div>
-                   <h1 class="hero-title">Tổ Chức Sự Kiện Chuyên Nghiệp & Đẳng Cấp</h1>
+                   <h1 class="hero-title">Tổ Chức Sự Kiện Chuyên Nghiệp Và Đẳng Cấp</h1>
                     <p class="hero-subtitle" style="transform: translateY(0px); opacity: 1;">
                         Anh Sơn Group tự hào là đơn vị tổ chức sự kiện hàng đầu với hơn 15 năm kinh nghiệm. Chúng tôi
                         cam kết mang đến những trải nghiệm đáng nhớ nhất cho mọi sự kiện từ hội nghị, triển lãm đến tiệc
                         cưới, gala dinner.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="#" class="btn btn-primary-custom btn-lg">Khám Phá Ngay</a>
+                        <a target="_blank" href="{{ url('/profile') }}" class="cta-button">Hồ sơ năng
+                            lực <i class="fas fa-arrow-right" style="margin-left: 10px"></i></a>
                         <a href="#" class="btn btn-outline-light btn-lg d-flex align-items-center">
                             <i class="fas fa-play-circle me-2"></i> Xem Video
                         </a>
@@ -388,7 +389,7 @@
             anime({
                 targets: heroTitle,
                 translateY: [30, 0],
-                opacity: [0, 1],
+                opacity: [1],
                 duration: 1000,
                 easing: 'easeOutExpo',
                 delay: 300
@@ -397,7 +398,7 @@
             anime({
                 targets: heroSubtitle,
                 translateY: [30, 0],
-                opacity: [0, 1],
+                opacity: [1],
                 duration: 1000,
                 easing: 'easeOutExpo',
                 delay: 600
@@ -415,7 +416,7 @@
 
                 anime({
                     targets: wordSpan,
-                    opacity: [0, 1],
+                    opacity: [1],
                     translateY: [20, 0],
                     duration: 800,
                     delay: 300 + (i * 100),

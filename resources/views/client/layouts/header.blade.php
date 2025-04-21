@@ -1,5 +1,4 @@
  <style>
-  
      .header {
          background-color: #000;
          padding: 15px 0;
@@ -206,7 +205,7 @@
      .mobile-nav-link {
          color: #DD6325;
          font-weight: bold;
-         text-transform: uppercase;
+         /* text-transform: uppercase; */
          padding: 15px 20px;
          display: block;
          font-size: 14px;
@@ -308,6 +307,49 @@
          transition: all 0.3s ease;
      }
 
+     .search-result-item {
+         display: flex;
+         align-items: flex-start;
+         padding: 12px 16px;
+         background-color: var(--bg-light);
+         border-bottom: 1px solid var(--border-color);
+         text-decoration: none;
+         transition: background 0.2s ease;
+     }
+
+     .search-result-item:hover {
+         background-color: var(--hover-bg);
+     }
+
+     .search-result-thumb img {
+         width: 60px;
+         height: 60px;
+         object-fit: cover;
+         border-radius: 12px;
+         border: 1px solid var(--border-color);
+         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+         margin-right: 12px;
+     }
+
+     .search-result-content {
+         flex-grow: 1;
+     }
+
+     .search-result-title {
+         font-size: 1.1rem;
+         font-weight: 500;
+         margin: 0 0 6px;
+         color: var(--text-dark);
+     }
+
+     .search-result-meta {
+         font-size: 0.9rem;
+         color: var(--text-light);
+         display: flex;
+         align-items: center;
+         gap: 6px;
+     }
+
      .overlay.active {
          opacity: 1;
          visibility: visible;
@@ -367,8 +409,21 @@
                                          @endforeach
                                      </ul>
                                  </li>
+                                 <li class="nav-item dropdown">
+                                     <a class="nav-link dropdown-toggle" href="#" role="button"
+                                         data-bs-toggle="dropdown" aria-expanded="false">
+                                         Dự án
+                                     </a>
+                                     <ul class="dropdown-menu">
+                                         @foreach ($projects as $project)
+                                             <li class="m-0"><a class="dropdown-item"
+                                                     href="{{ url('du-an', $project->slug) }}">{{ $project->name }}</a>
+                                             </li>
+                                         @endforeach
+                                     </ul>
+                                 </li>
                                  <li class="nav-item">
-                                     <a class="nav-link" href="{{ url('du-an') }}">Dự án</a>
+                                     <a class="nav-link" target="_blank" href="{{ url('profile') }}">Profile</a>
                                  </li>
                                  <li class="nav-item">
                                      <a class="nav-link" href="{{ url('blog') }}">Blog</a>
@@ -430,7 +485,18 @@
                  </ul>
              </li>
              <li class="mobile-nav-item">
-                 <a href="{{ url('/du-an') }}" class="mobile-nav-link">Dự án</a>
+                 <a href="#" class="mobile-nav-link">Dự án</a>
+                 <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                 <ul class="mobile-dropdown-menu">
+                     @foreach ($projects as $project)
+                         <li><a class="mobile-dropdown-item"
+                                 href="{{ url('du-an/' . $project->slug) }}">{{ $project->name }}</a>
+                         </li>
+                     @endforeach
+                 </ul>
+             </li>
+             <li class="mobile-nav-item">
+                 <a href="{{ url('/profile') }}" class="mobile-nav-link">Profile</a>
              </li>
              <li class="mobile-nav-item">
                  <a href="{{ url('/blog') }}" class="mobile-nav-link">Blog</a>
@@ -448,20 +514,17 @@
 
  <!-- Modal -->
  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg modal-dialog-centered">
+     <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content">
              <div class="modal-body">
                  <div class="search-input-group">
+                     <h3 class="modal-title mb-2" id="searchModalLabel">Nhập từ khóa tìm kiếm</h3>
                      <div class="input-group">
                          <input type="text" class="form-control search-input" placeholder="Tìm kiếm..."
                              aria-label="Search" aria-describedby="button-addon2">
-                         <button class="btn btn-primary" type="button" id="button-addon2" style="height: 46px;width: 75px;">
-                            <i class="fas fa-search"></i></button>
-                     </div>
-                     <div class="search-loading d-none">
-                         <div class="spinner-border" role="status">
-                             <span class="visually-hidden">Loading...</span>
-                         </div>
+                         <button class="btn btn-primary" type="button" id="button-addon2"
+                             style="height: 46px;width: 75px;">
+                             <i class="fas fa-search"></i></button>
                      </div>
                  </div>
                  <div class="search-result-container">
@@ -475,40 +538,57 @@
      <script>
          $(document).ready(function() {
              $('#button-addon2').click(function() {
-                 var q = $('.search-input').val();
-                 $('.search-loading').removeClass('d-none');
+                 var query = $('.search-input').val().trim();
+                 var resultsContainer = $(".search-result-container");
+                 resultsContainer.empty().show().append(`
+                    <li class="list-group-item result-item d-flex justify-content-center">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </li>
+                `);
                  $.ajax({
-                     url: "{{ url('search') }}",
-                     type: "GET",
+                     url: "{{ route('news.search') }}",
+                     type: "POST",
                      data: {
-                         q: q
+                         _token: "{{ csrf_token() }}",
+                         keyword: query
                      },
                      success: function(response) {
-                         $('.search-loading').addClass('d-none');
-                         $('.search-result-container').html('');
+                         resultsContainer.empty();
                          if (response.data.length > 0) {
                              $.each(response.data, function(key, value) {
-                                 $('.search-result-container').append('<a href="' + value
-                                     .url + '" class="search-result-item">' +
-                                     '<div class="search-result-item-image">' +
-                                     '<img src="' + value.thumbnail + '" alt="' +
-                                     value.title +
-                                     '">' +
-                                     '</div>' +
-                                     '<div class="search-result-item-info">' +
-                                     '<h3>' + value.title + '</h3>' +
-                                     '<p>' + value.description + '</p>' +
-                                     '</div>' +
-                                     '</a>');
+                                 resultsContainer.append(`
+                                <a href="blog/${value.category.slug}/${value.slug}" class="search-result-item">
+                                    <div class="search-result-thumb">
+                                    <img src="${value.thumbnail}" alt="${value.title}">
+                                    </div>
+                                    <div class="search-result-content">
+                                    <h3 class="search-result-title">${value.title}</h3>
+                                    <div class="search-result-meta">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>${formatDate(value.created_at)}</span>
+                                    </div>
+                                    </div>
+                                </a>
+                                `);
                              });
                          } else {
-                             $('.search-result-container').append(
-                                 '<p>Không có kết quả tìm kiếm</p>');
+                             resultsContainer.append(
+                                 '<p class="text-center">Không có kết quả tìm kiếm</p>');
                          }
                      }
                  });
              });
          });
+
+         function formatDate(dateString) {
+             var date = new Date(dateString);
+             var day = ("0" + date.getDate()).slice(-2);
+             var month = ("0" + (date.getMonth() + 1)).slice(-2);
+             var year = date.getFullYear();
+             return day + "/" + month + "/" + year;
+         }
      </script>
      <script>
          $(document).ready(function() {

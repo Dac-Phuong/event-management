@@ -46,24 +46,6 @@
                         </span>
                         <span class="switch-label">Ghim</span>
                     </label>
-                    <div class="switches-stacked mt-2">
-                        <label class="switch mb-2">
-                            <input type="radio" class="switch-input" id="gallery" name="switches-stacked-radio">
-                            <span class="switch-toggle-slider">
-                                <span class="switch-on"></span>
-                                <span class="switch-off"></span>
-                            </span>
-                            <span class="switch-label">Thiết kế ấn tượng</span>
-                        </label>
-                        <label class="switch">
-                            <input type="radio" class="switch-input" id="certification" name="switches-stacked-radio">
-                            <span class="switch-toggle-slider">
-                                <span class="switch-on"></span>
-                                <span class="switch-off"></span>
-                            </span>
-                            <span class="switch-label">Bằng khen & xác lập kỷ lục</span>
-                        </label>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Thêm</button>
@@ -119,10 +101,6 @@
                 e.preventDefault();
                 let formData = new FormData($("#addNews")[0]);
                 const slug = $("#news-title").val();
-                const is_gallery = $("#gallery").is(':checked') ? 1 : 0;
-                const is_certification = $("#certification").is(':checked') ? 1 : 0;
-                formData.append("is_gallery", is_gallery);
-                formData.append("is_certification", is_certification);
                 formData.append("slug", toSlug(slug));
                 formData.append("_token", "{{ csrf_token() }}");
                 $.ajax({

@@ -81,7 +81,7 @@
         .article-meta i {
             font-size: 0.7rem;
             margin-right: 0.3rem;
-            color: #DD6325 ;
+            color: #DD6325;
         }
 
         .article-excerpt {
@@ -102,7 +102,7 @@
             border-radius: 30px;
             margin-right: 0.5rem;
             color: white;
-            background: #DD6325 
+            background: #DD6325
         }
 
         .filter-container {
@@ -193,7 +193,7 @@
                     <section class="stats" data-aos="fade-up" data-aos-duration="1000">
                         <div class="container stats-container">
                             <div class="stat-item">
-                                <div class="stat-number" data-target="15">0</div>
+                                <div class="stat-number" data-target="15">0+</div>
                                 <div class="stat-text">Năm Kinh Nghiệm</div>
                             </div>
                             <div class="stat-item">
@@ -205,7 +205,7 @@
                                 <div class="stat-text">Khách Hàng</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" data-target="50">0</div>
+                                <div class="stat-number" data-target="50">0+</div>
                                 <div class="stat-text">Nhân Sự Chất Lượng Cao</div>
                             </div>
                         </div>
@@ -220,8 +220,6 @@
                                             tôi!</h2>
                                         <div class="divider mb-3 m-0"></div>
                                         {!! isset($settings['introduce_content']) ? $settings['introduce_content'] : '' !!}
-                                        <a target="_blank" href="{{ url('/profile') }}" class="cta-button mb-3">Hồ sơ năng
-                                            lực <i class="fas fa-arrow-right" style="margin-left: 10px"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 d-flex align-items-center">
@@ -325,83 +323,92 @@
                 <h2 class="text-gradient middle-content stroke-text"> Tầm nhìn & Sứ mệnh</h2>
                 <div class="divider "></div>
                 <p class="mt-2 text-center m-auto" style="max-width:800px">
-                    Tập đoàn Anh Sơn cam kết trở thành sứ giả truyền tải văn hóa Việt Nam ra thế giới, lan tỏa bản sắc dân tộc và kết nối du khách quốc tế khám phá vẻ đẹp đất nước. Chúng tôi không ngừng sáng tạo và đổi mới để mang đến giá trị bền vững cho cộng đồng.
+                    Tập đoàn Anh Sơn cam kết trở thành sứ giả truyền tải văn hóa Việt Nam ra thế giới, lan tỏa bản sắc dân
+                    tộc và kết nối du khách quốc tế khám phá vẻ đẹp đất nước. Chúng tôi không ngừng sáng tạo và đổi mới để
+                    mang đến giá trị bền vững cho cộng đồng.
                 </p>
-            <div class="container position-relative py-5" style="z-index: 2;" data-aos="fade-up"
-                data-aos-duration="1000">
-                <div class="d-flex flex-wrap justify-content-between gap-4">
-                    <!-- TẦM NHÌN -->
-                    <div class="d-flex flex-column align-items-center p-1 text-white"
-                        style="flex: 1 1 30%; border-radius:12px; min-width: 280px; padding:4px;
+                <div class="container position-relative py-5" style="z-index: 2;" data-aos="fade-up"
+                    data-aos-duration="1000">
+                    <div class="d-flex flex-wrap justify-content-between gap-4">
+                        <!-- TẦM NHÌN -->
+                        <div class="d-flex flex-column align-items-center p-1 text-white"
+                            style="flex: 1 1 30%; border-radius:12px; min-width: 280px; padding:4px;
                             border-radius: 15px;
                             background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
                             animation: spin 15s linear infinite;"
-                        data-aos="zoom-in" data-aos-duration="1000">
-                        <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
-                            <div class="icon-circle mb-3">
-                                <i class="fas fa-award"></i>
+                            data-aos="zoom-in" data-aos-duration="1000">
+                            <div class="w-100 h-100 p-4"
+                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                <div class="icon-circle mb-3">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <h4 class="section-title text-center fs-3">Tầm nhìn</h4>
+                                <p class="section-content text-center">
+                                    Trở thành sứ giả của văn hóa Việt Nam trên thị trường quốc tế.<br>
+                                    <span class="highlight">“Cùng văn hóa Việt Nam vươn xa”</span> – lan tỏa bản sắc dân
+                                    tộc,
+                                    kết
+                                    nối du khách năm châu khám phá Việt Nam.
+                                </p>
                             </div>
-                            <h4 class="section-title text-center fs-3">Tầm nhìn</h4>
-                            <p class="section-content text-center">
-                                Trở thành sứ giả của văn hóa Việt Nam trên thị trường quốc tế.<br>
-                                <span class="highlight">“Cùng văn hóa Việt Nam vươn xa”</span> – lan tỏa bản sắc dân tộc,
-                                kết
-                                nối du khách năm châu khám phá Việt Nam.
-                            </p>
                         </div>
-                    </div>
 
-                    <!-- GIÁ TRỊ CỐT LÕI -->
-                    <div class="d-flex flex-column align-items-center p-1 text-white"
-                        style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
+                        <!-- GIÁ TRỊ CỐT LÕI -->
+                        <div class="d-flex flex-column align-items-center p-1 text-white"
+                            style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
                             padding:4px;
                             border-radius: 15px;
                             background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
                             animation: spin 15s linear infinite;"
-                        data-aos="zoom-in" data-aos-duration="1000">
-                        <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
-                            <div class="icon-circle mb-3">
-                                <i class="fas fa-users-cog"></i>
+                            data-aos="zoom-in" data-aos-duration="1000">
+                            <div class="w-100 h-100 p-4"
+                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                <div class="icon-circle mb-3">
+                                    <i class="fas fa-users-cog"></i>
+                                </div>
+                                <h4 class="section-title text-center fs-3">Giá trị cốt lõi</h4>
+                                <p class="section-content text-center">
+                                    <strong>Am hiểu văn hóa Việt Nam</strong><br>
+                                    Trân trọng, gìn giữ bản sắc dân tộc và không ngừng học hỏi để mang đến những góc nhìn
+                                    văn
+                                    hóa
+                                    chân thực.
+                                    <br><br>
+                                    <strong>Sáng tạo</strong><br>
+                                    Kết hợp tinh hoa truyền thống với hiện đại, tạo nên những trải nghiệm độc đáo.
+                                    <br><br>
+                                    <strong>Trách nhiệm & Uy tín</strong><br>
+                                    Cam kết chất lượng, đề cao trách nhiệm và sự tín nhiệm để mang lại giá trị bền vững.
+                                </p>
                             </div>
-                            <h4 class="section-title text-center fs-3">Giá trị cốt lõi</h4>
-                            <p class="section-content text-center">
-                                <strong>Am hiểu văn hóa Việt Nam</strong><br>
-                                Trân trọng, gìn giữ bản sắc dân tộc và không ngừng học hỏi để mang đến những góc nhìn văn
-                                hóa
-                                chân thực.
-                                <br><br>
-                                <strong>Sáng tạo</strong><br>
-                                Kết hợp tinh hoa truyền thống với hiện đại, tạo nên những trải nghiệm độc đáo.
-                                <br><br>
-                                <strong>Trách nhiệm & Uy tín</strong><br>
-                                Cam kết chất lượng, đề cao trách nhiệm và sự tín nhiệm để mang lại giá trị bền vững.
-                            </p>
                         </div>
-                    </div>
 
-                    <!-- SỨ MỆNH -->
-                    <div class="d-flex flex-column align-items-center p-1 text-white"
-                        style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
+                        <!-- SỨ MỆNH -->
+                        <div class="d-flex flex-column align-items-center p-1 text-white"
+                            style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
                          padding:4px;
                             border-radius: 15px;
                             background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
                             animation: spin 15s linear infinite;"
-                        data-aos="zoom-in" data-aos-duration="1000">
-                        <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
-                            <div class="icon-circle mb-3">
-                                <i class="fas fa-hands-helping"></i>
+                            data-aos="zoom-in" data-aos-duration="1000">
+                            <div class="w-100 h-100 p-4"
+                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                <div class="icon-circle mb-3">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <h4 class="section-title text-center fs-3">Sứ mệnh</h4>
+                                <p class="section-content text-center">
+                                    Anh Sơn Group cam kết tôn vinh văn hóa Việt Nam qua nghệ thuật và du lịch, mang đến góc
+                                    nhìn
+                                    chân thực, sáng tạo và nghệ thuật.
+                                    <br><br>
+                                    Mang đến hiệu quả truyền thông và thúc đẩy phát triển du lịch cho mỗi vùng đất của Việt
+                                    Nam.
+                                </p>
                             </div>
-                            <h4 class="section-title text-center fs-3">Sứ mệnh</h4>
-                            <p class="section-content text-center">
-                                Anh Sơn Group cam kết tôn vinh văn hóa Việt Nam qua nghệ thuật và du lịch, mang đến góc nhìn
-                                chân thực, sáng tạo và nghệ thuật.
-                                <br><br>
-                                Mang đến hiệu quả truyền thông và thúc đẩy phát triển du lịch cho mỗi vùng đất của Việt Nam.
-                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </div>
     <!-- Modal -->
@@ -478,49 +485,39 @@
 @endsection
 @push('scripts')
     <script>
-        // Kiểm tra xem phần tử đã vào vùng hiển thị chưa
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
+        let statsAnimated = false;
+
+        function animateStats() {
+            $('.stat-number').each(function() {
+                const $this = $(this);
+                const target = parseInt($this.attr('data-target'));
+                let current = 0;
+                const duration = 2000;
+                const stepTime = Math.floor(duration / target);
+
+                const interval = setInterval(function() {
+                    current++;
+                    $this.text(current + ($this.text().includes('+') ? '+' : ''));
+                    if (current >= target) {
+                        clearInterval(interval);
+                    }
+                }, stepTime);
+            });
+        }
+
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
             return (
-                rect.top < window.innerHeight && rect.bottom > 0
+                rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
             );
         }
 
-        // Hàm chạy đếm số
-        function animateCounter($el) {
-            const target = parseInt($el.data('target'));
-            const duration = 2000;
-            const start = 0;
-            const startTime = performance.now();
-
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const value = Math.floor(progress * (target - start) + start);
-                $el.text(value.toLocaleString() + '+');
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
+        $(window).on('scroll', function() {
+            if (!statsAnimated && isInViewport($('.stats-container')[0])) {
+                animateStats();
+                statsAnimated = true;
             }
-
-            requestAnimationFrame(update);
-        }
-
-        $(document).ready(function() {
-            const $counters = $('.stat-number');
-            const counted = new Set();
-
-            $(window).on('scroll', function() {
-                $counters.each(function() {
-                    const $this = $(this);
-                    if (!counted.has(this) && isElementInViewport(this)) {
-                        animateCounter($this);
-                        counted.add(this);
-                    }
-                });
-            });
-            $(window).trigger('scroll');
         });
 
         $('.location').on('click', function() {

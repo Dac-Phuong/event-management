@@ -16,43 +16,27 @@
                 </div>
             </div>
         </section>
-        <div class="filter-block hidden-sm hidden-xs" style="padding: 80px 0px;">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <div class="timeline-2">
-                        <div class="timeline-container">
-                            <div class="timeline-card"><a class="{{ request()->is('du-an') ? 'active' : '' }}" href="{{ url('/du-an') }}" href="{{ url('/du-an') }}"
-                                    style="cursor: pointer;">Tất cả</a></div>
-                            @foreach ($data['categories'] as $category)
-                                <div class="timeline-card"><a class="{{ request()->is('du-an/' . $category->slug) ? 'active' : '' }}" href="{{ url('/du-an/' . $category->slug) }}"
-                                        style="cursor: pointer;">{{ $category->name }}</a></div>
-                            @endforeach
-                            <div class="liner"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="global home_service_calatogue top30">
-            <div class="home-service-cate home-service-catalogue-wrapper top30">
+        <div class="global container home_service_calatogue top30">
+            <div class="home-service-cate top30">
                 @if (count($data['project']) > 0)
-                    <div class="grid-box-2">
-                        @foreach ($data['project'] as $item)
-                            <div class="service-with-imagez">
-                                <div class="box-img"><img src="{{ $item->thumbnail }}" alt="{{ $item->title }}"
-                                        class="home-service-img">
-                                    <div class="service-title-block">
-                                        <div class="service-name portforlio-page"> <a
-                                                href="{{ url('/du-an/' . $data['category']->slug . '/' . $item->slug) }}">
-                                                {{ $item->title }}
-                                            </a></div>
-                                        <div class="service-desc">
-                                            <div><span>Tác giả</span> : <span>{{ $item->author->name ?? 'Admin' }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="service-desc"></div>
-                                    </div> <span><span><a href="{{ asset($item->thumbnail) }}"
-                                                data-thumb="{{ asset($item->thumbnail) }}" data-fancybox="album622"></a>
+                    <div class="projects-grid">
+                        @foreach ($data['project'] as $project)
+                            <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="project-media">
+                                    <img src="{{ $project->thumbnail }}" class="project-image" alt="Sunshine Complex">
+                                    <div class="play-button" data-video-id="{{ $project->url }}">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <span class="project-badge" data-aos="fade-up"
+                                        data-aos-delay="200">{{ $data['category']->name }}</span>
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">{{ $project->title }}</h3>
+                                    <p class="project-description">{{ $project->content }}</p>
+                                    <div class="project-meta">
+                                        <a href="{{ url('/du-an/' . $data['category']->slug . '/' . $project->slug) }}"
+                                            class="read-more">Xem dự án <i class="fas fa-arrow-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

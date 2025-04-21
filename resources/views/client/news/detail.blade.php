@@ -17,7 +17,7 @@
             </div>
         </section>
         <div class="container">
-            <div class="row mt-4">
+            <div class="row my-4">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="card shadow p-3" style="height: 450px; border-radius: 12px;background: rgba(30, 30, 30, 0.7);">
                         <img src="{{ $data['news']->thumbnail }}" width="100%" height="83%" style="border-radius:12px"

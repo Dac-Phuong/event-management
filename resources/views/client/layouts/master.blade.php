@@ -23,7 +23,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
 
     <!-- Icons -->
@@ -65,6 +67,7 @@
 @php
     $services = \App\Models\Service::where('status', 1)->get();
     $config = \App\Models\Configs::where('key', 'base_logo')->first();
+    $projects = \App\Models\ProjectCategory::where('status', 1)->get();
 @endphp
 
 <body>
@@ -79,7 +82,7 @@
             @include('client.layouts.footer')
         </footer>
     </div>
-    <script src="{{ '/assets/js/jquery.min.js' }}" ></script>
+    <script src="{{ '/assets/js/jquery.min.js' }}"></script>
     <script src="{{ '/assets/js/three.min.js' }}" async></script>
     <script src="{{ '/assets/vendor/js/aos.js' }}" async></script>
     <script src="{{ '/assets/vendor/libs/toastr/toastr.js' }}" async></script>
@@ -94,9 +97,9 @@
     <script src="{{ '/assets/js/mouse-cursor-point.js' }}" async></script>
     <script src="{{ '/assets/js/lodash.min.js' }}" async></script>
     <script src="{{ '/assets/js/menu.min.js' }}" async></script>
-    <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}" ></script>
+    <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}"></script>
     <script src="{{ '/assets/js/lozad.min.js' }}" async></script>
-    <script src="{{ '/assets/js/custom.js' }}" ></script>
+    <script src="{{ '/assets/js/custom.js' }}"></script>
     <script src="{{ '/assets/js/client.js' }}" async></script>
     @stack('scripts')
 </body>

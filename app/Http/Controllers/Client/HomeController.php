@@ -26,10 +26,8 @@ class HomeController extends Controller
         $banner = json_decode(Configs::get_config('base_banner'), true);
         $services = Service::where('status', 1)->limit(6)->get();
         $introduce = Configs::whereIn('key', ['introduce_image', 'introduce_content', 'introduce_youtube_id'])->pluck('value', 'key')->toArray();
-        $certification = News::where('is_certification', 1)->select('id', 'title', 'thumbnail', 'new_category_id', 'slug')->with('category:id,slug')->get();
-        $gallery = News::where('is_gallery', 1)->select('id', 'title', 'thumbnail', 'new_category_id', 'slug')->with('category:id,slug')->get();
         $projects = Project::select('id', 'title', 'thumbnail', 'category_id', 'slug', 'content')->with('category:id,slug,name')->orderByDesc('id')->limit(9)->get();
-        return view('client.home.index', compact('banner', 'services', 'introduce', 'gallery', 'certification', 'projects'));
+        return view('client.home.index', compact('banner', 'services', 'introduce', 'projects'));
     }
     public function profile()
     {

@@ -5,7 +5,7 @@
         <div class="row py-5" style="min-height: 500px">
             <div class="col-xs-12">
                 <div class="_df_book" webgl="true"
-                    source="{{ isset($settings['introduce_pdf']) ? asset($settings['introduce_pdf']) : 'assets/books/test.pdf' }}"
+                    source="{{ isset($settings['introduce_pdf']) ? asset($settings['introduce_pdf']) : 'assets/books/hsnl.pdf' }}"
                     id="df_manual_book" backgroundcolor="transparent">
                 </div>
             </div>

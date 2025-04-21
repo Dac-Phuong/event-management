@@ -47,26 +47,6 @@
                         </span>
                         <span class="switch-label">Ghim</span>
                     </label>
-                    <div class="switches-stacked mt-2">
-                        <label class="switch mb-2">
-                            <input type="radio" id="gallery1" class="switch-input" name="switches-stacked-radio">
-                            <span class="switch-toggle-slider">
-                                <span class="switch-on"></span>
-                                <span class="switch-off"></span>
-                            </span>
-                            <span class="switch-label">Thiết kế ấn tượng</span>
-                        </label>
-
-                        <label class="switch">
-                            <input type="radio" id="certification1" class="switch-input"
-                                name="switches-stacked-radio">
-                            <span class="switch-toggle-slider">
-                                <span class="switch-on"></span>
-                                <span class="switch-off"></span>
-                            </span>
-                            <span class="switch-label">Bằng khen & xác lập kỷ lục</span>
-                        </label>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Lưu</button>
@@ -87,10 +67,6 @@
                 e.preventDefault();
                 let formData = new FormData($("#editNews")[0]);
                 const slug = $("#news-title1").val();
-                const is_gallery = $("#gallery1").is(':checked') ? 1 : 0;
-                const is_certification = $("#certification1").is(':checked') ? 1 : 0;
-                formData.append("is_gallery", is_gallery);
-                formData.append("is_certification", is_certification);
                 formData.append("slug", toSlug(slug));
                 formData.append("_token", "{{ csrf_token() }}");
 
