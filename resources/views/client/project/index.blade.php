@@ -52,4 +52,45 @@
             </div>
         </div>
     </div>
+    <div class="modal fade p-0" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div style="position: absolute; top: 20px; right: 20px; cursor: pointer;" class="close-video">
+            <i class="ti ti-x text-white fs-3"></i>
+        </div>
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content bg-transparent">
+                <div class="modal-body p-0">
+                    <div class="video-container">
+                        <iframe src="" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('scripts')
+    <script>
+        $('.play-button').click(function() {
+            const videoId = $(this).attr('data-video-id');
+            $('.video-container iframe').attr('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+            $("#videoModal").modal("show");
+            $('body').css('overflow', 'hidden');
+        });
+
+        $('.close-video').click(function() {
+            $("#videoModal").modal("hide");
+            $('.video-container iframe').attr('src', '');
+            $('body').css('overflow', 'auto');
+        });
+
+        // Close modal when clicking outside
+        $('.video-modal').click(function(e) {
+            if ($(e.target).is('.video-modal')) {
+                $("#videoModal").modal("hide");
+                $('.video-container iframe').attr('src', '');
+                $('body').css('overflow', 'auto');
+            }
+        });
+    </script>
+@endpush

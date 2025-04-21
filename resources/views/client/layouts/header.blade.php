@@ -461,11 +461,11 @@
      </div>
      <div class="mobile-menu-content">
          <div class="mobile-menu-footer">
-             {{-- <div class="mobile-language">
+             <div class="mobile-language">
                  <span class="active">VI</span> | <span>EN</span>
-             </div> --}}
+             </div>
              <div class="mobile-search">
-                 <input type="text" placeholder="Tìm kiếm...">
+                 <input class="mobile-search-input" type="text" placeholder="Tìm kiếm...">
                  <button><i class="fas fa-search"></i></button>
              </div>
          </div>
@@ -516,9 +516,13 @@
  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content">
+             <div class="modal-header">
+                 <h3 class="modal-title mb-2" id="searchModalLabel">Nhập từ khóa tìm kiếm</h3>
+                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"><i
+                         class="fas fa-close fs-4"></i></button>
+             </div>
              <div class="modal-body">
                  <div class="search-input-group">
-                     <h3 class="modal-title mb-2" id="searchModalLabel">Nhập từ khóa tìm kiếm</h3>
                      <div class="input-group">
                          <input type="text" class="form-control search-input" placeholder="Tìm kiếm..."
                              aria-label="Search" aria-describedby="button-addon2">
@@ -592,6 +596,13 @@
      </script>
      <script>
          $(document).ready(function() {
+             $('.mobile-search-input').click(function(event) {
+                 event.stopPropagation();
+                 $('.mobile-menu').removeClass('active');
+                 $('.overlay').removeClass('active');
+                 $('body').css('overflow', '');
+                 $('#searchModal').modal('show');
+             });
              // Mobile menu toggle
              $('.mobile-menu-toggle').click(function() {
                  $('.mobile-menu').addClass('active');

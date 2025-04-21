@@ -63,7 +63,7 @@ class ProjectCategoryService extends BaseService
             }
             $project = $category->project()
                 ->with(['author:id,name,email'])
-                ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'views', 'is_show', 'is_pin', 'created_at'])
+                ->select(['id', 'title', 'slug', 'content', 'thumbnail', 'url','views', 'is_show', 'is_pin', 'created_at'])
                 ->orderBy('is_pin', 'desc')
                 ->latest()
                 ->paginate($perPage);
