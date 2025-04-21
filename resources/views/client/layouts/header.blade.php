@@ -455,8 +455,8 @@
                      <div class="input-group">
                          <input type="text" class="form-control search-input" placeholder="Tìm kiếm..."
                              aria-label="Search" aria-describedby="button-addon2">
-                         <button class="btn btn-primary" type="button" id="button-addon2"><i
-                                 class="fas fa-search"></i></button>
+                         <button class="btn btn-primary" type="button" id="button-addon2" style="height: 46px;width: 75px;">
+                            <i class="fas fa-search"></i></button>
                      </div>
                      <div class="search-loading d-none">
                          <div class="spinner-border" role="status">

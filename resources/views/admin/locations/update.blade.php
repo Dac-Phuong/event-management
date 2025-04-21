@@ -10,7 +10,7 @@
                       </div>
                       <div class="mb-3">
                           <label class="form-label" for="name">Chọn bài viết liên quan</label>
-                          <select id="select2Multiple" class="select2 form-select" name="news_id[]" multiple
+                          <select id="select2Update" class="select2 form-select" name="news_id[]" multiple
                               placeholder="Chọn bài viết">
                               @foreach ($news as $item)
                                   <option value="{{ $item->id }}">{{ $item->title }}</option>
@@ -32,7 +32,6 @@
               e.preventDefault();
               let formData = new FormData(this);
               formData.append("_token", "{{ csrf_token() }}");
-
               $.ajax({
                   url: "{{ route('locations.update') }}",
                   type: "POST",

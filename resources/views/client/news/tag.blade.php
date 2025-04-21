@@ -35,7 +35,7 @@
                                         <h5 class="blog-cate-title"><a
                                                 href="{{ isset($item->category) ? url('/blog/' . $item->category->slug . '/' . $item->slug) :'#' }}">{{ $item->title ?? '' }}</a>
                                         </h5>
-                                        <p class="blog-cate-brief">{{ $item->content ?? ''}}.</p>
+                                        <p class="blog-cate-brief">{{ $item->content ?? ''}}</p>
                                         <div class="blog-carousel-meta">
                                             <a href="{{ isset($item->category) ? url('/blog/' . $item->category->slug) :'#' }}" class="post-category"
                                                 style="">{{ $item->name ?? '' }}</a>

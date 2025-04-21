@@ -181,7 +181,6 @@
                                 <div class="dropdown">
                                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item btn-add" href="javascript:void(0);"><i class="ti ti-plus me-2"></i>Thêm bài viết</a>
                                     <a class="dropdown-item btn-edit" href="javascript:void(0);"><i class="ti ti-pencil me-2"></i>Sửa thông tin</a>
                                     <a class="dropdown-item btn-delete" href="javascript:void(0);"><i class="ti ti-trash me-2"></i>Xóa dịch vụ</a>
                                   </div>

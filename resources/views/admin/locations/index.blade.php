@@ -86,11 +86,11 @@
                     $('#editLocation input[name="id"]').val(data.id);
                     $('#editLocation input[name="name"]').val(data.name);
                     $('#modal-update-location').one('shown.bs.modal', function() {
-                        let $select = $('#select2Multiple');
+                        let $select = $('#select2Update');
                         $select.val(null).trigger('change');
                         if (Array.isArray(data?.location_news)) {
-                            let selectedNewsIds = data.location_news.map(item => item.news_id);
-                            $select.val(selectedNewsIds).trigger('change');
+                            let selectedIds = data.location_news.map(item => item.news_id);
+                            $select.val(selectedIds).trigger('change');
                         }
                     }).modal('show');
                 });

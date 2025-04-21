@@ -19,8 +19,6 @@ class News extends Model
         "views",
         "is_show",
         "is_pin",
-        "is_gallery",
-        "is_certification",
         'author_id',
         'slug',
     ];

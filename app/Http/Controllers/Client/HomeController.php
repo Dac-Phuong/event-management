@@ -31,6 +31,15 @@ class HomeController extends Controller
         $projects = Project::select('id', 'title', 'thumbnail', 'category_id', 'slug', 'content')->with('category:id,slug,name')->orderByDesc('id')->limit(9)->get();
         return view('client.home.index', compact('banner', 'services', 'introduce', 'gallery', 'certification', 'projects'));
     }
+    public function profile()
+    {
+        $settings = $this->userCategoryService()->getConfig();
+        return view('client.profile.index', compact('settings'));
+    }
+    public function userCategoryService()
+    {
+        return app(UserCategoryService::class);
+    }
     public function sendContact(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -39,6 +48,7 @@ class HomeController extends Controller
             "email" => "required|email",
             "service_email" => "required",
             "message" => "required",
+            "agree" => "required",
         ], [
             "fullname.required" => "Vui lòng nhập họ tên",
             "fullname.max" => "Họ tên quá dài",
@@ -49,6 +59,7 @@ class HomeController extends Controller
             "email.email" => "Email không đúng định dạng",
             "service_email.required" => "Vui lòng chọn dịch vụ",
             "message.required" => "Vui lòng nhập nội dung",
+            "agree.required" => "Vui lòng xác nhận",
         ]);
 
         if ($validator->fails()) {
@@ -60,15 +71,6 @@ class HomeController extends Controller
         $result = $this->contactService->sendContact($request->all());
         Mail::to($request->service_email)->send(new SendMail($request->all()));
         return jsonResponse($result ? 0 : 1);
-    }
-    public function profile()
-    {
-        $settings = $this->userCategoryService()->getConfig();
-        return view('client.profile.index', compact('settings'));
-    }
-    public function userCategoryService()
-    {
-        return app(UserCategoryService::class);
     }
 }
 

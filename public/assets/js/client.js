@@ -23,7 +23,7 @@ $(document).ready(function () {
                     $('#contact-email').text(res.data.contact_email).attr('href',
                         `mailto:${res.data.contact_email || 'pro@anhsongroup.com'}`)
                     $('.contact-email').text(res.data.contact_email || 'pro@anhsongroup.com')
-                    $('#subject').html(JSON.parse(res.data.contact_services || '[]').map(service =>
+                    $('#contact-form-service').html(JSON.parse(res.data.contact_services || '[]').map(service =>
                             `<option value="${service.email}">${service.name}</option>`)
                         .join(''))
                     $('#logo').attr('src', res.data.base_logo)
