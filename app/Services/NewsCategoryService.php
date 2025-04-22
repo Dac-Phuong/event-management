@@ -88,14 +88,32 @@ class NewsCategoryService extends BaseService
         ->take(5)
         ->get();
 
-      $categories = NewsCategory::select('news_categories.id', 'news_categories.name', 'news_categories.slug')
+      $categories = NewsCategory::select(
+        'news_categories.id',
+        'news_categories.name',
+        'news_categories.slug',
+        'news.id as news_id',
+        'news.title',
+        'news.slug as news_slug',
+        'news.content',
+        'news.thumbnail'
+      )
         ->join('news', 'news.new_category_id', '=', 'news_categories.id')
-        ->selectRaw('news.id as news_id, news.title, news.slug as news_slug, news.content, news.thumbnail')
         ->where('news.is_show', 1)
         ->orderBy('news.created_at', 'desc')
-        ->groupBy('news_categories.id', 'news.id')
+        ->groupBy(
+          'news_categories.id',
+          'news_categories.name',
+          'news_categories.slug',
+          'news.id',
+          'news.title',
+          'news.slug',
+          'news.content',
+          'news.thumbnail'
+        )
         ->limit(3)
         ->get();
+
 
 
       return [

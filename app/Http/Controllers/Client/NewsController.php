@@ -38,9 +38,9 @@ class NewsController extends Controller
     {
         $slug = $request->route('slug');
         $data = $this->newsService()->getNewsByTag($slug);
-        $data['sidebar'] = $this->newsCategoryService()->getNewsSidebar();
+        $sidebar = $this->newsCategoryService()->getNewsSidebar();
         $tag = $this->newsService()->getTag($slug);
-        return view('client.news.tag', compact('data', 'tag'));
+        return view('client.news.tag', compact('data', 'tag','sidebar'));
     }
     public function newsService()
     {

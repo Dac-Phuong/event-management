@@ -26,21 +26,23 @@
                         @foreach ($data as $item)
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 blog-item">
                                 <div class="blog-cate-img position-relative overflow-hidden">
-                                    <a href="{{ isset($item->category) ? url('/blog/' . $item->category->slug . '/' . $item->slug) :'#' }}">
-                                        <img data-src="{{ $item->thumbnail ?? '' }}" src="{{ $item->thumbnail ??'' }}"
+                                    <a
+                                        href="{{ isset($item->category) ? url('/blog/' . $item->category->slug . '/' . $item->slug) : '#' }}">
+                                        <img data-src="{{ $item->thumbnail ?? '' }}" src="{{ $item->thumbnail ?? '' }}"
                                             style="height: 200px; border-radius: 8px;"
                                             class="blog-cate-img-item lozad border-none rounded-2" data-loaded="true">
                                     </a>
                                     <div class="blog-cate-content ">
                                         <h5 class="blog-cate-title"><a
-                                                href="{{ isset($item->category) ? url('/blog/' . $item->category->slug . '/' . $item->slug) :'#' }}">{{ $item->title ?? '' }}</a>
+                                                href="{{ isset($item->category) ? url('/blog/' . $item->category->slug . '/' . $item->slug) : '#' }}">{{ $item->title ?? '' }}</a>
                                         </h5>
-                                        <p class="blog-cate-brief">{{ $item->content ?? ''}}</p>
+                                        <p class="blog-cate-brief">{{ $item->content ?? '' }}</p>
                                         <div class="blog-carousel-meta">
-                                            <a href="{{ isset($item->category) ? url('/blog/' . $item->category->slug) :'#' }}" class="post-category"
-                                                style="">{{ $item->name ?? '' }}</a>
+                                            <a href="{{ isset($item->category) ? url('/blog/' . $item->category->slug) : '#' }}"
+                                                class="post-category" style="">{{ $item->name ?? '' }}</a>
                                             <span class="post-created-at"
-                                                style="font-size:11px;font-weight: bold;color:#DD6325;">{{$item->category->name ?? ''}} •&nbsp;
+                                                style="font-size:11px;font-weight: bold;color:#DD6325;">{{ $item->category->name ?? '' }}
+                                                •&nbsp;
                                                 {{ \Carbon\Carbon::parse($item->created_at ?? '')->format('d/m/Y') }}</span>
                                         </div>
                                     </div>
@@ -53,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                @include('client.components.sidebar', ['data' => $data['sidebar']])
+                @include('client.components.sidebar', ['data' => $sidebar])
             </div>
         </div>
     </div>

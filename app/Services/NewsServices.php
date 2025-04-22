@@ -175,7 +175,7 @@ class NewsServices extends BaseService
       }
       $query = $this->model::query();
       $query->where('title', 'LIKE', "%{$search}%");
-      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug', 'thumbnail', 'new_category_id',"created_at"]);
+      return $query->with('category:id,slug')->limit(10)->get(['id', 'title', 'slug', 'thumbnail', 'new_category_id', "created_at"]);
     } catch (\Throwable $th) {
       Log::error('Search News Error: ' . $th->getMessage());
       return [];
@@ -221,17 +221,30 @@ class NewsServices extends BaseService
   {
     try {
       $news = $this->getModel()
-        ->with('author', 'category', 'tags')
-        ->whereHas('tags', function ($query) use ($slug) {
-          $query->where('slug', $slug);
-        })
-        ->select(['id', 'title', 'slug', 'thumbnail', 'views', 'created_at', 'new_category_id'])
+        ->whereHas('tags', fn($query) => $query->where('slug', $slug))
+        ->with(['author:id,name', 'category:id,name,slug', 'tags:id,name,slug'])
+        ->select([
+          'id',
+          'title',
+          'slug',
+          'thumbnail',
+          'views',
+          'created_at',
+          'new_category_id',
+          'author_id'
+        ])
         ->latest()
         ->paginate(6);
+
+      // Lọc item null nếu có lỗi phía DB
+      $news->setCollection(
+        $news->getCollection()->filter(fn($item) => $item && $item->id)
+      );
       return $news;
     } catch (\Throwable $th) {
       $this->handleException($th);
       return null;
     }
   }
+
 }
