@@ -1,21 +1,36 @@
  <style>
      .header {
          background-color: var(--bg-white);
-         position: fixed;
-         top: 0;
-         left: 0;
          width: 100%;
-         z-index: 1000;
          transition: all 0.3s ease;
          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+         position: relative;
+         z-index: 999;
+         transition: all 0.3s ease;
      }
 
      .nav-link.active {
-         color: var(--bg-white) !important;
+         color: var(--primary-color) !important;
+     }
+
+
+     @keyframes slideDown {
+         from {
+             transform: translateY(-100%);
+         }
+
+         to {
+             transform: translateY(0);
+         }
      }
 
      .header.scrolled {
-         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+         position: fixed;
+         top: 0;
+         left: 0;
+         background-color: #fff;
+         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+         animation: slideDown 1s ease forwards;
      }
 
      .logo {
@@ -116,7 +131,7 @@
      }
 
      .dropdown-item {
-         color:var(--text-gray) !important;
+         color: var(--text-gray) !important;
          padding: 10px 20px;
          font-size: 16px;
          font-weight: 400;
@@ -145,7 +160,7 @@
          left: -300px;
          width: 300px;
          height: 100%;
-         background-color:var(--bg-white);
+         background-color: var(--bg-white);
          z-index: 9999;
          overflow-y: auto;
          transition: all 0.4s ease-in-out;
@@ -201,7 +216,7 @@
          color: #1E64A5;
          font-weight: bold;
          /* text-transform: uppercase; */
-        border-bottom: 1px solid #f1f1f1;
+         border-bottom: 1px solid #f1f1f1;
          padding: 15px 20px;
          display: block;
          font-size: 14px;
@@ -273,7 +288,7 @@
      .mobile-search input {
          width: 100%;
          padding: 10px 15px;
-        border: 1px solid var(--primary-color) !important;
+         border: 1px solid var(--primary-color) !important;
          border: none;
          color: var(--text-gray);
          border-radius: 4px;
@@ -356,9 +371,7 @@
              display: none;
          }
 
-         body {
-             padding-top: 70px;
-         }
+       
      }
 
      @media (min-width: 992px) {
@@ -513,13 +526,15 @@
          <div class="modal-content">
              <div class="modal-header">
                  <h3 class="modal-title mb-2" id="searchModalLabel">Nhập từ khóa tìm kiếm</h3>
-                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                     aria-label="Close"></button>
              </div>
              <div class="modal-body">
                  <div class="search-input-group">
                      <div class="input-group">
                          <input type="text" class="form-control search-input" placeholder="Tìm kiếm..."
-                             aria-label="Search" aria-describedby="button-addon2" style="border: 1px solid var(--primary-color)">
+                             aria-label="Search" aria-describedby="button-addon2"
+                             style="border: 1px solid var(--primary-color)">
                          <button class="btn btn-primary" type="button" id="button-addon2"
                              style="height: 46px;width: 75px;">
                              <i class="fas fa-search"></i></button>
@@ -649,7 +664,7 @@
 
              // Header scroll effect
              $(window).scroll(function() {
-                 if ($(this).scrollTop() > 50) {
+                 if ($(this).scrollTop() > 100) {
                      $('.header').addClass('scrolled');
                  } else {
                      $('.header').removeClass('scrolled');

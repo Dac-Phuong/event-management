@@ -186,7 +186,7 @@
         }
     </style>
     <div class="introduce">
-        @include('client.components.video')
+        @include('client.components.home.banner', ['banner' => $banner])
         <div class="container introduce">
             <div class="section-about" id="about">
                 <div class="container-about">
@@ -337,8 +337,7 @@
                             background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
-                            <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: var(--bg-white);">
+                            <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-award"></i>
                                 </div>
@@ -361,8 +360,7 @@
                             background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
-                            <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: var(--bg-white);">
+                            <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-users-cog"></i>
                                 </div>
@@ -391,8 +389,7 @@
                             background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
-                            <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: var(--bg-white);">
+                            <div class="w-100 h-100 p-4" style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-hands-helping"></i>
                                 </div>
@@ -513,13 +510,7 @@
             );
         }
 
-        $(window).on('scroll', function() {
-            if (!statsAnimated && isInViewport($('.stats-container')[0])) {
-                animateStats();
-                statsAnimated = true;
-            }
-        });
-
+        animateStats();
         $('.location').on('click', function() {
             const locationName = $(this).data('location');
             const newsList = $(this).data('news');

@@ -88,7 +88,6 @@ h4 a,
 h5 a,
 h6 a {
     text-decoration: none !important;
-    color: #fff;
 }
 
 a {
@@ -5293,9 +5292,7 @@ mark {
     padding-left: 10px
 }
 
-.detail_box p {
-    margin: 5px 0px
-}
+
 
 .detail_box ul {
     margin-top: 0px;
@@ -5376,23 +5373,6 @@ mark {
     border: solid 1px #ccc;
 }
 
-.blogcate-title-block {
-    padding: 4px 15px;
-    color: #fff;
-    margin-bottom: 5px;
-    font-size: 18px;
-    border-bottom: 1px solid #e87a1e;
-}
-
-.blogcate-title-block a.pull-right {
-    color: #1E64A5;
-    font-weight: 300;
-}
-
-.blogcate-title-block a {
-    color: #fff;
-    font-weight: bold;
-}
 
 .detail_box iframe {
     max-width: 100%

@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row my-4">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="card shadow p-3" style="height: 450px; border-radius: 12px;background: rgba(30, 30, 30, 0.7);">
+                    <div class="card shadow p-3" style="height: 450px; border-radius: 12px">
                         <img src="{{ $data['news']->thumbnail }}" width="100%" height="83%" style="border-radius:12px"
                             alt="">
                         <h4 class="card-title text-uppercase mt-3 mb-1">{{ $data['news']->title }}</h4>

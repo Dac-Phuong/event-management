@@ -21,7 +21,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     @if (count($recruitment) > 0)
                         @foreach ($recruitment as $item)
-                            <div class="shadow mb-3 rounded-3 card-hover" style="background: rgba(30, 30, 30, 0.7);">
+                            <div class="shadow mb-3 rounded-3 card-hover">
                                 <div class="row g-0">
                                     <div class="col-md-4 overflow-hidden card-hover">
                                         <a href="{{ 'tuyen-dung/' . $item->slug }}">
@@ -33,10 +33,10 @@
                                         <div class="card-body" style="padding: 10px; 15px">
                                             <a href="{{ 'tuyen-dung/' . $item->slug }}"
                                                 class="text-decoration-none text-black">
-                                                <h5 class="card-title fs-5 text-white">{{ $item->title }}</h5>
+                                                <h2 class="card-title fs-5">{{ $item->title }}</h2>
                                             </a>
                                             <p class="mb-2"
-                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; ">
                                                 {!! nl2br(e($item->description)) !!}
                                             </p>
                                             <p class="mb-0"><small class="text-gray">Số lượng:
@@ -44,7 +44,7 @@
                                             <p class="mb-0 "><small class="text-gray">Trạng thái: <span
                                                         class="fw-semibold text-{{ $item->status == '1' ? 'primary' : 'danger' }}">
                                                         {{ $item->status == '1' ? 'Đang mở' : 'Đã đóng' }}</small></p>
-                                            <p class="text-white"><small class="text-gray"> Ngày hết hạn:
+                                            <p><small class="text-gray"> Ngày hết hạn:
                                                     {{ \Carbon\Carbon::parse($item->expired_at)->format('d/m/Y') }}</small>
                                             </p>
                                         </div>

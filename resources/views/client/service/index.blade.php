@@ -26,7 +26,7 @@
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
-                    <div class="news-content">
+                    <div class="news-content" style="color: var(--text-gray)">
                         {!! $service->content !!}
                     </div>
                 </div>

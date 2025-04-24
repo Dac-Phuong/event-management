@@ -77,7 +77,7 @@
                                         name="email" aria-label="Email của bạn" aria-describedby="button-addon2"
                                         required>
                                     <button class="btn btn-primary" type="button" id="button-addon2"
-                                        style="height: 47px"><i class="fas fa-paper-plane"></i></button>
+                                        style="height: 47px; width: 75px"><i class="fas fa-paper-plane"></i></button>
                                 </div>
                             </form>
                         </div>

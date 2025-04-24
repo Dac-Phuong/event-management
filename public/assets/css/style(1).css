@@ -50,10 +50,6 @@
     width: 25%;
 }
 
-.global {
-    background-color: #111;
-}
-
 #btn-cm {
     margin: 10px 0px;
     background: linear-gradient(90deg, rgba(244, 128, 32, 1) 0%, rgba(244, 128, 32, 0.7343312324929971) 30%, rgba(0, 0, 0, 0) 100%);
@@ -96,11 +92,10 @@
 }
 
 .widget-sidebar .title p {
-    /* background: #fff; */
     padding: 5px 0px;
-    color: #fff;
     margin-bottom: 5px;
     border-bottom: 1px solid #e87a1e;
+    color: var(--primary-color);
 }
 
 .widget-sidebar .most-pop-post-title h5 {
@@ -114,7 +109,7 @@
     line-height: 20px;
     cursor: pointer;
     margin: 0px 0px 8px 0px;
-    color: #aaa;
+    color: var(--text-gray);
 }
 
 .btn.load-more {

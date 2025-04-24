@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px;background: rgba(30, 30, 30, 0.7);">
+                <div class="card mb-5 p-3" style="height: 450px; border-radius: 12px">
                     <img src="{{ $recruitment->thumbnail }}" width="100%" height="83%" style="border-radius:12px"
                         alt="">
                     <h4 class="card-title mt-3 mb-1">{{ $recruitment->title }}</h4>
@@ -34,7 +34,7 @@
                                 {{ number_format($recruitment->views) }} Lượt xem</small></p>
                     </div>
                 </div>
-                <div class="news-content">{!! $recruitment->content !!}</div>
+                <div class="news-content" style="color: var(--text-gray)">{!! $recruitment->content !!}</div>
                 @if (isset($recruitment->url) && $recruitment->status == 1)
                     <a href="{{ $recruitment->url }}" target="_blank" class="btn btn-primary rounded-pill"> <i
                             class="ti ti-share-3 me-2"></i>Ứng tuyển ngay</a>
