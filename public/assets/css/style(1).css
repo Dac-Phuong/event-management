@@ -43,7 +43,7 @@
 }
 
 .btn-more a:hover {
-    color: #DD6325;
+    color: #1E64A5;
 }
 
 .home-porforlio-item {
@@ -214,7 +214,7 @@
     }
 
     .btn-more a:hover {
-        color: #DD6325;
+        color: #1E64A5;
     }
 }
 
@@ -239,13 +239,13 @@
 #header-style-1 .navbar-nav>li>a:hover::after,
 li>a.active-nav::after {
     width: 100%;
-    background: #DD6325;
+    background: #1E64A5;
 }
 
 /*scroll-btn*/
 #btn-scroll-to-top {
     display: inline-block;
-    background-color: #DD6325;
+    background-color: #1E64A5;
     width: 40px;
     height: 40px;
     text-align: center;
@@ -353,7 +353,7 @@ li>a.active-nav::after {
         text-transform: uppercase;
         font-size: 16px;
         font-weight: bold;
-        color: #DD6325;
+        color: #1E64A5;
     }
 
     .home-service {
@@ -421,7 +421,7 @@ li>a.active-nav::after {
 
 .portfolio-filter li a {
     font-size: 20px;
-    color: #DD6325;
+    color: #1E64A5;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -450,7 +450,7 @@ li>a.active-nav::after {
 }
 
 .ta-color {
-    color: #DD6325;
+    color: #1E64A5;
 }
 
 .project-title-box {
@@ -500,7 +500,7 @@ li>a.active-nav::after {
 
 .project-title {
     font-weight: bold;
-    color: #DD6325;
+    color: #1E64A5;
     text-transform: uppercase;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -611,7 +611,7 @@ li>a.active-nav::after {
 }
 
 .project-video .featured-play-button:hover {
-    color: #DD6325;
+    color: #1E64A5;
 }
 
 .project-box-video {
@@ -621,7 +621,7 @@ li>a.active-nav::after {
     background-origin: padding-box, border-box;
     border-radius: 15px;
     padding: 1px;
-    background-image: linear-gradient(var(--rotate), #DD6325, #111 50%);
+    background-image: linear-gradient(var(--rotate), #1E64A5, #111 50%);
     animation: spin 15s linear infinite;
 }
 
@@ -631,7 +631,7 @@ li>a.active-nav::after {
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border-radius: 15px;
-    background-image: linear-gradient(var(--rotate), #DD6325, #111 50%);
+    background-image: linear-gradient(var(--rotate), #1E64A5, #111 50%);
     animation: spin 15s linear infinite;
 }
 
@@ -640,7 +640,7 @@ li>a.active-nav::after {
 }
 
 .scroll-text2 {
-    background: linear-gradient(90deg, #111 20%, #DD6325, #111);
+    background: linear-gradient(90deg, #111 20%, #1E64A5, #111);
 }
 
 #navbar-hide-scroll {

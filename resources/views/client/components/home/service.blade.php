@@ -1,11 +1,11 @@
 
    <div>
-       <div class="scroll-text scroll-text2"
+       {{-- <div class="scroll-text scroll-text2"
            style="
           --d: -3;
           --y: -25;
-          background: linear-gradient(90deg, #111 20%, #DD6325, #111);
-          opacity: 0.3;
+          background: linear-gradient(90deg, #111 20%, #1E64A5, #111);
+          opacity: 1;
         ">
            <div>
                <span>ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON
@@ -17,7 +17,8 @@
                    GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON
                    GROUP  ANH SON GROUP  </span>
            </div>
-       </div>
+       </div> --}}
+       
        <div class="services-section pb-5" data-aos="fade-up" data-aos-duration="800">
            <div class="container">
                <div class="center-content section-title my-5" data-aos="zoom-in" data-aos-delay="200">

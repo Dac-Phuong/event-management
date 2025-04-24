@@ -41,7 +41,7 @@
                                             <a href="{{ isset($item->category) ? url('/blog/' . $item->category->slug) : '#' }}"
                                                 class="post-category" style="">{{ $item->name ?? '' }}</a>
                                             <span class="post-created-at"
-                                                style="font-size:11px;font-weight: bold;color:#DD6325;">{{ $item->category->name ?? '' }}
+                                                style="font-size:11px;font-weight: bold;color:#1E64A5;">{{ $item->category->name ?? '' }}
                                                 •&nbsp;
                                                 {{ \Carbon\Carbon::parse($item->created_at ?? '')->format('d/m/Y') }}</span>
                                         </div>

@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/fontawesome.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/tabler-icons.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/flag-icons.css' }}" />
-
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/swiper/swiper.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/libs/toastr/toastr.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
@@ -42,8 +41,6 @@
     <link href="{{ '/assets/css/bootstrap.min.css' }}" rel="stylesheet" type="text/css" />
     <link href="{{ '/assets/css/fonts.min.css' }}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-2.3.4.css' }}" />
-    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-theme-2.3.4.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/animate.min.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/settings.css' }}" />
@@ -91,6 +88,7 @@
     <script src="{{ '/assets/js/pdf.min.js' }}" async></script>
     <script src="{{ '/assets/js/pdf.worker.min.js' }}" async></script>
     <script src="{{ '/assets/js/dflip.min.js' }}" async></script>
+    <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
 
     <script src="{{ '/assets/js/scroll.to.top.js' }}" async></script>
     <script src="{{ '/assets/vendor/js/bootstrap.js' }}" async></script>

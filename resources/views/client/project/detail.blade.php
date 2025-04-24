@@ -28,9 +28,9 @@
                     <div class="portforlio-heading">
                         <h1>{{ $data['project']->title }}</h1>
                         <div class="feature-block">
-                            <span style="color:#DD6325">Tác giả</span> :
+                            <span style="color:#1E64A5">Tác giả</span> :
                             <span>{{ $data['project']->author->name ?? 'Admin' }}</span> <br>
-                            <span style="color:#DD6325">Ngày viết</span> :
+                            <span style="color:#1E64A5">Ngày viết</span> :
                             <span>{{ \Carbon\Carbon::parse($data['project']->created_at)->format('d/m/Y') }}</span> <br>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="container service-cate-page related top30 bottom30">
             <h2 class="service-cate-title"
-                style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 24px;color:#DD6325">Dự án nổi
+                style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 24px;color:#1E64A5">Dự án nổi
                 bật</h2>
             <div class="service_cate_carousel owl-carousel owl-theme owl-loaded owl-drag">
                 <div class="owl-stage-outer">

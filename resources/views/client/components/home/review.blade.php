@@ -1,9 +1,37 @@
  <style>
      /* Testimonials section */
      .testimonials {
-         padding: 50px 0;
+         margin: 50px 0;
+         padding-bottom: 50px;
          position: relative;
          overflow: hidden;
+         background: linear-gradient(135deg, var(--primary-color) 0%, #2D8BD6 100%);
+     }
+
+     .testimonials .section-title p , .testimonials .section-title h2{
+         color: var(--text-white) !important;
+     }
+
+     .testimonials::before {
+         content: '';
+         position: absolute;
+         top: -100px;
+         right: -100px;
+         width: 300px;
+         height: 300px;
+         background-color: rgba(255, 255, 255, 0.05);
+         border-radius: 50%;
+     }
+
+     .testimonials::after {
+         content: '';
+         position: absolute;
+         bottom: -150px;
+         left: -150px;
+         width: 400px;
+         height: 400px;
+         background-color: rgba(255, 255, 255, 0.05);
+         border-radius: 50%;
      }
 
      .testimonials-grid {
@@ -14,12 +42,12 @@
      }
 
      .testimonial-card {
-         background-color: rgba(30, 30, 30, 0.7);
          border-radius: 12px;
          padding: 2.5rem;
-         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
          transition: all 0.3s ease;
          position: relative;
+         background: rgba(255, 255, 255, 0.1)
      }
 
      .testimonial-card:hover {
@@ -31,7 +59,7 @@
          position: absolute;
          top: 20px;
          right: 20px;
-         color: #e5e7eb;
+         color: var(--text-white);
          font-size: 4rem;
          line-height: 1;
          font-family: Georgia, serif;
@@ -40,7 +68,7 @@
      .testimonial-text {
          font-style: italic;
          margin-bottom: 1.5rem;
-         color: var(--text);
+         color: var(--text-white);
          line-height: 1.8;
          position: relative;
          z-index: 1;
@@ -69,21 +97,23 @@
      .author-info h4 {
          font-size: 1.2rem;
          margin-bottom: 0.3rem;
+         color: var(--text-white) !important;
      }
 
      .author-info p {
          font-size: 0.9rem;
-         color: var(--text-light);
+         color: var(--text-white);
          margin-bottom: 0;
      }
  </style>
  <section class="testimonials section-padding" data-aos="fade-up" data-aos-delay="100">
      <div class="container">
          <div class="center-content section-title my-5" data-aos="zoom-in" data-aos-delay="200">
-             <h2 class="text-gradient middle-content stroke-text">
+             <h2 class="text-gradient middle-content stroke-text text-white">
                  Đánh Giá Từ Khách Hàng</h2>
              <div class="divider"></div>
-             <p data-aos="fade-left" data-aos-delay="300">Những đánh giá từ khách hàng là minh chứng cho chất lượng dịch
+             <p data-aos="fade-left text-white" data-aos-delay="300">Những đánh giá từ khách hàng là minh chứng cho chất
+                 lượng dịch
                  vụ
                  và
                  sự hài lòng mà Tập đoàn Anh Son mang lại</p>
@@ -142,13 +172,13 @@
          </div>
      </div>
  </section>
- <div class="scroll-text scroll-text2"
+ {{-- <div class="scroll-text scroll-text2"
      style="
            top:20px;
            z-index: 1;
-        --d: 3; --y: 40; background: linear-gradient(90deg, #111 20%, #ff7900, #111); opacity: 0.3;">
+        --d: 3; --y: 40; background: linear-gradient(90deg, #111 20%, #1E64A5, #111); opacity: 1;">
      <div><span>ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP
              ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP</span></div>
      <div><span>ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP
              ANH SON GROUP  ANH SON GROUP  ANH SON GROUP  ANH SON GROUP</span></div>
- </div>
+ </div> --}}

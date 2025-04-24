@@ -1,6 +1,6 @@
 <footer id="footer" class="footer">
-    <div class="upper_footer" style="background: rgba(0, 0, 0, 0.95);">
-        <div class="container pb-5">
+    <div class="upper_footer" style="background: var(--dark-color)">
+        <div class="container py-5">
             <div class="row gx-0 gy-6 g-lg-10">
                 <div class="col-lg-5">
                     <h2 class="footer-title fs-5 mb-6">
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div id="copyrights" class="lower_footer">
-            <div class="container-fluid" style="border-top: 1px solid #444;">
+            <div class="container" style="border-top: 1px solid #ccc;">
                 <div class="copyright-text">
                     <p style="margin: 0px; text-align: center">
                         © Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh Sơn.
@@ -105,35 +105,6 @@
             </div>
         </div>
 </footer>
-<div class="floating-right-sidebar" style="visibility: visible">
-    <div class="item hidden-sm top-border"></div>
-    <div class="item collapsable-item">
-        <a target="_blank" class="additional-floating-sidebar-button-9"
-            href="https://www.facebook.com/thienanagency">
-            <img style="height: 35px" src="{{ asset('assets/files/default/facebook.png') }}" alt="chat_icon" />
-        </a>
-        <div class="description">Facebook</div>
-    </div>
-    <div class="item collapsable-item">
-        <a role="button" aria-label="info@thienanagency.com" class="additional-floating-sidebar-button-10"
-            href="mailto:info@thienanagency.com">
-            <img style="height: 35px" src="{{ asset('assets/files/default/letter-3.png') }}" alt="chat_icon" />
-        </a>
-        <div class="description">info@thienanagency.com</div>
-    </div>
-    <div class="item collapsable-item">
-        <a target="_blank" class="additional-floating-sidebar-button-2" href="https://zalo.me/0911407447">
-            <img style="height: 35px" src="{{ asset('assets/files/default/zalo-3.png') }}" alt="chat_icon" />
-        </a>
-        <div class="description">Zalo: 0911.407.447</div>
-    </div>
-    <div class="item collapsable-item">
-        <a role="button" aria-label="Hotline: 0911.407.447" class="additional-floating-sidebar-button-6"
-            href="tel:0911407447">
-            <img style="height: 35px" src="{{ asset('assets/files/default/call-3.png') }}" alt="chat_icon" />
-        </a>
-        <div class="description">Hotline: 0911.407.447</div>
-    </div>
-</div>
+
 <a id="btn-scroll-to-top" href="#" class="hide-m show"> <i
         class="ti ti-arrow-up text-white mt-2 fs-4"></i></a>

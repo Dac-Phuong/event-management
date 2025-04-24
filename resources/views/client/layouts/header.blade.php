@@ -1,7 +1,6 @@
  <style>
      .header {
-         background-color: #000;
-         padding: 15px 0;
+         background-color: var(--bg-white);
          position: fixed;
          top: 0;
          left: 0;
@@ -12,12 +11,10 @@
      }
 
      .nav-link.active {
-         color: #FFF !important;
+         color: var(--bg-white) !important;
      }
 
      .header.scrolled {
-         padding: 10px 0;
-         background-color: rgba(0, 0, 0, 0.95);
          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
      }
 
@@ -27,14 +24,14 @@
      }
 
      .logo-text {
-         color: #fff;
+         color: var(--bg-white);
          font-weight: bold;
          margin-left: 5px;
          font-size: 18px;
      }
 
      .logo-icon {
-         color: #DD6325;
+         color: #1E64A5;
          font-size: 24px;
          font-weight: bold;
      }
@@ -44,7 +41,7 @@
      }
 
      .nav-item .nav-link {
-         color: #DD6325;
+         color: var(--text-gray) !important;
          font-weight: 600;
          text-transform: uppercase;
          padding: 0 15px;
@@ -61,7 +58,7 @@
          left: 50%;
          width: 0;
          height: 3px;
-         background-color: #DD6325;
+         background-color: var(--text-gray);
          transition: all 0.3s ease;
          transform: translateX(-50%);
          opacity: 0;
@@ -74,13 +71,13 @@
      }
 
      .search-icon {
-         color: #DD6325;
+         color: #1E64A5;
          font-size: 18px;
          margin-right: 15px;
      }
 
      .language-selector {
-         color: #fff;
+         color: var(--bg-white);
          font-size: 14px;
      }
 
@@ -89,7 +86,7 @@
      }
 
      .language-selector .active {
-         color: #DD6325;
+         color: #1E64A5;
      }
 
      .small-text {
@@ -100,7 +97,7 @@
      }
 
      .dropdown-menu {
-         background-color: #333;
+         background-color: var(--bg-white);
          margin-top: 10px;
          min-width: 235px;
          border-radius: 8px;
@@ -119,7 +116,7 @@
      }
 
      .dropdown-item {
-         color: #DD6325;
+         color:var(--text-gray) !important;
          padding: 10px 20px;
          font-size: 16px;
          font-weight: 400;
@@ -127,14 +124,13 @@
      }
 
      .dropdown-item:hover {
-         background-color: #222;
-         color: #fff;
+         background-color: #f1f1f1;
      }
 
      /* Mobile menu styles */
      .navbar-toggler {
          border: none;
-         background-color: #DD6325;
+         background-color: #1E64A5;
          padding: 5px 10px;
      }
 
@@ -149,7 +145,7 @@
          left: -300px;
          width: 300px;
          height: 100%;
-         background-color: #111;
+         background-color:var(--bg-white);
          z-index: 9999;
          overflow-y: auto;
          transition: all 0.4s ease-in-out;
@@ -161,12 +157,12 @@
      }
 
      .mobile-menu-header {
-         padding: 20px;
-         background-color: #000;
+         padding: 0 20px;
+         background-color: var(--bg-white);
          display: flex;
          justify-content: space-between;
          align-items: center;
-         border-bottom: 1px solid #333;
+         border-bottom: 1px solid #f1f1f1;
      }
 
      .mobile-logo {
@@ -175,20 +171,20 @@
      }
 
      .mobile-logo-icon {
-         color: #DD6325;
+         color: #1E64A5;
          font-size: 20px;
          font-weight: bold;
      }
 
      .mobile-logo-text {
-         color: #fff;
+         color: var(--bg-white);
          font-weight: bold;
          margin-left: 5px;
          font-size: 16px;
      }
 
      .mobile-close {
-         color: #DD6325;
+         color: #1E64A5;
          font-size: 24px;
          cursor: pointer;
      }
@@ -199,13 +195,13 @@
 
      .mobile-nav-item {
          position: relative;
-         border-bottom: 1px solid #222;
      }
 
      .mobile-nav-link {
-         color: #DD6325;
+         color: #1E64A5;
          font-weight: bold;
          /* text-transform: uppercase; */
+        border-bottom: 1px solid #f1f1f1;
          padding: 15px 20px;
          display: block;
          font-size: 14px;
@@ -214,7 +210,6 @@
      }
 
      .mobile-nav-link:hover {
-         color: #fff;
          text-decoration: none;
      }
 
@@ -222,7 +217,7 @@
          position: absolute;
          right: 20px;
          top: 15px;
-         color: #DD6325;
+         color: #1E64A5;
          cursor: pointer;
          transition: all 0.3s ease;
      }
@@ -232,21 +227,21 @@
      }
 
      .mobile-dropdown-menu {
-         background-color: #222;
+         background-color: #f5f5f5;
          display: none;
          padding: 10px 0;
      }
 
      .mobile-dropdown-item {
          padding: 10px 30px;
-         color: #DD6325;
+         color: #1E64A5;
          display: block;
          font-size: 13px;
          transition: all 0.3s ease;
      }
 
      .mobile-dropdown-item:hover {
-         color: #fff;
+         color: var(--bg-white);
          text-decoration: none;
      }
 
@@ -261,13 +256,13 @@
      }
 
      .mobile-language span {
-         color: #fff;
+         color: #ccc;
          padding: 0 10px;
          cursor: pointer;
      }
 
      .mobile-language span.active {
-         color: #DD6325;
+         color: var(--primary-color);
      }
 
      .mobile-search {
@@ -278,9 +273,9 @@
      .mobile-search input {
          width: 100%;
          padding: 10px 15px;
-         background-color: #222;
+        border: 1px solid var(--primary-color) !important;
          border: none;
-         color: #fff;
+         color: var(--text-gray);
          border-radius: 4px;
      }
 
@@ -291,7 +286,7 @@
          transform: translateY(-50%);
          background: none;
          border: none;
-         color: #DD6325;
+         color: #1E64A5;
      }
 
      .overlay {
@@ -339,7 +334,7 @@
          font-size: 1.1rem;
          font-weight: 500;
          margin: 0 0 6px;
-         color: var(--text-dark);
+         color: var(--text-gray);
      }
 
      .search-result-meta {
@@ -384,7 +379,7 @@
              <!-- Mobile menu toggle -->
              <div class="col-6 d-lg-none text-end">
                  <div class="mobile-menu-toggle">
-                     <i class="fas fa-bars" style="color: #DD6325; font-size: 24px;"></i>
+                     <i class="fas fa-bars" style="color: #1E64A5; font-size: 24px;"></i>
                  </div>
              </div>
              <!-- Desktop Navigation -->
@@ -518,14 +513,13 @@
          <div class="modal-content">
              <div class="modal-header">
                  <h3 class="modal-title mb-2" id="searchModalLabel">Nhập từ khóa tìm kiếm</h3>
-                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"><i
-                         class="fas fa-close fs-4"></i></button>
+                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
              <div class="modal-body">
                  <div class="search-input-group">
                      <div class="input-group">
                          <input type="text" class="form-control search-input" placeholder="Tìm kiếm..."
-                             aria-label="Search" aria-describedby="button-addon2">
+                             aria-label="Search" aria-describedby="button-addon2" style="border: 1px solid var(--primary-color)">
                          <button class="btn btn-primary" type="button" id="button-addon2"
                              style="height: 46px;width: 75px;">
                              <i class="fas fa-search"></i></button>

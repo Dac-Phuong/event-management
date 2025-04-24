@@ -81,7 +81,7 @@
         .article-meta i {
             font-size: 0.7rem;
             margin-right: 0.3rem;
-            color: #DD6325;
+            color: #1E64A5;
         }
 
         .article-excerpt {
@@ -102,7 +102,7 @@
             border-radius: 30px;
             margin-right: 0.5rem;
             color: white;
-            background: #DD6325
+            background: #1E64A5
         }
 
         .filter-container {
@@ -241,7 +241,7 @@
                                 ĐÃ ĐẾN</h2>
                             <div class="divider mb-3 m-0"></div>
                             <div class="mb-3">
-                                <p class="text-gray">Khám phá hành trình của chúng tôi qua các tỉnh thành Việt Nam</p>
+                                <p>Khám phá hành trình của chúng tôi qua các tỉnh thành Việt Nam</p>
                             </div>
                         </div>
                         <div class="location-list" data-aos="fade-up" data-aos-duration="1000">
@@ -265,7 +265,7 @@
                                 <h2 class="text-gradient middle-content stroke-text">
                                     {{ $team->name }}</h2>
                                 <div class="divider "></div>
-                                <p class="mt-2 text-center m-auto" style="max-width: 700px">
+                                <p class="mt-2 text-center m-auto" style="max-width: 700px;color: var(--text-gray)">
                                     {!! $team->description !!}
                                 </p>
                             </div>
@@ -285,7 +285,7 @@
                                             <div class="col-lg-6 py-3 px-4 mt-3 mt-md-0 card-info">
                                                 <h2 class="text-uppercase mt-2">{{ $users->user->name }}</h2>
                                                 <p class="text-secondary ">{{ $users->position }}</p>
-                                                <div class="mb-4">
+                                                <div class="mb-4" style="color: var(--text-gray);">
                                                     {!! $users->content !!}
                                                 </div>
                                             </div>
@@ -303,7 +303,7 @@
                                                 <div class="text-white mt-4 py-3 px-4 card-info-1">
                                                     <h2 class="text-uppercase mt-2">{{ $users->user->name }}</h2>
                                                     <p class="text-secondary">{{ $users->position }}</p>
-                                                    <div class="mb-4" style="color: #aaa;">
+                                                    <div class="mb-4" style="color: var(--text-gray);">
                                                         {!! $users->content !!}
                                                     </div>
                                                 </div>
@@ -322,7 +322,7 @@
             <div class="center-content position-relative">
                 <h2 class="text-gradient middle-content stroke-text"> Tầm nhìn & Sứ mệnh</h2>
                 <div class="divider "></div>
-                <p class="mt-2 text-center m-auto" style="max-width:800px">
+                <p class="mt-2 text-center m-auto" style="max-width:800px;color: var(--text-gray)">
                     Tập đoàn Anh Sơn cam kết trở thành sứ giả truyền tải văn hóa Việt Nam ra thế giới, lan tỏa bản sắc dân
                     tộc và kết nối du khách quốc tế khám phá vẻ đẹp đất nước. Chúng tôi không ngừng sáng tạo và đổi mới để
                     mang đến giá trị bền vững cho cộng đồng.
@@ -334,11 +334,11 @@
                         <div class="d-flex flex-column align-items-center p-1 text-white"
                             style="flex: 1 1 30%; border-radius:12px; min-width: 280px; padding:4px;
                             border-radius: 15px;
-                            background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
+                            background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
                             <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-award"></i>
                                 </div>
@@ -355,14 +355,14 @@
 
                         <!-- GIÁ TRỊ CỐT LÕI -->
                         <div class="d-flex flex-column align-items-center p-1 text-white"
-                            style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
+                            style="flex: 1 1 30%; background-color: var(--bg-white); border-radius:12px; min-width: 280px;
                             padding:4px;
                             border-radius: 15px;
-                            background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
+                            background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
                             <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-users-cog"></i>
                                 </div>
@@ -385,14 +385,14 @@
 
                         <!-- SỨ MỆNH -->
                         <div class="d-flex flex-column align-items-center p-1 text-white"
-                            style="flex: 1 1 30%; background-color: rgba(30, 30, 30, 1); border-radius:12px; min-width: 280px;
+                            style="flex: 1 1 30%; background-color: var(--bg-white); border-radius:12px; min-width: 280px;
                          padding:4px;
                             border-radius: 15px;
-                            background-image: linear-gradient(var(--rotate), #ff7900, #111 50%);
+                            background-image: linear-gradient(var(--rotate), var(--primary-color), #f5f5f5 50%);
                             animation: spin 15s linear infinite;"
                             data-aos="zoom-in" data-aos-duration="1000">
                             <div class="w-100 h-100 p-4"
-                                style="border-radius:12px; background-color: rgba(30, 30, 30, 1);">
+                                style="border-radius:12px; background-color: var(--bg-white);">
                                 <div class="icon-circle mb-3">
                                     <i class="fas fa-hands-helping"></i>
                                 </div>

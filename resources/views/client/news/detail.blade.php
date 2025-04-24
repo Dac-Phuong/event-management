@@ -45,7 +45,7 @@
                                 @foreach ($data['news']->tags as $tag)
                                     <a href="{{ url('tag/' . $tag->slug) }}"
                                         class="badge rounded-pill me-2 fw-bold text-white"
-                                        style="background: #DD6325;">{{ $tag->name }}</a>
+                                        style="background: #1E64A5;">{{ $tag->name }}</a>
                                 @endforeach
                             </p>
                         </div>
