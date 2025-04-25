@@ -22,7 +22,7 @@
 
         .location-header i {
             font-size: 1.5rem;
-            color: #FF5722;
+            color: var(--primary-color);
             margin-right: 0.75rem;
         }
 
@@ -30,16 +30,18 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin: 0;
+            color: var(--text-gray);
         }
 
         .article-compact {
             display: flex;
             margin-bottom: 1rem;
-            background: rgba(30, 30, 30, 0.7);
+            background: var(--bg-white);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            border: 1px solid #dddddd;
         }
 
         .article-compact:hover {
@@ -72,6 +74,7 @@
 
         .article-meta {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             font-size: 0.75rem;
             margin-bottom: 0.3rem;
@@ -169,7 +172,6 @@
         }
 
         .location-info {
-            background-color: rgba(30, 30, 30, 0.7);
             border-radius: 10px;
             padding: 0.8rem;
             margin-bottom: 1rem;

@@ -1,8 +1,7 @@
  <style>
      /* Testimonials section */
      .testimonials {
-         margin: 50px 0;
-         padding-bottom: 50px;
+         padding:50px 0;
          position: relative;
          overflow: hidden;
          background: linear-gradient(135deg, var(--primary-color) 0%, #2D8BD6 100%);

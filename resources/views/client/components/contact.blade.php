@@ -1,5 +1,4 @@
-<div class="">
-    <section class="contact-section">
+    <section class="contact-section" data-aos="zoom-in" data-aos-duration="1000">
         <div class="floating-shape shape-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
         <div class="container">
             <div class="center-content section-title my-5">
@@ -79,14 +78,16 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="fullname" class="form-label">Họ và tên<span>*</span></label>
-                                            <input type="text" class="form-control m-0" id="fullname" name="fullname">
-                                        <div class="invalid-feedback" id="fullname-error"></div>
+                                            <input type="text" class="form-control m-0" id="fullname"
+                                                name="fullname">
+                                            <div class="invalid-feedback" id="fullname-error"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email <span>*</span></label>
-                                            <input type="email" class="form-control m-0" id="email" name="email">
+                                            <input type="email" class="form-control m-0" id="email"
+                                                name="email">
                                             <div class="invalid-feedback" id="email-error"></div>
                                         </div>
                                     </div>
@@ -99,7 +100,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="contact-form-service" class="form-label">Dịch vụ <span>*</span></label>
+                                    <label for="contact-form-service" class="form-label">Dịch vụ
+                                        <span>*</span></label>
                                     <select class="form-control m-0" id="contact-form-service" name="service_email">
                                         <option value="" selected disabled>-- Chọn dịch vụ --</option>
                                     </select>
@@ -132,54 +134,53 @@
             </div>
         </div>
     </section>
-</div>
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $("#contactForm").submit(function(e) {
-                e.preventDefault();
-                let formData = new FormData($("#contactForm")[0]);
-                formData.append('service_name', $("#contactForm option:selected").text());
-                formData.append('_token', '{{ csrf_token() }}');
-                const submitButton = $("#submit-button");
-                submitButton.prop("disabled", true).html(
-                    '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Đang gửi...'
-                );
-                $.ajax({
-                    url: "{{ route('send.contact') }}",
-                    type: "POST",
-                    data: formData,
-                    dataType: 'json',
-                    contentType: false,
-                    processData: false,
-                    success: function(res) {
-                        $(".invalid-feedback").removeClass("d-block");
-                        $(".form-control").removeClass("is-invalid").removeClass("is-valid");
-                        submitButton.prop("disabled", false).html(
-                            '<i class="ti ti-send me-2"></i>Gửi yêu cầu tư vấn');
-                        if (res.error_code == -1) {
-                            let errors = res.data;
-                            for (const key in errors) {
-                                $("#" + key + "-error").html(errors[key]).addClass("d-block");
-                                $("#contactForm-" + key).addClass("is-invalid");
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $("#contactForm").submit(function(e) {
+                    e.preventDefault();
+                    let formData = new FormData($("#contactForm")[0]);
+                    formData.append('service_name', $("#contactForm option:selected").text());
+                    formData.append('_token', '{{ csrf_token() }}');
+                    const submitButton = $("#submit-button");
+                    submitButton.prop("disabled", true).html(
+                        '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Đang gửi...'
+                    );
+                    $.ajax({
+                        url: "{{ route('send.contact') }}",
+                        type: "POST",
+                        data: formData,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success: function(res) {
+                            $(".invalid-feedback").removeClass("d-block");
+                            $(".form-control").removeClass("is-invalid").removeClass("is-valid");
+                            submitButton.prop("disabled", false).html(
+                                '<i class="ti ti-send me-2"></i>Gửi yêu cầu tư vấn');
+                            if (res.error_code == -1) {
+                                let errors = res.data;
+                                for (const key in errors) {
+                                    $("#" + key + "-error").html(errors[key]).addClass("d-block");
+                                    $("#contactForm-" + key).addClass("is-invalid");
+                                }
+                            } else if (res.error_code == 0) {
+                                toastr.success('Vui lòng chờ phản hồi sau ít phút',
+                                    'Gửi yêu cầu thành công!');
+                                $("#contactForm")[0].reset();
+                                $(".form-control").addClass("is-valid");
+                            } else {
+                                toastr.error('Đã có lỗi xảy ra, vui lòng thử lại sau',
+                                    'Gửi yêu cầu tư vấn');
                             }
-                        } else if (res.error_code == 0) {
-                            toastr.success('Vui lòng chờ phản hồi sau ít phút',
-                                'Gửi yêu cầu thành công!');
-                            $("#contactForm")[0].reset();
-                            $(".form-control").addClass("is-valid");
-                        } else {
-                            toastr.error('Đã có lỗi xảy ra, vui lòng thử lại sau',
-                                'Gửi yêu cầu tư vấn');
                         }
-                    }
+                    });
+                });
+
+                $("#contactForm input, #contactForm textarea").focus(function() {
+                    $(this).removeClass("is-invalid");
+                    $(".invalid-feedback").removeClass("d-block");
                 });
             });
-
-            $("#contactForm input, #contactForm textarea").focus(function() {
-                $(this).removeClass("is-invalid");
-                $(".invalid-feedback").removeClass("d-block");
-            });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

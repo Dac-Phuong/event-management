@@ -803,10 +803,6 @@
      max-width: 500px;
    }
 
-   .section {
-     margin: 5% auto;
-   }
-
    .section-how-we-work {
      display: flex;
      flex-direction: column;
@@ -2516,6 +2512,7 @@
 
 
    .projects-section {
+    padding: 50px 0;
      position: relative;
      background: radial-gradient(ellipse at center, #d7d4d4 0%, var(--bg-white) 100%);
    }
