@@ -25,8 +25,8 @@ class Update extends FormRequest
     {
         return [
             "id" => "required",
-            "title" => "required",
-            "description" => "required",
+            "title" => "nullable|string|max:255",
+            "description" => "nullable|string|max:255",
             "thumbnail" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "thumbnail.*" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
@@ -35,8 +35,6 @@ class Update extends FormRequest
     public function messages(): array
     {
         return [
-            "title.required" => "Tiêu đề không được để trống",
-            "description.required" => "Nội dung không được để trống",
             "thumbnail.image" => "Vui lòng chọn 1 ảnh",
             "thumbnail.max" => "Vui lòng chọn ảnh nhỏ hơn 2MB",
         ];

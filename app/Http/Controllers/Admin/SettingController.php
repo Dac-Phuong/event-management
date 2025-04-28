@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\Store;
 use App\Http\Requests\Admin\Settings\Update;
-use App\Models\News;
 use App\Services\SettingService;
 use Illuminate\Http\Request;
 

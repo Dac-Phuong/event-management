@@ -37,10 +37,13 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
     <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 
     <link href="{{ '/assets/css/bootstrap.min.css' }}" rel="stylesheet" type="text/css" />
     <link href="{{ '/assets/css/fonts.min.css' }}" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-2.3.4.css' }}" />
+    <link rel="stylesheet" as="style" href="{{ '/assets/css/owl-carousel-theme-2.3.4.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/animate.min.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" as="style" href="{{ '/assets/css/settings.css' }}" />
@@ -95,10 +98,12 @@
     <script src="{{ '/assets/js/mouse-cursor-point.js' }}" async></script>
     <script src="{{ '/assets/js/lodash.min.js' }}" async></script>
     <script src="{{ '/assets/js/menu.min.js' }}" async></script>
-    <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}"></script>
     <script src="{{ '/assets/js/lozad.min.js' }}" async></script>
     <script src="{{ '/assets/js/custom.js' }}"></script>
     <script src="{{ '/assets/js/client.js' }}" async></script>
+    <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
     @stack('scripts')
 </body>
 

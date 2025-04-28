@@ -57,9 +57,9 @@
             <h2 class="text-gradient middle-content stroke-text">
                 Quy Trình Làm Việc</h2>
             <div class="divider"></div>
-            <p data-aos="fade-left" data-aos-delay="300" class="text-center m-auto" style="max-width: 700px">Một hành trình
-                sáng
-                tạo được thiết kế tỉ mỉ để mang lại kết quả xuất sắc</p>
+            <p data-aos="fade-left" data-aos-delay="300" class="text-center m-auto" style="max-width: 700px">
+                Quy trình làm việc của chúng tôi là một chuỗi các bước được thực hiện tuần tự để mang lại kết quả tốt nhất cho khách hàng.
+            </p>
         </div>
         <div class="position-relative">
             <div class="container">

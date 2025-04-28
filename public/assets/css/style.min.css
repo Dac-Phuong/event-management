@@ -578,9 +578,6 @@ a.menu3-title {
     color: #222
 }
 
-.dropdown-menu {
-    border-radius: 0px
-}
 
 .show>.dropdown-menu {
     display: block

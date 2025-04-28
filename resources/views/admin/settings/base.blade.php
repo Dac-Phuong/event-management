@@ -5,10 +5,6 @@
             <input type="text" class="form-control" id="base_name" placeholder="" name="base_name" aria-label="" />
         </div>
         <div class="mb-3">
-            <label class="form-label" for="base_map_id">ID google map (<a href="https://support.google.com/mymaps/answer/3024454?hl=en&amp%3Bref_topic=3188329" target="_blank">Tạo google map</a>)</label>
-            <input type="text" class="form-control" id="base_map_id" placeholder="VD: 16N0_4Geap6ARcVAAqINcxKMMN68xLEY&ll" name="base_map_id" aria-label="" />
-        </div>
-        <div class="mb-3">
             <label for="base_logo" class="form-label">Ảnh Logo</label>
             <input class="form-control" type="file" id="base_logo" name="base_logo" />
         </div>

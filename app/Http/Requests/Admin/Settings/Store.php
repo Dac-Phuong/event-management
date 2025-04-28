@@ -24,8 +24,8 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => "required",
-            "description" => "required",
+            "title" => "nullable|string|max:255",
+            "description" => "nullable|string|max:255",
             "thumbnail" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
     }
@@ -33,9 +33,7 @@ class Store extends FormRequest
     public function messages(): array
     {
         return [
-            "title.required" => "Tiêu đề không được để trống",
-            "description.required" => "Nội dung không được để trống",
-            "thumbnail.required" => "Ảnh không được để trống",
+            "thumbnail.required" => "Ảnh banner không được để trống",
             "thumbnail.image" => "Vui lòng chọn 1 ảnh",
             "thumbnail.max" => "Vui lòng chọn ảnh nhỏ hơn 2MB",
         ];

@@ -1,5 +1,5 @@
-<footer id="footer" class="footer">
-    <div class="upper_footer" style="background: var(--dark-color)">
+<footer id="footer" class="footer" style="background: var(--dark-color)">
+    <div class="upper_footer">
         <div class="container py-5">
             <div class="row gx-0 gy-6 g-lg-10">
                 <div class="col-lg-5">
@@ -99,7 +99,7 @@
             <div class="container" style="border-top: 1px solid #ccc;">
                 <div class="copyright-text">
                     <p style="margin: 0px; text-align: center">
-                        © Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh Sơn.
+                        © Bản quyền thuộc về: Công ty Cổ Phần Tập đoàn Anh Sơn Group.
                     </p>
                 </div>
             </div>

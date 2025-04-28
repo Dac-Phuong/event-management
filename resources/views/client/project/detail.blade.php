@@ -40,35 +40,31 @@
                 </div>
             </div>
         </div>
-        <div class="container service-cate-page related top30 bottom30">
+        <div class="container service-cate-page related top30 bottom30 overflow-hidden">
             <h2 class="service-cate-title"
-                style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 24px;color:#1E64A5">Dự án nổi
-                bật</h2>
-            <div class="service_cate_carousel owl-carousel owl-theme owl-loaded owl-drag">
-                <div class="owl-stage-outer">
-                    <div class="owl-stage"
-                        style="width: 4700px; transform: translate3d(-1175px, 0px, 0px); transition: all;">
-                        @foreach ($data['feature'] as $item)
-                            <div class="owl-item cloned" style="width: 258.75px; margin-right: 35px;">
-                                <div class="service">
-                                    <a href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}"><img
-                                            data-src="{{ $item->thumbnail }}" src="{{ $item->thumbnail }}"
-                                            alt="Video Giới Thiệu Doanh Nghiệp Nam Thuận Phát" class="service-img lozad"
-                                            data-loaded="true"></a>
-                                    <div class="service-overlay">
-                                        <div class="blog-carousel-content">
-                                            <h3 class="blog-cate-title"><a
-                                                    href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}">{{ $item->title }}</a>
-                                            </h3>
-                                            <p class="blog-cate-brief">{{ $item->content }}</p>
-                                            </p>
-                                        </div>
-                                    </div>
+                style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 24px;color:#1E64A5">
+                Dự án nổi bật
+            </h2>
+            <div class="owl-carousel owl-theme" id="feature-carousel">
+                @foreach ($data['feature'] as $item)
+                    <div class="item">
+                        <div class="service">
+                            <a href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}">
+                                <img src="{{ $item->thumbnail }}" alt="{{ $item->title }}" class="service-img lozad">
+                            </a>
+                            <div class="service-overlay">
+                                <div class="blog-carousel-content">
+                                    <h3 class="blog-cate-title">
+                                        <a href="{{ url('du-an/' . $item->category->slug . '/' . $item->slug) }}">
+                                            {{ $item->title }}
+                                        </a>
+                                    </h3>
+                                    <p class="blog-cate-brief">{{ $item->content }}</p>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -78,13 +74,35 @@
         $('#play-button').click(function() {
             const videoId = $(this).attr('data-video-id');
             if (!videoId) {
-                alert('Chưa có video của dịch vụ!');
+                alert('Chưa có video!');
                 return
             }
             $('.video-wrapper iframe').attr('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
             $('#thumbnail').hide();
             $(this).hide();
             $('#video-wrapper').show();
+        });
+        // service carousel
+        $('#feature-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            navText: [
+                '<span class="owl-prev-icon">‹</span>',
+                '<span class="owl-next-icon">›</span>'
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1024: {
+                    items: 4
+                }
+            }
         });
     </script>
 @endpush
@@ -93,6 +111,23 @@
         max-height: 700px;
         overflow-y: scroll;
     }
+
+    #feature-carousel .item {
+        background: #fff;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #feature-carousel .item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .item a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
 
     @media (max-width: 768px) {
         .container-left {

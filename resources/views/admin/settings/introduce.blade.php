@@ -8,10 +8,6 @@
                         name="introduce_youtube_id" />
                 </div>
                 <div class="mb-3">
-                    <label for="introduce_image" class="form-label">Ảnh trang chủ</label>
-                    <input class="form-control" type="file" id="introduce_image" name="introduce_image" />
-                </div>
-                <div class="mb-3">
                     <label for="introduce_image_2" class="form-label">Ảnh trang giới thiệu</label>
                     <input class="form-control" type="file" id="introduce_image_2" name="introduce_image_2" />
                 </div>

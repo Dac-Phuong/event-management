@@ -17,7 +17,7 @@
             align-items: center;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid #696868;
+            border-bottom: 1px solid #e3dada;
         }
 
         .location-header i {
@@ -177,6 +177,7 @@
             margin-bottom: 1rem;
             font-size: 0.85rem;
             color: #fff;
+            background: #ccc;
             display: flex;
             align-items: center;
         }
@@ -189,133 +190,140 @@
     </style>
     <div class="introduce">
         @include('client.components.home.banner', ['banner' => $banner])
-        <div class="container introduce">
-            <div class="section-about" id="about">
-                <div class="container-about">
-                    <section class="stats" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="container stats-container">
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="15">0+</div>
-                                <div class="stat-text">Năm Kinh Nghiệm</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="500">0+</div>
-                                <div class="stat-text">Dự Án Lớn Nhỏ</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="1000">0+</div>
-                                <div class="stat-text">Khách Hàng</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="50">0+</div>
-                                <div class="stat-text">Nhân Sự Chất Lượng Cao</div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="about section-padding" id="about" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="media-pattern pattern-top-right"></div>
-                        <div class="container about-container">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
-                                        <h2 class="text-gradient middle-content mb-1 p-0 text-uppercase">Giới thiệu về chúng
-                                            tôi!</h2>
-                                        <div class="divider mb-3 m-0"></div>
-                                        {!! isset($settings['introduce_content']) ? $settings['introduce_content'] : '' !!}
-                                    </div>
+        <div class="">
+            <div class="container introduce ">
+                <div class="section-about" id="about">
+                    <div class="container-about">
+                        <section class="stats" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="container stats-container">
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="15">0+</div>
+                                    <div class="stat-text">Năm Kinh Nghiệm</div>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
-                                        <img src="{{ asset(isset($settings['introduce_image_1']) ? $settings['introduce_image_1'] : 'assets/files/img/img-model.png') }}"
-                                            alt="Tập đoàn Anh Son" class="img-fluid">
-                                    </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="500">0+</div>
+                                    <div class="stat-text">Dự Án Lớn Nhỏ</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="1000">0+</div>
+                                    <div class="stat-text">Khách Hàng</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-target="50">0+</div>
+                                    <div class="stat-text">Nhân Sự Chất Lượng Cao</div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                        <section class="about section-padding" id="about" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="media-pattern pattern-top-right"></div>
+                            <div class="container about-container">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
+                                            <h2 class="text-gradient middle-content mb-1 p-0 text-uppercase">Giới thiệu về
+                                                chúng
+                                                tôi!</h2>
+                                            <div class="divider mb-3 m-0"></div>
+                                            {!! isset($settings['introduce_content']) ? $settings['introduce_content'] : '' !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex align-items-center">
+                                        <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
+                                            <img src="{{ asset(isset($settings['introduce_image_1']) ? $settings['introduce_image_1'] : 'assets/files/img/img-model.png') }}"
+                                                alt="Tập đoàn Anh Son" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-                <section class="container-wrapper">
-                    <div class="text-content" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="position-relative">
-                            <h2 class="text-gradient middle-content stroke-text mb-1">NHỮNG NƠI ANH
-                                SƠN
-                                GROUP
-                                ĐÃ ĐẾN</h2>
-                            <div class="divider mb-3 m-0"></div>
-                            <div class="mb-3">
-                                <p>Khám phá hành trình của chúng tôi qua các tỉnh thành Việt Nam</p>
-                            </div>
-                        </div>
-                        <div class="location-list" data-aos="fade-up" data-aos-duration="1000">
-                            @foreach ($location_news as $location)
-                                <span class="location" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    data-location="{{ $location->name }}" data-news='@json($location->locationNews->pluck('news'))'>
-                                    {{ $location->name }}
-                                </span>
-                            @endforeach
+            </div>
+        </div>
+
+        <div class="container-wrapper">
+            <section class="container">
+                <div class="text-content" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="position-relative">
+                        <h2 class="text-gradient middle-content stroke-text mb-1">NHỮNG NƠI ANH
+                            SƠN
+                            GROUP
+                            ĐÃ ĐẾN</h2>
+                        <div class="divider mb-3 m-0"></div>
+                        <div class="mb-3">
+                            <p>Khám phá hành trình của chúng tôi qua các tỉnh thành Việt Nam</p>
                         </div>
                     </div>
-                    <!-- Bản đồ bên phải -->
-                    <div class="map-box" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{ asset('assets/files/banners/ban-do.png') }}" alt="Bản đồ hành trình" class="map-image">
+                    <div class="location-list" data-aos="fade-up" data-aos-duration="1000">
+                        @foreach ($location_news as $location)
+                            <span class="location" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                data-location="{{ $location->name }}" data-news='@json($location->locationNews->pluck('news'))'>
+                                {{ $location->name }}
+                            </span>
+                        @endforeach
                     </div>
-                </section>
-                <div class="our-team">
-                    <div class="container py-5" style="padding-right: 0px !important;">
-                        @foreach ($our_team as $team)
-                            <div class="center-content position-relative" data-aos="fade-up" data-aos-duration="1000">
-                                <h2 class="text-gradient middle-content stroke-text">
-                                    {{ $team->name }}</h2>
-                                <div class="divider "></div>
-                                <p class="mt-2 text-center m-auto" style="max-width: 700px;color: var(--text-gray)">
-                                    {!! $team->description !!}
-                                </p>
-                            </div>
-                            <div class="row pt-5">
-                                @foreach ($team->userProfile as $users)
-                                    <div class="row mb-5 align-items-center intro-card position-relative" data-aos="fade-up"
-                                        data-aos-duration="1000">
-                                        @if ($loop->iteration % 2 != 0)
-                                            <div class="col-md-6 our-team-card">
-                                                <div class="p-0 md-p-4"
-                                                    style="border-radius: 12px; z-index: 1; background: #111111;">
-                                                    <img src="{{ $users->avatar }}" alt=""
-                                                        class="profile-picture w-100"
-                                                        style="height: 500px; border-radius: 12px;">
-                                                </div>
+                </div>
+                <!-- Bản đồ bên phải -->
+                <div class="map-box" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="{{ asset('assets/files/banners/ban-do.png') }}" alt="Bản đồ hành trình" class="map-image">
+                </div>
+            </section>
+        </div>
+        <div>
+            <div class="our-team container">
+                <div class="container py-5" style="padding-right: 0px !important;">
+                    @foreach ($our_team as $team)
+                        <div class="center-content position-relative" data-aos="fade-up" data-aos-duration="1000">
+                            <h2 class="text-gradient middle-content stroke-text">
+                                {{ $team->name }}</h2>
+                            <div class="divider "></div>
+                            <p class="mt-2 text-center m-auto" style="max-width: 700px;color: var(--text-gray)">
+                                {!! $team->description !!}
+                            </p>
+                        </div>
+                        <div class="row pt-5">
+                            @foreach ($team->userProfile as $users)
+                                <div class="row mb-5 align-items-center intro-card position-relative" data-aos="fade-up"
+                                    data-aos-duration="1000">
+                                    @if ($loop->iteration % 2 != 0)
+                                        <div class="col-md-6 our-team-card">
+                                            <div class="p-0 md-p-4"
+                                                style="border-radius: 12px; z-index: 1; background: #111111;">
+                                                <img src="{{ $users->avatar }}" alt="" class="profile-picture w-100"
+                                                    style="height: 500px; border-radius: 12px;">
                                             </div>
-                                            <div class="col-lg-6 py-3 px-4 mt-3 mt-md-0 card-info">
+                                        </div>
+                                        <div class="col-lg-6 py-3 px-4 mt-3 mt-md-0 card-info">
+                                            <h2 class="text-uppercase mt-2">{{ $users->user->name }}</h2>
+                                            <p class="text-secondary ">{{ $users->position }}</p>
+                                            <div class="mb-4" style="color: var(--text-gray);">
+                                                {!! $users->content !!}
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-6 order-md-2 our-team-card">
+                                            <div class="p-0 md-p-4"
+                                                style="border-radius: 12px; z-index: 1; background: #111111;">
+                                                <img src="{{ $users->avatar }}" alt=""
+                                                    class="profile-picture w-100"
+                                                    style="height: 500px; border-radius: 12px;">
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-md-6 card-content order-md-1 p-3 pt-md-0 pb-md-5 align-items-center">
+                                            <div class="text-white mt-4 py-3 px-4 card-info-1">
                                                 <h2 class="text-uppercase mt-2">{{ $users->user->name }}</h2>
-                                                <p class="text-secondary ">{{ $users->position }}</p>
+                                                <p class="text-secondary">{{ $users->position }}</p>
                                                 <div class="mb-4" style="color: var(--text-gray);">
                                                     {!! $users->content !!}
                                                 </div>
                                             </div>
-                                        @else
-                                            <div class="col-md-6 order-md-2 our-team-card">
-                                                <div class="p-0 md-p-4"
-                                                    style="border-radius: 12px; z-index: 1; background: #111111;">
-                                                    <img src="{{ $users->avatar }}" alt=""
-                                                        class="profile-picture w-100"
-                                                        style="height: 500px; border-radius: 12px;">
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="col-md-6 card-content order-md-1 p-3 pt-md-0 pb-md-5 align-items-center">
-                                                <div class="text-white mt-4 py-3 px-4 card-info-1">
-                                                    <h2 class="text-uppercase mt-2">{{ $users->user->name }}</h2>
-                                                    <p class="text-secondary">{{ $users->position }}</p>
-                                                    <div class="mb-4" style="color: var(--text-gray);">
-                                                        {!! $users->content !!}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endforeach
-                    </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
