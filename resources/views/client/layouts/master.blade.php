@@ -19,15 +19,12 @@
     <meta property="og:description" content="Công ty tổ chức sự kiện tại Hà Nội" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon/favicon.ico' }}" />
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
-
-
     <!-- Icons -->
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/fontawesome.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/vendor/fonts/tabler-icons.css' }}" />
@@ -37,7 +34,7 @@
     <link rel="stylesheet" href="{{ '/assets/vendor/css/aos.css' }}" />
     <link rel="stylesheet" href="{{ '/assets/css/gg-map.css' }}" />
     <link rel="stylesheet" href="{{ '/css/dflip.min.css' }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/magnific-popup.min.css' }}" />
 
     <link href="{{ '/assets/css/bootstrap.min.css' }}" rel="stylesheet" type="text/css" />
     <link href="{{ '/assets/css/fonts.min.css' }}" rel="stylesheet" type="text/css" />
@@ -92,7 +89,6 @@
     <script src="{{ '/assets/js/pdf.worker.min.js' }}" async></script>
     <script src="{{ '/assets/js/dflip.min.js' }}" async></script>
     <script src="{{ '/assets/vendor/libs/swiper/swiper.js' }}"></script>
-
     <script src="{{ '/assets/js/scroll.to.top.js' }}" async></script>
     <script src="{{ '/assets/vendor/js/bootstrap.js' }}" async></script>
     <script src="{{ '/assets/js/mouse-cursor-point.js' }}" async></script>
@@ -102,8 +98,8 @@
     <script src="{{ '/assets/js/custom.js' }}"></script>
     <script src="{{ '/assets/js/client.js' }}" async></script>
     <script src="{{ '/assets/js/owl.carousel-2.3.4.js' }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-
+    <script src="{{ asset('assets/js/googleTranslate.js') }}"></script>
+    <script src="{{asset('assets/js/magnific-popup.min.js')}}"></script>
     @stack('scripts')
 </body>
 

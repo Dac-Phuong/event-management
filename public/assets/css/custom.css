@@ -12,7 +12,6 @@
      --text-dark: #333333;
      --border-color: rgba(255, 255, 255, 0.05);
      --border-radius: 12px;
-
    }
 
    ::-webkit-scrollbar {
@@ -56,7 +55,7 @@
    }
 
    li {
-     margin: 5px 0px;
+     margin: 5px ;
    }
 
    li::marker {
@@ -279,7 +278,7 @@
      color: var(--primary-color);
      margin-bottom: 5px;
      font-size: 18px;
-     border-bottom: 1px solid #e87a1e;
+     border-bottom: 1px solid var(--primary-color);
    }
 
    .blogcate-title-block a.pull-right {
@@ -2511,7 +2510,6 @@
    .projects-section {
      padding-bottom: 50px;
      position: relative;
-     background: radial-gradient(ellipse at center, #d7d4d4 0%, var(--bg-white) 100%);
    }
 
    .section-header {

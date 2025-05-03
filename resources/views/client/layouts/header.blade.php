@@ -1,4 +1,172 @@
+<style>
+    body {
+        top: 0px !important;
+        padding: 0px !important;
+    }
+
+    .header-top {
+        min-height: 40px;
+        /* background: #f5f5f5; */
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px;
+        background: var(--primary-color);
+    }
+
+    .flex-row {
+        align-items: center;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .nav {
+        align-items: center;
+        display: inline-block;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }
+
+    .hb_left li:first-child {
+        border-right: 1px solid var(--text-white);
+        padding-right: 10px;
+        margin-right: 10px;
+        line-height: 15px;
+    }
+
+    .hb_left li {
+        list-style: none;
+        color: var(--text-white);
+    }
+
+    .nav-small.nav>li.html {
+        font-size: .75em;
+    }
+
+    .hb_left {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        height: 40px;
+        align-items: center;
+    }
+
+    .hb_left li a {
+        font-size: 13px;
+        color: var(--text-white);
+    }
+
+    .icon_email {
+        background: url("https://newdaymedia.com.vn/wp-content/uploads/2023/10/icon_mail.png") no-repeat center center;
+        width: 19px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+
+    .nav-small.nav>li.html {
+        font-size: .75em;
+    }
+
+    .nav>li {
+        list-style: none;
+        margin: 0 7px;
+        padding: 0;
+        transition: background-color .3s;
+    }
+
+    .html_topbar_right {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .skiptranslate iframe {
+        display: none !important;
+    }
+
+    .goog-te-combo {
+        width: 140px !important;
+    }
+
+    .skiptranslate span {
+        display: none !important;
+    }
+
+    /* Tạo một hiệu ứng select box đẹp và chuyên nghiệp */
+    select.goog-te-combo {
+        color: black;
+        font-size: 14px;
+        border: 1px solid var(--primary-color);
+        border-radius: 6px;
+        padding: 3px 6px;
+        width: 200px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+
+
+    /* Tạo hiệu ứng focus */
+    select.goog-te-combo:focus {
+        outline: none;
+        /* Loại bỏ outline mặc định */
+        border: 1px solid var(--primary-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        /* Shadow mạnh hơn khi focus */
+    }
+
+    select.goog-te-combo {
+        position: relative;
+        padding-right: 35px;
+    }
+</style>
 <header class="header">
+    <div id="top-bar" class="header-top hide-for-sticky nav-dark">
+        <div class="flex-row container">
+            <div class="flex-col hide-for-medium flex-left">
+                <ul class="nav nav-left medium-nav-center nav-small  nav-divided">
+                    <li class="html custom html_topbar_left">
+                        <ul class="hb_left">
+                            <li>
+                                <a href="/">
+                                    <i class="ti ti-mail"></i>
+                                    <span class="contact-email">Email: pro@anhsongroup.com</span>
+                                </a>
+                            </li>
+                            <li>
+                                <i class="ti ti-phone"></i>
+                                <span>Hotline: </span>
+                                <a href="tel:+0913588534" class="hb-phone contact-phone">+0913588534 </a>
+                                <a href="tel:" class="hb-phone"> </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex-col hide-for-medium flex-center">
+                <ul class="nav nav-center nav-small  nav-divided">
+                </ul>
+            </div>
+
+            <div class="flex-col hide-for-medium flex-right">
+                <ul class="nav top-bar-nav nav-right nav-small  nav-divided">
+                    <li class="html custom html_topbar_right">
+                        <p class="m-0" style="color: var(--text-white);">
+                            <i class="ti ti-language"></i>
+                            <span>Ngôn ngữ: &nbsp;</span>
+                        </p>
+                        <div id="google_element"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row align-items-center">
             <!-- Logo -->
@@ -21,6 +189,9 @@
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/gioi-thieu') }}">Giới thiệu</a>
+                                </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" target="_blank" href="{{ url('profile') }}">Profile</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button"
@@ -48,9 +219,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" target="_blank" href="{{ url('profile') }}">Profile</a>
-                                </li>
+                              
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('blog') }}">Blog</a>
                                 </li>
@@ -67,9 +236,6 @@
                 <a href="#" class="search-icon" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <i class="fas fa-search"></i>
                 </a>
-                <div class="language-selector">
-                    <span class="active">VI</span> | <span>EN</span>
-                </div>
             </div>
         </div>
     </div>
@@ -100,6 +266,9 @@
                 <a href="{{ url('/gioi-thieu') }}" class="mobile-nav-link">Giới thiệu</a>
             </li>
             <li class="mobile-nav-item">
+                <a href="{{ url('/profile') }}" class="mobile-nav-link">Profile</a>
+            </li>
+            <li class="mobile-nav-item">
                 <a href="#" class="mobile-nav-link">Dịch vụ</a>
                 <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
                 <ul class="mobile-dropdown-menu">
@@ -121,9 +290,7 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="mobile-nav-item">
-                <a href="{{ url('/profile') }}" class="mobile-nav-link">Profile</a>
-            </li>
+
             <li class="mobile-nav-item">
                 <a href="{{ url('/blog') }}" class="mobile-nav-link">Blog</a>
             </li>
@@ -167,11 +334,19 @@
 
 @push('scripts')
     <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'vi',
+                includedLanguages: 'vi,en',
+                autoDisplay: false
+            }, 'google_element');
+        }
+        loadGoogleTranslate()
+    </script>
+    <script>
         $(document).ready(function() {
             $('#button-addon2').click(function() {
                 var query = $('.search-input').val().trim();
-                console.log(query,'oks');
-                
                 var resultsContainer = $(".search-result-container");
                 resultsContainer.empty().show().append(`
                     <li class="list-group-item result-item d-flex justify-content-center">
@@ -215,7 +390,7 @@
                         console.error("Error:", error);
                         resultsContainer.empty().append(
                             '<p class="text-center">Có lỗi xảy ra. Vui lòng thử lại sau.</p>'
-                            );
+                        );
                     }
                 });
             });
@@ -238,6 +413,7 @@
                 $('body').css('overflow', '');
                 $('#searchModal').modal('show');
             });
+
             // Mobile menu toggle
             $('.mobile-menu-toggle').click(function() {
                 $('.mobile-menu').addClass('active');
@@ -292,8 +468,10 @@
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 100) {
                     $('.header').addClass('scrolled');
+                    $('#top-bar').addClass('d-none');
                 } else {
                     $('.header').removeClass('scrolled');
+                    $('#top-bar').removeClass('d-none');
                 }
             });
         });
